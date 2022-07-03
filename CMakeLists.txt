@@ -5,7 +5,8 @@ IF (POLICY CMP0091)
     CMAKE_POLICY (SET CMP0091 NEW)
 ENDIF ()
 
-project(PyPoc)
+project(PyPoc
+        LANGUAGES C CXX)
 
 SET(CMAKE_CXX_STANDARD 11)
 
