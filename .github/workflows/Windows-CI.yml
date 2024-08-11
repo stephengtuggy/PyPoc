@@ -60,7 +60,7 @@ jobs:
         shell: bash
 
       - name: install-cmake
-        uses: lukka/get-cmake@4931ab1fc1604964c055eb330edb3f6b26ba0cfa #v3.29.2
+        uses: lukka/get-cmake@a70f1cfa1857a3eecfe0d34962269e1b1e8be56c # v3.30.2
         with:
           cmakeVersion: 3.29.2
           ninjaVersion: 1.11.1
