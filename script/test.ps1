@@ -32,10 +32,9 @@ if ($BuildType -ieq "Debug") {
 }
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
-[String]$binaryDir = "$baseDir\build\$cmakePresetName"
+[String]$binaryDir = "$baseDir\build\$cmakePresetName\$BuildType"
 Push-Location $binaryDir
 
 .\PyPoc.exe
-# ctest -V -C $BuildType
 
 Pop-Location
