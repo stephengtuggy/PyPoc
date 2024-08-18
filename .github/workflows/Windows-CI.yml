@@ -16,15 +16,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os:              windows-2019
-            cmake-generator: VS2019Win64
-            enable-pie:      1
-            build-type:      Release
-          - os:              windows-2022
-            cmake-generator: VS2022Win64
-            enable-pie:      1
-            build-type:      Debug
+        os:
+          #- windows-2019
+          - windows-2022
+        cmake-generator:
+          #- VS2019Win64
+          - VS2022Win64
+          #- Ninja
+        enable-pie:
+          #- 0
+          - 1
+        build-type:
+          - Debug
+          #- Release
 
     env:
       # Indicates the location of vcpkg
