@@ -22,7 +22,7 @@ jobs:
         cmake-generator:
           #- VS2019Win64
           - VS2022Win64
-          - Ninja
+          #- Ninja
         enable-pie:
           - 0
           - 1
@@ -57,7 +57,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
         with:
-          python-version: 3.11.8
+          python-version: 3.11.9
 
       - name: "Create directory '${{ env.VCPKG_DEFAULT_BINARY_CACHE }}'"
         run: mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
