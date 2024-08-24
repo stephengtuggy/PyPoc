@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_and_test:
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
 
