@@ -1,4 +1,2 @@
-/cmake-build-debug/
-/cmake-build-debug-ninja/
-/cmake-build-release/
-/cmake-build-release-ninja/
+/cmake-build-**/
+/build/

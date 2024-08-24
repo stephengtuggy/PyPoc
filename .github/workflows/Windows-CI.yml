@@ -9,22 +9,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_and_test:
     # The type of runner that the job will run on
     runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os:              windows-2019
-            cmake-generator: VS2019Win64
-            enable-pie:      1
-            build-type:      Release
-          - os:              windows-2022
-            cmake-generator: VS2022Win64
-            enable-pie:      1
-            build-type:      Debug
+        os:
+          #- windows-2019
+          - windows-2022
+        cmake-generator:
+          #- VS2019Win64
+          - VS2022Win64
+          #- Ninja
+        enable-pie:
+          - 0
+          - 1
+        build-type:
+          - Debug
+          - Release
 
     env:
       # Indicates the location of vcpkg
@@ -53,7 +57,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
         with:
-          python-version: 3.11
+          python-version: 3.11.9
 
       - name: "Create directory '${{ env.VCPKG_DEFAULT_BINARY_CACHE }}'"
         run: mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
@@ -62,8 +66,8 @@ jobs:
       - name: install-cmake
         uses: lukka/get-cmake@a70f1cfa1857a3eecfe0d34962269e1b1e8be56c # v3.30.2
         with:
-          cmakeVersion: 3.29.2
-          ninjaVersion: 1.11.1
+          cmakeVersion: 3.30.2
+          ninjaVersion: 1.12.1
 
       # Restore vcpkg from the GitHub Action cache service. Note that packages are restored by vcpkg's binary caching
       # when it is being run afterward by CMake.
@@ -93,13 +97,13 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: .\script\build.ps1 -Generator ${{ matrix.cmake-generator }} -EnablePIE ${{ matrix.enable-pie }} -BuildType ${{ matrix.build-type }}
 
-#      - name: Test
-#        working-directory: ${{ github.workspace }}
-#        env:
-#          GTEST_OUTPUT: xml
-#          GTEST_COLOR: 1
-#        run: .\script\test.ps1 -Generator ${{ matrix.cmake-generator }} -EnablePIE ${{ matrix.enable-pie }} -BuildType ${{ matrix.build-type }}
-#
+      - name: Test
+        working-directory: ${{ github.workspace }}
+        #env:
+        #  GTEST_OUTPUT: xml
+        #  GTEST_COLOR: 1
+        run: .\script\test.ps1 -Generator ${{ matrix.cmake-generator }} -EnablePIE ${{ matrix.enable-pie }} -BuildType ${{ matrix.build-type }}
+
 #      - name: Upload test results
 #        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 #v4.3.3
 #        if: failure()
