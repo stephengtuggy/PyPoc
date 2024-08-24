@@ -22,13 +22,13 @@ jobs:
         cmake-generator:
           #- VS2019Win64
           - VS2022Win64
-          #- Ninja
+          - Ninja
         enable-pie:
-          #- 0
+          - 0
           - 1
         build-type:
           - Debug
-          #- Release
+          - Release
 
     env:
       # Indicates the location of vcpkg
