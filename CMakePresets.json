@@ -11,7 +11,7 @@
       "hidden": true,
       "displayName": "Default Config",
       "description": "Default build using Ninja generator",
-      "generator": "Ninja",
+      "generator": "Ninja Multi-Config",
       "binaryDir": "build/${presetName}",
       "debug": {
         "output": true
@@ -53,6 +53,19 @@
       "description": "Build with Position-Independent Executables (PIE) turned off",
       "cacheVariables": {
         "ENABLE_PIE": false
+      }
+    },
+    {
+      "name": "linux-ninja-pie-enabled-debug",
+      "inherits": [
+        "default",
+        "pie-enabled",
+        "debug"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
       }
     },
     {
@@ -115,6 +128,7 @@
       "inherits": "windows-base",
       "displayName": "Ninja on Windows",
       "generator": "Ninja Multi-Config",
+      "architecture": "X64",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
