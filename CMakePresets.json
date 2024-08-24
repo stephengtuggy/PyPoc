@@ -128,7 +128,6 @@
       "inherits": "windows-base",
       "displayName": "Ninja on Windows",
       "generator": "Ninja Multi-Config",
-      "architecture": "X64",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
