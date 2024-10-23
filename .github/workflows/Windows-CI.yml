@@ -72,7 +72,7 @@ jobs:
       # Restore vcpkg from the GitHub Action cache service. Note that packages are restored by vcpkg's binary caching
       # when it is being run afterward by CMake.
       - name: restore-vcpkg
-        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 #v4.0.2
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
         with:
           # The first path is the location of vcpkg: it contains the vcpkg executable and data files, as long as the
           # built package archives (aka binary cache) which are located by VCPKG_DEFAULT_BINARY_CACHE env var.
