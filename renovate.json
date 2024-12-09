@@ -6,5 +6,6 @@
   "addLabels": [
     "dependencies"
   ],
-  "minimumReleaseAge": "1d"
+  "minimumReleaseAge": "1d",
+  "prConcurrentLimit": 3
 }
