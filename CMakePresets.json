@@ -103,6 +103,11 @@
       "displayName": "Visual Studio 2019 on Windows x64",
       "generator": "Visual Studio 16 2019",
       "architecture": "X64",
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "Visual Studio"
+        }
+      },
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -116,6 +121,11 @@
       "displayName": "Visual Studio 2022 on Windows x64",
       "generator": "Visual Studio 17 2022",
       "architecture": "X64",
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "Visual Studio"
+        }
+      },
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
