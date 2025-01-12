@@ -66,7 +66,7 @@ jobs:
       - name: install-cmake
         uses: lukka/get-cmake@acb35cf920333f4dc3fc4f424f1b30d5e7d561b4 # v3.31.4
         with:
-          cmakeVersion: 3.31.3
+          cmakeVersion: 3.31.4
           ninjaVersion: 1.12.1
 
       # Restore vcpkg from the GitHub Action cache service. Note that packages are restored by vcpkg's binary caching
