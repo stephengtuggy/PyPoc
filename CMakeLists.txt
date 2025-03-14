@@ -1,5 +1,13 @@
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
+IF (POLICY CMP0087)
+    cmake_policy(SET CMP0087 NEW)
+ENDIF ()
+
+IF (POLICY CMP0167)
+    CMAKE_POLICY (SET CMP0167 OLD)
+ENDIF (POLICY CMP0167)
+
 project(PyPoc
         LANGUAGES CXX
         VERSION 0.2.0)
