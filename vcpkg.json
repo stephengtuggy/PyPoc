@@ -1,8 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "py-poc",
-  "version-string": "0.2.0",
-  "builtin-baseline": "da4b78d35084ec4e9808aa02017028da03b8d2ab",
+  "version-string": "0.2.1",
+  "builtin-baseline": "24f3d05ac7b8f8644133ed5cb5946ac6b11f449a",
   "dependencies": [
     "boost-python"
   ]
