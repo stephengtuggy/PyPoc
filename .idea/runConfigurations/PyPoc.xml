@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="PyPoc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PyPoc" TARGET_NAME="PyPoc" CONFIG_NAME="Debug-Ninja" RUN_TARGET_PROJECT_NAME="PyPoc" RUN_TARGET_NAME="PyPoc">
+  <configuration default="false" name="PyPoc" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PyPoc" TARGET_NAME="PyPoc" CONFIG_NAME="VS2022Win64-pie-enabled-debug - build-VS2022Win64-pie-enabled-debug" RUN_TARGET_PROJECT_NAME="PyPoc" RUN_TARGET_NAME="PyPoc">
     <method v="2">
       <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
     </method>
