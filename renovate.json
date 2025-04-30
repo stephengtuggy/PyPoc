@@ -6,6 +6,9 @@
   "addLabels": [
     "dependencies"
   ],
+  "additionalReviewers": [
+    "stephengtuggy"
+  ],
   "minimumReleaseAge": "1d",
   "prConcurrentLimit": 3
 }
