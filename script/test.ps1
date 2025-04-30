@@ -26,7 +26,7 @@ param(
 )
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
-[String]$binaryDir = "$baseDir\build\$PresetName"
+[String]$binaryDir = "$baseDir\build\$PresetName\$BuildType"
 Push-Location $binaryDir
 
 .\PyPoc.exe

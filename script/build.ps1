@@ -26,6 +26,6 @@ param(
 )
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
-[String]$binaryDir = "$baseDir\build\$PresetName"
+[String]$binaryDir = "$baseDir\build\$PresetName\$BuildType"
 cmake --preset "$PresetName"
 cmake --build --preset "build-$PresetName" -v
