@@ -1,37 +1,31 @@
+# The MIT License (MIT)
+#
+# Copyright © 2023-2025 Stephen G. Tuggy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the “Software”), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 param(
-    [String]$Generator = "VS2019Win64", # Other options include "ninja" and "VS2022Win64"
-    [Boolean]$EnablePIE = $false,
-    [String]$BuildType = "Release" # You can also specify "Debug"
+    [String]$PresetName = "VS2022Win64-pie-enabled-RelWithDebInfo",
+    [String]$BuildType = "RelWithDebInfo" # You can also specify "Debug" or "Release"
 )
 
-[String]$cmakePresetName = ""
-if ($Generator -ieq "Ninja") {
-    $cmakePresetName += "windows-ninja"
-} elseif ($Generator -ieq "VS2019Win64") {
-    $cmakePresetName += "VS2019Win64"
-} elseif ($Generator -ieq "VS2022Win64") {
-    $cmakePresetName += "VS2022Win64"
-} else {
-    Write-Error "Invalid value for Generator: $Generator"
-    exit 1
-}
-$cmakePresetName += "-"
-if ($EnablePIE) {
-    $cmakePresetName += "pie-enabled"
-} else {
-    $cmakePresetName += "pie-disabled"
-}
-$cmakePresetName += "-"
-if ($BuildType -ieq "Debug") {
-    $cmakePresetName += "debug"
-} elseif ($BuildType -ieq "Release") {
-    $cmakePresetName += "release"
-} else {
-    Write-Error "Unrecognized value for BuildType: $BuildType"
-    exit 1
-}
-
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
-[String]$binaryDir = "$baseDir\build\$cmakePresetName"
-cmake --preset $cmakePresetName
-cmake --build --preset "build-$cmakePresetName" -v
+[String]$binaryDir = "$baseDir\build\$PresetName"
+cmake --preset "$PresetName"
+cmake --build --preset "build-$PresetName" -v
