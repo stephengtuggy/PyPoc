@@ -16,19 +16,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          #- windows-2019
-          - windows-2022
-        cmake-generator:
-          #- VS2019Win64
-          - VS2022Win64
-          #- Ninja
-        enable-pie:
-          - 0
-          - 1
-        build-type:
-          - Debug
-          - Release
+        include:
+          - os: windows-2022
+            build-type: Release
+            preset-name: VS2022Win64-pie-enabled-release
+          - os: windows-2019
+            build-type: Debug
+            preset-name: VS2019Win64-pie-disabled-debug
 
     env:
       # Indicates the location of vcpkg
@@ -95,14 +89,14 @@ jobs:
 
       - name: run-build-script
         working-directory: ${{ github.workspace }}
-        run: .\script\build.ps1 -Generator ${{ matrix.cmake-generator }} -EnablePIE ${{ matrix.enable-pie }} -BuildType ${{ matrix.build-type }}
+        run: .\script\build.ps1 -PresetName ${{ matrix.preset-name }} -BuildType ${{ matrix.build-type }}
 
       - name: Test
         working-directory: ${{ github.workspace }}
         #env:
         #  GTEST_OUTPUT: xml
         #  GTEST_COLOR: 1
-        run: .\script\test.ps1 -Generator ${{ matrix.cmake-generator }} -EnablePIE ${{ matrix.enable-pie }} -BuildType ${{ matrix.build-type }}
+        run: .\script\test.ps1 -PresetName ${{ matrix.preset-name }} -BuildType ${{ matrix.build-type }}
 
 #      - name: Upload test results
 #        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 #v4.3.3
