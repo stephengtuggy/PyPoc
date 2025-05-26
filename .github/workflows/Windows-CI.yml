@@ -20,9 +20,11 @@ jobs:
           - os: windows-2022
             build-type: Release
             preset-name: VS2022Win64-pie-enabled-release
+            python-version: 3.13.3
           - os: windows-2019
             build-type: Debug
             preset-name: VS2019Win64-pie-disabled-debug
+            python-version: 3.12.10
 
     env:
       # Indicates the location of vcpkg
@@ -50,8 +52,10 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        id: vega-py-setup
         with:
-          python-version: 3.13.3
+          python-version: ${{ matrix.python-version }}
+          update-environment: false
 
       - name: "Create directory '${{ env.VCPKG_DEFAULT_BINARY_CACHE }}'"
         run: mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
@@ -89,13 +93,16 @@ jobs:
 
       - name: run-build-script
         working-directory: ${{ github.workspace }}
+        env:
+          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
+          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
+          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
+          PYTHONHOME: ""
+          PYTHONPATH: ""
         run: .\script\build.ps1 -PresetName ${{ matrix.preset-name }} -BuildType ${{ matrix.build-type }}
 
       - name: Test
         working-directory: ${{ github.workspace }}
-        #env:
-        #  GTEST_OUTPUT: xml
-        #  GTEST_COLOR: 1
         run: .\script\test.ps1 -PresetName ${{ matrix.preset-name }} -BuildType ${{ matrix.build-type }}
 
 #      - name: Upload test results
