@@ -20,11 +20,11 @@ jobs:
           - os: windows-2022
             build-type: Release
             preset-name: VS2022Win64-pie-enabled-release
-            python-version: 3.13.3
-          - os: windows-2019
-            build-type: Debug
-            preset-name: VS2019Win64-pie-disabled-debug
             python-version: 3.12.10
+          - os: windows-2025
+            build-type: Debug
+            preset-name: VS2022Win64-pie-disabled-debug
+            python-version: 3.13.6
 
     env:
       # Indicates the location of vcpkg
@@ -70,7 +70,7 @@ jobs:
       # Restore vcpkg from the GitHub Action cache service. Note that packages are restored by vcpkg's binary caching
       # when it is being run afterward by CMake.
       - name: restore-vcpkg
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
         with:
           # The first path is the location of vcpkg: it contains the vcpkg executable and data files, as long as the
           # built package archives (aka binary cache) which are located by VCPKG_DEFAULT_BINARY_CACHE env var.
