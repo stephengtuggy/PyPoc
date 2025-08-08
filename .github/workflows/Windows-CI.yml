@@ -20,8 +20,8 @@ jobs:
           - os: windows-2022
             build-type: Release
             preset-name: VS2022Win64-pie-enabled-release
-            python-version: 3.13.3
-          - os: windows-2019
+            python-version: 3.13.6
+          - os: windows-2025
             build-type: Debug
             preset-name: VS2019Win64-pie-disabled-debug
             python-version: 3.12.10
