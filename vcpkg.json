@@ -2,8 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "py-poc",
   "version-string": "0.2.1",
-  "builtin-baseline": "ce613c41372b23b1f51333815feb3edd87ef8a8b",
+  "builtin-baseline": "dd3097e305afa53f7b4312371f62058d2e665320",
   "dependencies": [
-    "boost-python"
+    "boost-python",
+    "protobuf",
+    "nlohmann-json",
+    "opentelemetry-cpp"
   ]
 }

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
 IF (POLICY CMP0087)
     cmake_policy(SET CMP0087 NEW)
@@ -31,6 +31,35 @@ ELSE (ENABLE_PIE)
     SET(CMAKE_POSITION_INDEPENDENT_CODE OFF)
 ENDIF (ENABLE_PIE)
 
+OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
+IF (USE_OPEN_TELEMETRY)
+    SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
+
+    #    SET(opentelemetry-cpp_DIR ${Vega_Strike_SOURCE_DIR}/lib/cmake/opentelemetry-cpp)
+    #    SET(nlohmann_json_DIR ${Vega_Strike_SOURCE_DIR}/share/cmake/nlohmann_json)
+    #    SET(Protobuf_DIR ${Vega_Strike_SOURCE_DIR}/cmake)
+    #    SET(Protobuf_INCLUDE_DIR ${Vega_Strike_SOURCE_DIR}/include/google/protobuf)
+    FIND_PACKAGE(Protobuf CONFIG)
+
+    # Use find_package to include OpenTelemetry C++
+    FIND_PACKAGE(opentelemetry-cpp CONFIG REQUIRED COMPONENTS api sdk exporters_otlp_file)
+    #check whether opentelemetry libraries found
+    IF (opentelemetry-cpp_FOUND)
+        MESSAGE(STATUS "Found opentelemetry libraries; preparing to use them")
+    ELSE ()
+        MESSAGE(WARNING "Did not find opentelemetry libraries; building without")
+    ENDIF ()
+
+    #    if(OPENTELEMETRY_COMMON_LIB AND OPENTELEMETRY_TRACE_LIB AND OPENTELEMETRY_EXPORTER_LIB AND OPENTELEMETRY_RESOURCE_LIB)
+    #        message(STATUS "Found opentelemetry libraries; preparing to use them")
+    #    else()
+    #        message(WARNING "Did not find opentelemetry libraries; building without")
+    #        SET(USE_OPEN_TELEMETRY OFF)
+    #    ENDIF ()
+ELSE ()
+    MESSAGE(STATUS "USE_OPEN_TELEMETRY not set; building without")
+ENDIF ()
+
 FIND_PACKAGE(Python3 REQUIRED COMPONENTS Development Interpreter)
 SET(BOOST_PYTHON_COMPONENT "python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR}")
 FIND_PACKAGE(Boost REQUIRED COMPONENTS ${BOOST_PYTHON_COMPONENT} )
@@ -44,5 +73,25 @@ IF (WIN32)
     TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC WINVER=0x0A00)
     TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC "$<$<CONFIG:Debug>:Py_DEBUG>")
 ENDIF()
+IF (USE_OPEN_TELEMETRY)
+    target_compile_definitions(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
+    if(DEFINED OPENTELEMETRY_BUILD_DLL)
+        target_compile_definitions(PyPoc
+                PRIVATE OPENTELEMETRY_BUILD_IMPORT_DLL
+        )
+        target_link_libraries(PyPoc
+                PRIVATE opentelemetry-cpp::opentelemetry_cpp)
+    else()
+        target_link_libraries(PyPoc
+                PRIVATE opentelemetry-cpp::api
+                opentelemetry-cpp::common
+                opentelemetry-cpp::logs
+                opentelemetry-cpp::metrics
+                opentelemetry-cpp::resources
+                opentelemetry-cpp::sdk
+                opentelemetry-cpp::trace
+        )
+    endif()
+ENDIF ()
 
 target_link_libraries(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
