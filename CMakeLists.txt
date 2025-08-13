@@ -33,7 +33,7 @@ ENDIF (ENABLE_PIE)
 
 OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
 IF (USE_OPEN_TELEMETRY)
-    target_compile_definitions(vegastrike-engine PRIVATE USE_OPEN_TELEMETRY=1)
+    target_compile_definitions(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
     SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
 
     #    SET(opentelemetry-cpp_DIR ${Vega_Strike_SOURCE_DIR}/lib/cmake/opentelemetry-cpp)
