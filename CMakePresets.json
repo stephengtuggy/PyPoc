@@ -1,8 +1,8 @@
 {
-  "version": 3,
+  "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 16,
+    "minor": 21,
     "patch": 0
   },
   "configurePresets": [
@@ -15,6 +15,9 @@
       "binaryDir": "build/${presetName}",
       "debug": {
         "output": true
+      },
+      "cacheVariables": {
+        "USE_OPEN_TELEMETRY": true
       }
     },
     {
@@ -75,16 +78,17 @@
       "displayName": "Windows Default",
       "description": "Default build for Windows",
       "environment": {
-        "VCPKG_TARGET_TRIPLET": "x64-windows-win10",
-        "VCPKG_HOST_TRIPLET": "x64-windows-win10"
+        "VCPKG_FEATURE_FLAGS": "manifests,registries",
+        "VCPKG_TARGET_TRIPLET": "x64-win10-static",
+        "VCPKG_HOST_TRIPLET": "x64-win10-static"
       },
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": {
           "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
           "type": "FILEPATH"
         },
-        "VCPKG_TARGET_TRIPLET": "x64-windows-win10",
-        "VCPKG_HOST_TRIPLET": "x64-windows-win10"
+        "VCPKG_TARGET_TRIPLET": "x64-win10-static",
+        "VCPKG_HOST_TRIPLET": "x64-win10-static"
       },
       "debug": {
         "output": true,
