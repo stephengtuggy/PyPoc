@@ -14,5 +14,6 @@
         "opentelemetry-cpp"
       ]
     }
-  ]
+  ],
+  "overlay-triplets": [ "./custom-triplets" ]
 }

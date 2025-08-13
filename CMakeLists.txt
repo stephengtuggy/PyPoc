@@ -33,13 +33,7 @@ ENDIF (ENABLE_PIE)
 
 OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
 IF (USE_OPEN_TELEMETRY)
-    target_compile_definitions(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
     SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
-
-    #    SET(opentelemetry-cpp_DIR ${Vega_Strike_SOURCE_DIR}/lib/cmake/opentelemetry-cpp)
-    #    SET(nlohmann_json_DIR ${Vega_Strike_SOURCE_DIR}/share/cmake/nlohmann_json)
-    #    SET(Protobuf_DIR ${Vega_Strike_SOURCE_DIR}/cmake)
-    #    SET(Protobuf_INCLUDE_DIR ${Vega_Strike_SOURCE_DIR}/include/google/protobuf)
     FIND_PACKAGE(Protobuf CONFIG)
 
     # Use find_package to include OpenTelemetry C++
@@ -50,13 +44,6 @@ IF (USE_OPEN_TELEMETRY)
     ELSE ()
         MESSAGE(WARNING "Did not find opentelemetry libraries; building without")
     ENDIF ()
-
-    #    if(OPENTELEMETRY_COMMON_LIB AND OPENTELEMETRY_TRACE_LIB AND OPENTELEMETRY_EXPORTER_LIB AND OPENTELEMETRY_RESOURCE_LIB)
-    #        message(STATUS "Found opentelemetry libraries; preparing to use them")
-    #    else()
-    #        message(WARNING "Did not find opentelemetry libraries; building without")
-    #        SET(USE_OPEN_TELEMETRY OFF)
-    #    ENDIF ()
 ELSE ()
     MESSAGE(STATUS "USE_OPEN_TELEMETRY not set; building without")
 ENDIF ()
