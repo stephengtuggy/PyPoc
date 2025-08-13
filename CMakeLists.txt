@@ -43,6 +43,7 @@ IF (USE_OPEN_TELEMETRY)
         MESSAGE(STATUS "Found opentelemetry libraries; preparing to use them")
     ELSE ()
         MESSAGE(WARNING "Did not find opentelemetry libraries; building without")
+        SET(USE_OPEN_TELEMETRY OFF)
     ENDIF ()
 ELSE ()
     MESSAGE(STATUS "USE_OPEN_TELEMETRY not set; building without")
@@ -78,6 +79,9 @@ IF (USE_OPEN_TELEMETRY)
                 opentelemetry-cpp::resources
                 opentelemetry-cpp::sdk
                 opentelemetry-cpp::trace
+                opentelemetry-cpp::otlp_file_exporter
+                opentelemetry-cpp::otlp_file_metric_exporter
+                opentelemetry-cpp::otlp_file_log_record_exporter
         )
     endif()
 ENDIF ()
