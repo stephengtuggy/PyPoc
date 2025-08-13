@@ -30,38 +30,67 @@
 #endif
 
 namespace trace     = opentelemetry::trace;
-namespace trace_sdk = opentelemetry::sdk::trace;
+namespace nostd     = opentelemetry::nostd;
 namespace otlp      = opentelemetry::exporter::otlp;
+namespace logs_sdk  = opentelemetry::sdk::logs;
+namespace logs      = opentelemetry::logs;
+namespace trace_sdk = opentelemetry::sdk::trace;
 
 namespace
 {
     opentelemetry::exporter::otlp::OtlpFileExporterOptions opts;
+    opentelemetry::exporter::otlp::OtlpFileLogRecordExporterOptions log_opts;
 
-    std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> provider;
+    std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
+    std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
 
     void InitTracer()
     {
         // Create OTLP exporter instance
-        auto exporter  = otlp::OtlpFileExporterFactory::Create(opts);
-        auto processor = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
-        provider       = trace_sdk::TracerProviderFactory::Create(std::move(processor));
+        auto exporter   = otlp::OtlpFileExporterFactory::Create(opts);
+        auto processor  = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
+        tracer_provider = trace_sdk::TracerProviderFactory::Create(std::move(processor));
 
         // Set the global trace provider
-        std::shared_ptr<opentelemetry::trace::TracerProvider> api_provider = provider;
+        std::shared_ptr<opentelemetry::trace::TracerProvider> api_provider = tracer_provider;
         trace_sdk::Provider::SetTracerProvider(api_provider);
     }
 
     void CleanupTracer()
     {
         // We call ForceFlush to prevent to cancel running exportings, It's optional.
-        if (provider)
+        if (tracer_provider)
         {
-            provider->ForceFlush();
+            tracer_provider->ForceFlush();
         }
 
-        provider.reset();
+        tracer_provider.reset();
         std::shared_ptr<opentelemetry::trace::TracerProvider> none;
         trace_sdk::Provider::SetTracerProvider(none);
+    }
+
+    void InitLogger()
+    {
+        // Create OTLP exporter instance
+        auto exporter   = otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
+        auto processor  = logs_sdk::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
+        logger_provider = logs_sdk::LoggerProviderFactory::Create(std::move(processor));
+
+        std::shared_ptr<opentelemetry::logs::LoggerProvider> api_provider = logger_provider;
+        logs_sdk::Provider::SetLoggerProvider(api_provider);
+    }
+
+    void CleanupLogger()
+    {
+        // We call ForceFlush to prevent to cancel running exportings, It's optional.
+        if (logger_provider)
+        {
+            logger_provider->ForceFlush();
+        }
+
+        logger_provider.reset();
+        nostd::shared_ptr<logs::LoggerProvider> none;
+        logs_sdk::Provider::SetLoggerProvider(none);
     }
 }  // namespace
 
@@ -71,8 +100,22 @@ int main(int argc, char *argv[]) {
         opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
         fs_backend.file_pattern = argv[1];
         opts.backend_options    = fs_backend;
+        if (argc > 2)
+        {
+            opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
+            logs_fs_backend.file_pattern = argv[2];
+            log_opts.backend_options     = logs_fs_backend;
+        }
+        else
+        {
+            log_opts.backend_options = std::ref(std::cout);
+        }
     }
-    // Removing this line will leave the default noop TracerProvider in place.
+    else
+    {
+        opts.backend_options = std::ref(std::cout);
+    }
+    InitLogger();
     InitTracer();
 
     Py_Initialize();
@@ -87,6 +130,7 @@ int main(int argc, char *argv[]) {
     }
 
     CleanupTracer();
+    CleanupLogger();
     return 0;
 }
 
