@@ -16,7 +16,7 @@ SET(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 SET(CMAKE_CXX_EXTENSIONS ON)
 
-SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 SET(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
 INCLUDE(InstallRequiredSystemLibraries)
 
@@ -33,6 +33,7 @@ ENDIF (ENABLE_PIE)
 
 OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
 IF (USE_OPEN_TELEMETRY)
+    target_compile_definitions(vegastrike-engine PRIVATE USE_OPEN_TELEMETRY=1)
     SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
 
     #    SET(opentelemetry-cpp_DIR ${Vega_Strike_SOURCE_DIR}/lib/cmake/opentelemetry-cpp)
@@ -42,7 +43,7 @@ IF (USE_OPEN_TELEMETRY)
     FIND_PACKAGE(Protobuf CONFIG)
 
     # Use find_package to include OpenTelemetry C++
-    FIND_PACKAGE(opentelemetry-cpp CONFIG REQUIRED COMPONENTS api sdk exporters_otlp_file)
+    FIND_PACKAGE(opentelemetry-cpp CONFIG COMPONENTS api sdk exporters_otlp_file)
     #check whether opentelemetry libraries found
     IF (opentelemetry-cpp_FOUND)
         MESSAGE(STATUS "Found opentelemetry libraries; preparing to use them")

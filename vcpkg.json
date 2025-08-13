@@ -2,11 +2,14 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
   "name": "py-poc",
   "version-string": "0.2.1",
-  "builtin-baseline": "dd3097e305afa53f7b4312371f62058d2e665320",
   "dependencies": [
     "boost-python",
-    "protobuf",
-    "nlohmann-json",
-    "opentelemetry-cpp"
+    {
+      "name": "opentelemetry-cpp",
+      "version>=": "1.22.0#1",
+      "features": [
+        "otlp-file"
+      ]
+    }
   ]
 }
