@@ -1,8 +1,5 @@
 #define PY_SSIZE_T_CLEAN
-//#include <Python.h>
 #include <boost/python.hpp>
-//#include <iostream>
-//#include <stdlib.h>
 
 #if defined(USE_OPEN_TELEMETRY)
 #include <functional>
@@ -10,11 +7,11 @@
 #include <string>
 #include <utility>
 
-// #include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
-// #include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
-// #include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
-// #include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h"
-// #include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
+#include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
+#include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
+#include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
+#include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h"
+#include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
 #include "opentelemetry/logs/logger_provider.h"
 #include "opentelemetry/nostd/shared_ptr.h"
 #include "opentelemetry/sdk/logs/exporter.h"
@@ -33,11 +30,6 @@
 #endif
 
 int main() {
-//    setenv("PYTHONPATH", ".", 1);
-//    std::string modpaths("\"\",");
-//    modpaths += "r\".\"";
-//    std::string changepath("import sys\nprint(sys.path)\nsys.path = [" + modpaths + "] + sys.path\n");
-
     Py_Initialize();
 
     try {
