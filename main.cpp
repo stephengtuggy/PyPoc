@@ -1,6 +1,8 @@
 #define PY_SSIZE_T_CLEAN
 #include <boost/python.hpp>
 
+#include "PyPocLibrary.h"
+
 #if defined(USE_OPEN_TELEMETRY)
 #include <functional>
 #include <iostream>
@@ -27,7 +29,6 @@
 #include "opentelemetry/sdk/trace/tracer_provider.h"
 #include "opentelemetry/sdk/trace/tracer_provider_factory.h"
 #include "opentelemetry/trace/tracer_provider.h"
-#endif
 
 namespace trace     = opentelemetry::trace;
 namespace nostd     = opentelemetry::nostd;
@@ -38,63 +39,66 @@ namespace trace_sdk = opentelemetry::sdk::trace;
 
 namespace
 {
-    opentelemetry::exporter::otlp::OtlpFileExporterOptions opts;
-    opentelemetry::exporter::otlp::OtlpFileLogRecordExporterOptions log_opts;
+opentelemetry::exporter::otlp::OtlpFileExporterOptions opts;
+opentelemetry::exporter::otlp::OtlpFileLogRecordExporterOptions log_opts;
 
-    std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
-    std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
+std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
+std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
 
-    void InitTracer()
-    {
-        // Create OTLP exporter instance
-        auto exporter   = otlp::OtlpFileExporterFactory::Create(opts);
-        auto processor  = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
-        tracer_provider = trace_sdk::TracerProviderFactory::Create(std::move(processor));
+void InitTracer()
+{
+  // Create OTLP exporter instance
+  auto exporter   = otlp::OtlpFileExporterFactory::Create(opts);
+  auto processor  = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
+  tracer_provider = trace_sdk::TracerProviderFactory::Create(std::move(processor));
 
-        // Set the global trace provider
-        std::shared_ptr<opentelemetry::trace::TracerProvider> api_provider = tracer_provider;
-        trace_sdk::Provider::SetTracerProvider(api_provider);
-    }
+  // Set the global trace provider
+  std::shared_ptr<opentelemetry::trace::TracerProvider> api_provider = tracer_provider;
+  trace_sdk::Provider::SetTracerProvider(api_provider);
+}
 
-    void CleanupTracer()
-    {
-        // We call ForceFlush to prevent to cancel running exportings, It's optional.
-        if (tracer_provider)
-        {
-            tracer_provider->ForceFlush();
-        }
+void CleanupTracer()
+{
+  // We call ForceFlush to prevent to cancel running exportings, It's optional.
+  if (tracer_provider)
+  {
+    tracer_provider->ForceFlush();
+  }
 
-        tracer_provider.reset();
-        std::shared_ptr<opentelemetry::trace::TracerProvider> none;
-        trace_sdk::Provider::SetTracerProvider(none);
-    }
+  tracer_provider.reset();
+  std::shared_ptr<opentelemetry::trace::TracerProvider> none;
+  trace_sdk::Provider::SetTracerProvider(none);
+}
 
-    void InitLogger()
-    {
-        // Create OTLP exporter instance
-        auto exporter   = otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
-        auto processor  = logs_sdk::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
-        logger_provider = logs_sdk::LoggerProviderFactory::Create(std::move(processor));
+void InitLogger()
+{
+  // Create OTLP exporter instance
+  auto exporter   = otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
+  auto processor  = logs_sdk::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
+  logger_provider = logs_sdk::LoggerProviderFactory::Create(std::move(processor));
 
-        std::shared_ptr<opentelemetry::logs::LoggerProvider> api_provider = logger_provider;
-        logs_sdk::Provider::SetLoggerProvider(api_provider);
-    }
+  std::shared_ptr<opentelemetry::logs::LoggerProvider> api_provider = logger_provider;
+  logs_sdk::Provider::SetLoggerProvider(api_provider);
+}
 
-    void CleanupLogger()
-    {
-        // We call ForceFlush to prevent to cancel running exportings, It's optional.
-        if (logger_provider)
-        {
-            logger_provider->ForceFlush();
-        }
+void CleanupLogger()
+{
+  // We call ForceFlush to prevent to cancel running exportings, It's optional.
+  if (logger_provider)
+  {
+    logger_provider->ForceFlush();
+  }
 
-        logger_provider.reset();
-        nostd::shared_ptr<logs::LoggerProvider> none;
-        logs_sdk::Provider::SetLoggerProvider(none);
-    }
+  logger_provider.reset();
+  nostd::shared_ptr<logs::LoggerProvider> none;
+  logs_sdk::Provider::SetLoggerProvider(none);
+}
 }  // namespace
 
+#endif
+
 int main(int argc, char *argv[]) {
+#if defined(USE_OPEN_TELEMETRY)
     if (argc > 1)
     {
         opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
@@ -117,6 +121,7 @@ int main(int argc, char *argv[]) {
     }
     InitLogger();
     InitTracer();
+#endif
 
     Py_Initialize();
 
@@ -129,8 +134,14 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    auto library_instance = std::make_shared<py_poc::PyPocLibrary>();
+    library_instance->foo();
+
+#if defined(USE_OPEN_TELEMETRY)
     CleanupTracer();
     CleanupLogger();
+#endif
+
     return 0;
 }
 
