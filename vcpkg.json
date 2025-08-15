@@ -4,12 +4,8 @@
   "version-string": "0.2.1",
   "dependencies": [
     "boost-python",
-    {
-      "name": "opentelemetry-cpp",
-      "version>=": "1.22.0#1",
-      "features": [
-        "otlp-file"
-      ]
-    }
+    "openal-soft",
+    "nlohmann-json",
+    "protobuf"
   ]
 }

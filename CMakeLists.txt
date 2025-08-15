@@ -36,7 +36,7 @@ project(PyPoc
 
 SET(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-SET(CMAKE_CXX_EXTENSIONS ON)
+SET(CMAKE_CXX_EXTENSIONS OFF)
 
 SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 SET(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
@@ -53,9 +53,20 @@ ELSE (ENABLE_PIE)
     SET(CMAKE_POSITION_INDEPENDENT_CODE OFF)
 ENDIF (ENABLE_PIE)
 
+#Find OpenAL
+FIND_PACKAGE(OpenAL REQUIRED)
+IF (OPENAL_FOUND)
+    MESSAGE(STATUS "Found OpenAL")
+    LIST(APPEND VSE_TST_INCLUDES ${OPENAL_INCLUDE_DIR})
+    LIST(APPEND VSE_TST_LIBS ${OPENAL_LIBRARY})
+    SET(HAVE_AL 1)
+ELSE (OPENAL_FOUND)
+    MESSAGE(FATAL_ERROR "Failed to find required library OpenAL for sound functionality")
+ENDIF (OPENAL_FOUND)
+
 OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
 IF (USE_OPEN_TELEMETRY)
-    SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
+#    SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
     FIND_PACKAGE(Protobuf CONFIG)
 
     # Use find_package to include OpenTelemetry C++
@@ -74,7 +85,18 @@ ENDIF ()
 FIND_PACKAGE(Python3 REQUIRED COMPONENTS Development Interpreter)
 SET(BOOST_PYTHON_COMPONENT "python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR}")
 FIND_PACKAGE(Boost REQUIRED COMPONENTS ${BOOST_PYTHON_COMPONENT} )
-include_directories(${Python3_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+include_directories(${Python3_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${VSE_TST_INCLUDES})
+
+IF (USE_OPEN_TELEMETRY)
+    INCLUDE(FetchContent)
+    FetchContent_Declare(
+            opentelemetry-cpp
+            GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
+            GIT_TAG             v1.22.0
+    )
+
+    FetchContent_MakeAvailable(opentelemetry-cpp)
+ENDIF ()
 
 add_executable(PyPoc main.cpp
         PyPocLibrary.cpp)
@@ -109,4 +131,4 @@ IF (USE_OPEN_TELEMETRY)
     endif()
 ENDIF ()
 
-target_link_libraries(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES} ${VSE_TST_LIBS})
