@@ -17,3 +17,5 @@ IF ("${PORT}" STREQUAL "openal-soft")
 #ELSE ()
 #    LIST(APPEND VCPKG_CMAKE_CONFIGURE_OPTIONS "-DCMAKE_MAP_IMPORTED_CONFIG_RelWithDebInfo=RelWithDebInfo;Release;Debug;")
 ENDIF ()
+
+SET(VCPKG_BUILD_TYPE Release)
