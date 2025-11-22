@@ -36,10 +36,10 @@ project(PyPoc
 
 SET(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
-SET(CMAKE_CXX_EXTENSIONS OFF)
+SET(CMAKE_CXX_EXTENSIONS ON)
 
-SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-SET(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
+SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+#SET(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
 INCLUDE(InstallRequiredSystemLibraries)
 
 OPTION(ENABLE_PIE "Enable Position Independent Executables" ON)
@@ -64,30 +64,17 @@ ELSE (OPENAL_FOUND)
     MESSAGE(FATAL_ERROR "Failed to find required library OpenAL for sound functionality")
 ENDIF (OPENAL_FOUND)
 
-OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
-IF (USE_OPEN_TELEMETRY)
-#    SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
-    FIND_PACKAGE(Protobuf CONFIG)
-
-    # Use find_package to include OpenTelemetry C++
-    FIND_PACKAGE(opentelemetry-cpp CONFIG COMPONENTS api sdk exporters_otlp_file)
-    #check whether opentelemetry libraries found
-    IF (opentelemetry-cpp_FOUND)
-        MESSAGE(STATUS "Found opentelemetry libraries; preparing to use them")
-    ELSE ()
-        MESSAGE(WARNING "Did not find opentelemetry libraries; building without")
-        SET(USE_OPEN_TELEMETRY OFF)
-    ENDIF ()
-ELSE ()
-    MESSAGE(STATUS "USE_OPEN_TELEMETRY not set; building without")
-ENDIF ()
-
 FIND_PACKAGE(Python3 REQUIRED COMPONENTS Development Interpreter)
 SET(BOOST_PYTHON_COMPONENT "python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR}")
 FIND_PACKAGE(Boost REQUIRED COMPONENTS ${BOOST_PYTHON_COMPONENT} )
 include_directories(${Python3_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${VSE_TST_INCLUDES})
 
+OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
 IF (USE_OPEN_TELEMETRY)
+    FIND_PACKAGE(Protobuf CONFIG)
+
+    ADD_COMPILE_DEFINITIONS(-DCMAKE_CXX_STANDARD=14 -DCMAKE_CXX_STANDARD_REQUIRED=ON -DCMAKE_CXX_EXTENSIONS=OFF -DWITH_OTLP_FILE=ON -DWITH_EXAMPLES=ON -DCMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO=Debug -DOPENTELEMETRY_BUILD_DLL=OFF -DOPENTELEMETRY_INSTALL=ON)
+
     INCLUDE(FetchContent)
     FetchContent_Declare(
             opentelemetry-cpp
@@ -96,6 +83,8 @@ IF (USE_OPEN_TELEMETRY)
     )
 
     FetchContent_MakeAvailable(opentelemetry-cpp)
+ELSE ()
+    MESSAGE(STATUS "USE_OPEN_TELEMETRY not set; building without")
 ENDIF ()
 
 add_executable(PyPoc main.cpp
