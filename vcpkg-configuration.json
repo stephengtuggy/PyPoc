@@ -3,17 +3,7 @@
   "default-registry": {
     "kind": "git",
     "repository": "https://github.com/microsoft/vcpkg.git",
-    "baseline": "dd3097e305afa53f7b4312371f62058d2e665320"
+    "baseline": "2e776305f2542cc626716435b0c1baf67bb5ab45"
   },
-  "registries": [
-    {
-      "kind": "git",
-      "repository": "https://github.com/stephengtuggy/vcpkg.git",
-      "baseline": "955214d0f6e784423bd0532fea5c005676bf85d1",
-      "packages": [
-        "opentelemetry-cpp"
-      ]
-    }
-  ],
   "overlay-triplets": [ "./custom-triplets" ]
 }
