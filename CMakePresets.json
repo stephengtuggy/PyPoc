@@ -79,16 +79,16 @@
       "description": "Default build for Windows",
       "environment": {
         "VCPKG_FEATURE_FLAGS": "manifests,registries",
-        "VCPKG_TARGET_TRIPLET": "x64-win10-static",
-        "VCPKG_HOST_TRIPLET": "x64-win10-static"
+        "VCPKG_TARGET_TRIPLET": "x64-win10",
+        "VCPKG_HOST_TRIPLET": "x64-win10"
       },
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": {
           "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
           "type": "FILEPATH"
         },
-        "VCPKG_TARGET_TRIPLET": "x64-win10-static",
-        "VCPKG_HOST_TRIPLET": "x64-win10-static"
+        "VCPKG_TARGET_TRIPLET": "x64-win10",
+        "VCPKG_HOST_TRIPLET": "x64-win10"
       },
       "debug": {
         "output": true,
@@ -107,11 +107,6 @@
       "displayName": "Visual Studio 2019 on Windows x64",
       "generator": "Visual Studio 16 2019",
       "architecture": "X64",
-      "vendor": {
-        "jetbrains.com/clion": {
-          "toolchain": "Visual Studio"
-        }
-      },
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -125,11 +120,19 @@
       "displayName": "Visual Studio 2022 on Windows x64",
       "generator": "Visual Studio 17 2022",
       "architecture": "X64",
-      "vendor": {
-        "jetbrains.com/clion": {
-          "toolchain": "Visual Studio"
-        }
-      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64",
+      "hidden": true,
+      "inherits": "windows-base",
+      "displayName": "Visual Studio 2026 on Windows x64",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "X64",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -315,6 +318,62 @@
         "lhs": "${hostSystemName}",
         "rhs": "Windows"
       }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-debug",
+      "displayName": "VS2026Win64, PIE Enabled, Debug",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "debug"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-release",
+      "displayName": "VS2026Win64, PIE Enabled, Release",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-disabled-debug",
+      "displayName": "VS2026Win64, PIE Disabled, Debug",
+      "inherits": [
+        "VS2026Win64",
+        "pie-disabled",
+        "debug"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-disabled-release",
+      "displayName": "VS2026Win64, PIE Disabled, Release",
+      "inherits": [
+        "VS2026Win64",
+        "pie-disabled",
+        "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
     }
   ],
   "buildPresets": [
@@ -443,6 +502,50 @@
       "name": "build-VS2022Win64-pie-disabled-release",
       "configurePreset": "VS2022Win64-pie-disabled-release",
       "displayName": "VS2022Win64, PIE Disabled, Release",
+      "configuration": "Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2026Win64-pie-enabled-debug",
+      "configurePreset": "VS2026Win64-pie-enabled-debug",
+      "displayName": "VS2026Win64, PIE Enabled, Debug",
+      "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2026Win64-pie-enabled-release",
+      "configurePreset": "VS2026Win64-pie-enabled-release",
+      "displayName": "VS2026Win64, PIE Enabled, Release",
+      "configuration": "Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2026Win64-pie-disabled-debug",
+      "configurePreset": "VS2026Win64-pie-disabled-debug",
+      "displayName": "VS2026Win64, PIE Disabled, Debug",
+      "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2026Win64-pie-disabled-release",
+      "configurePreset": "VS2026Win64-pie-disabled-release",
+      "displayName": "VS2026Win64, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
         "type": "equals",

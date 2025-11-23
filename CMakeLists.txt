@@ -38,8 +38,8 @@ SET(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 SET(CMAKE_CXX_EXTENSIONS ON)
 
-SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-SET(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
+SET(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+#SET(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
 INCLUDE(InstallRequiredSystemLibraries)
 
 OPTION(ENABLE_PIE "Enable Position Independent Executables" ON)
@@ -53,7 +53,17 @@ ELSE (ENABLE_PIE)
     SET(CMAKE_POSITION_INDEPENDENT_CODE OFF)
 ENDIF (ENABLE_PIE)
 
-OPTION(USE_OPEN_TELEMETRY "Include and use opentelemetry-cpp" OFF)
+ADD_COMPILE_OPTIONS(
+        "$<$<CXX_COMPILER_ID:MSVC>:/MP>"
+        "$<$<AND:$<CXX_COMPILER_ID:MSVC>,$<CONFIG:Debug>>:/Z7>"
+)
+ADD_LINK_OPTIONS(
+        "$<$<AND:$<CXX_COMPILER_ID:MSVC>,$<CONFIG:Debug>>:/DEBUG>"
+        "$<$<AND:$<CXX_COMPILER_ID:MSVC>,$<CONFIG:RelWithDebInfo>>:/DEBUG>"
+)
+
+OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
+OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
 IF (USE_OPEN_TELEMETRY)
     SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
     FIND_PACKAGE(Protobuf CONFIG)
