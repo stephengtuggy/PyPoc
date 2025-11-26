@@ -71,12 +71,11 @@ platform="$(uname | tr '[:upper:]' '[:lower:]')"
 
 case "$platform" in
     "linux"|"linux-gnu")
-        SRC_DOCKER_IMG_NAME="$from"
         DOCKER_IMG_NAME="local_building-py-poc:$(echo "$from" | sed 's/:/_/' | sed 's/\//_/')"
-        DOCKER_CONTAINER_NAME="building-py-poc_$(echo $from | sed 's/:/_/' | sed 's/\//_/')"
+        DOCKER_CONTAINER_NAME="building-py-poc_$(echo "$from" | sed 's/:/_/' | sed 's/\//_/')"
         PRESET_NAME="${preset_name}"
         echo "Building docker image for $from"
-        docker build --build-arg from="from" -t "$DOCKER_IMG_NAME" .
+        docker build --build-arg from="$from" -t "$DOCKER_IMG_NAME" .
         echo "Running docker image for $from"
         docker run --env TAG_NAME="$TAG_NAME" --env GITHUB_SHA="$GITHUB_SHA" --env SHORT_SHA="$SHORT_SHA" --env PRESET_NAME="$PRESET_NAME" --name "$DOCKER_CONTAINER_NAME" "$DOCKER_IMG_NAME"
         ;;
