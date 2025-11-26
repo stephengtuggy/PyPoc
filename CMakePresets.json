@@ -59,11 +59,72 @@
       }
     },
     {
+      "name": "linux-base",
+      "hidden": true,
+      "inherits": "default",
+      "displayName": "Linux Default",
+      "description": "Default build for Linux",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "FETCH_OPEN_TELEMETRY": true
+      },
+      "environment": {
+        "OPENTELEMETRY_BUILD_DLL": "1"
+      }
+    },
+    {
       "name": "linux-ninja-pie-enabled-debug",
+      "displayName": "Linux, Ninja, PIE Enabled, Debug",
       "inherits": [
-        "default",
+        "linux-base",
         "pie-enabled",
         "debug"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-ninja-pie-enabled-release",
+      "displayName": "Linux, Ninja, PIE Enabled, Release",
+      "inherits": [
+        "linux-base",
+        "pie-enabled",
+        "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-ninja-pie-disabled-debug",
+      "displayName": "Linux, Ninja, PIE Disabled, Debug",
+      "inherits": [
+        "linux-base",
+        "pie-disabled",
+        "debug"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-ninja-pie-disabled-release",
+      "displayName": "Linux, Ninja, PIE Disabled, Release",
+      "inherits": [
+        "linux-base",
+        "pie-disabled",
+        "release"
       ],
       "condition": {
         "type": "equals",
@@ -377,6 +438,50 @@
     }
   ],
   "buildPresets": [
+    {
+      "name": "build-linux-ninja-pie-enabled-debug",
+      "configurePreset": "linux-ninja-pie-enabled-debug",
+      "displayName": "Linux, Ninja, PIE Enabled, Debug",
+      "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-ninja-pie-enabled-release",
+      "configurePreset": "linux-ninja-pie-enabled-release",
+      "displayName": "Linux, Ninja, PIE Enabled, Release",
+      "configuration": "Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-ninja-pie-disabled-debug",
+      "configurePreset": "linux-ninja-pie-disabled-debug",
+      "displayName": "Linux, Ninja, PIE Disabled, Debug",
+      "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-ninja-pie-disabled-release",
+      "configurePreset": "linux-ninja-pie-disabled-release",
+      "displayName": "Linux, Ninja, PIE Disabled, Release",
+      "configuration": "Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
     {
       "name": "build-windows-ninja-pie-enabled-debug",
       "configurePreset": "windows-ninja-pie-enabled-debug",
