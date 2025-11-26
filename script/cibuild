@@ -44,19 +44,49 @@ while [ $# -gt 0 ]; do
     --build-type=*)
       build_type="${1#*=}"
       ;;
+    --from=*)
+      from="${1#*=}"
+      ;;
     *)
       printf "***************************\n"
       printf "* Error: Invalid argument.*\n"
       printf "***************************\n"
       exit 1
+      ;;
   esac
   shift
 done
 
-SRC_DOCKER_IMG_NAME="$FROM"
-DOCKER_CONTAINER_NAME="building-py-poc_$(echo $FROM | sed 's/:/_/' | sed 's/\//_/')"
-PRESET_NAME="${preset_name}"
-echo "Running docker image for $FROM"
-docker run --env TAG_NAME="$TAG_NAME" --env GITHUB_SHA="$GITHUB_SHA" --env SHORT_SHA="$SHORT_SHA" --env PRESET_NAME="$PRESET_NAME" --name "$DOCKER_CONTAINER_NAME" "$SRC_DOCKER_IMG_NAME"
+if [ -z "$from" ] && [ -n "$FROM" ]
+then
+    from="${FROM}"
+fi
+
+if [ -z "$preset_name" ] && [ -n "$PRESET_NAME" ]
+then
+    preset_name="${PRESET_NAME}"
+fi
+
+platform="$(uname | tr '[:upper:]' '[:lower:]')"
+
+case "$platform" in
+    "linux"|"linux-gnu")
+        SRC_DOCKER_IMG_NAME="$from"
+        DOCKER_IMG_NAME="local_building-py-poc:$(echo "$from" | sed 's/:/_/' | sed 's/\//_/')"
+        DOCKER_CONTAINER_NAME="building-py-poc_$(echo $from | sed 's/:/_/' | sed 's/\//_/')"
+        PRESET_NAME="${preset_name}"
+        echo "Building docker image for $from"
+        docker build --build-arg from="from" -t "$DOCKER_IMG_NAME" .
+        echo "Running docker image for $from"
+        docker run --env TAG_NAME="$TAG_NAME" --env GITHUB_SHA="$GITHUB_SHA" --env SHORT_SHA="$SHORT_SHA" --env PRESET_NAME="$PRESET_NAME" --name "$DOCKER_CONTAINER_NAME" "$DOCKER_IMG_NAME"
+        ;;
+    "darwin")
+        script/docker-entrypoint.sh --preset_name="${preset_name}"
+        ;;
+    *)
+        echo "Sorry, unrecognized or unsupported operating system"
+        exit 2
+        ;;
+esac
 
 echo "cibuild Done!"

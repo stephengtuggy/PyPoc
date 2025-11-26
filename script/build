@@ -24,7 +24,7 @@
 set -e
 
 echo "--------------------------"
-echo "--- build | 2025-06-27 ---"
+echo "--- build | 2025-11-26 ---"
 echo "--------------------------"
 
 #----------------------------------
@@ -50,6 +50,7 @@ while [ $# -gt 0 ]; do
       printf "* Error: Invalid argument.*\n"
       printf "***************************\n"
       exit 1
+      ;;
   esac
   shift
 done

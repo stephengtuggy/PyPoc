@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # The MIT License (MIT)
 #
-# Copyright © 2025 Stephen G. Tuggy
+# Copyright © 2022-2025 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -23,43 +23,15 @@
 
 set -e
 
-echo "-----------------------------------------"
-echo "--- docker-entrypoint.sh | 2025-11-26 ---"
-echo "-----------------------------------------"
+echo "------------------------------------------"
+echo "--- bootstrap-on-macOS.sh | 2025-11-26 ---"
+echo "------------------------------------------"
 
-#----------------------------------
-# validate parameters
-#----------------------------------
+brew install \
+    gcc \
+    python3 \
+    boost-python3 \
+    ninja
 
-while [ $# -gt 0 ]; do
-  case "$1" in
-    --preset_name=*)
-      preset_name="${1#*=}"
-      ;;
-    --preset-name=*)
-      preset_name="${1#*=}"
-      ;;
-    --build_type=*)
-      build_type="${1#*=}"
-      ;;
-    --build-type=*)
-      build_type="${1#*=}"
-      ;;
-    *)
-      printf "***************************\n"
-      printf "* Error: Invalid argument.*\n"
-      printf "***************************\n"
-      exit 1
-      ;;
-  esac
-  shift
-done
-
-if [ -z "$preset_name" ] && [ -n "$PRESET_NAME" ]
-then
-    preset_name="${PRESET_NAME}"
-fi
-
-script/bootstrap
-
-script/build --preset_name="${preset_name}"
+# Only install cmake if it isn't installed yet
+brew ls --versions cmake || brew install cmake
