@@ -38,15 +38,11 @@
 #include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
 #include "opentelemetry/logs/logger_provider.h"
 #include "opentelemetry/nostd/shared_ptr.h"
-#include "opentelemetry/sdk/logs/exporter.h"
 #include "opentelemetry/sdk/logs/logger_provider.h"
 #include "opentelemetry/sdk/logs/logger_provider_factory.h"
-#include "opentelemetry/sdk/logs/processor.h"
-#include "opentelemetry/sdk/logs/provider.h"
+#include "opentelemetry/logs/provider.h"
 #include "opentelemetry/sdk/logs/simple_log_record_processor_factory.h"
-#include "opentelemetry/sdk/trace/exporter.h"
-#include "opentelemetry/sdk/trace/processor.h"
-#include "opentelemetry/sdk/trace/provider.h"
+#include "opentelemetry/trace/provider.h"
 #include "opentelemetry/sdk/trace/simple_processor_factory.h"
 #include "opentelemetry/sdk/trace/tracer_provider.h"
 #include "opentelemetry/sdk/trace/tracer_provider_factory.h"
@@ -61,8 +57,8 @@ namespace trace_sdk = opentelemetry::sdk::trace;
 
 namespace
 {
-opentelemetry::exporter::otlp::OtlpFileExporterOptions opts;
-opentelemetry::exporter::otlp::OtlpFileLogRecordExporterOptions log_opts;
+otlp::OtlpFileExporterOptions opts;
+otlp::OtlpFileLogRecordExporterOptions log_opts;
 
 std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
 std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
@@ -75,8 +71,8 @@ void InitTracer()
   tracer_provider = trace_sdk::TracerProviderFactory::Create(std::move(processor));
 
   // Set the global trace provider
-  std::shared_ptr<opentelemetry::trace::TracerProvider> api_provider = tracer_provider;
-  trace_sdk::Provider::SetTracerProvider(api_provider);
+  std::shared_ptr<trace::TracerProvider> api_provider = tracer_provider;
+  trace::Provider::SetTracerProvider(api_provider);
 }
 
 void CleanupTracer()
@@ -88,8 +84,8 @@ void CleanupTracer()
   }
 
   tracer_provider.reset();
-  std::shared_ptr<opentelemetry::trace::TracerProvider> none;
-  trace_sdk::Provider::SetTracerProvider(none);
+  std::shared_ptr<trace::TracerProvider> none;
+  trace::Provider::SetTracerProvider(none);
 }
 
 void InitLogger()
@@ -99,8 +95,8 @@ void InitLogger()
   auto processor  = logs_sdk::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
   logger_provider = logs_sdk::LoggerProviderFactory::Create(std::move(processor));
 
-  std::shared_ptr<opentelemetry::logs::LoggerProvider> api_provider = logger_provider;
-  logs_sdk::Provider::SetLoggerProvider(api_provider);
+  std::shared_ptr<logs::LoggerProvider> api_provider = logger_provider;
+  logs::Provider::SetLoggerProvider(api_provider);
 }
 
 void CleanupLogger()
@@ -113,7 +109,7 @@ void CleanupLogger()
 
   logger_provider.reset();
   nostd::shared_ptr<logs::LoggerProvider> none;
-  logs_sdk::Provider::SetLoggerProvider(none);
+  logs::Provider::SetLoggerProvider(none);
 }
 }  // namespace
 
@@ -123,12 +119,12 @@ int main(int argc, char *argv[]) {
 #if defined(USE_OPEN_TELEMETRY)
     if (argc > 1)
     {
-        opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
+        otlp::OtlpFileClientFileSystemOptions fs_backend;
         fs_backend.file_pattern = argv[1];
         opts.backend_options    = fs_backend;
         if (argc > 2)
         {
-            opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
+            otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
             logs_fs_backend.file_pattern = argv[2];
             log_opts.backend_options     = logs_fs_backend;
         }
