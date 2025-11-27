@@ -3,6 +3,6 @@ FROM ${from}
 
 WORKDIR /usr/src/PyPoc
 
-COPY script/ script/
+COPY . .
 
-RUN DEBIAN_FRONTEND=noninteractive script/bootstrap 1
+ENTRYPOINT ["script/docker-entrypoint.sh"]
