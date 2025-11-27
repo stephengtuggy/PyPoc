@@ -154,7 +154,6 @@ function bootstrapOnUbuntu()
                             pkg-config \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
-                            opentelemetry-cpp-dev \
                             ninja-build
             ;;
         "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
@@ -191,7 +190,6 @@ function bootstrapOnLinuxMint ()
                             pkg-config \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
-                            opentelemetry-cpp-dev \
                             ninja-build
             ;;
         "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
@@ -334,6 +332,23 @@ function bootstrapOnRedHat ()
                                 make \
                                 json-devel
             ;;
+        "10.1")
+            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+            then
+                dnf -y upgrade --refresh
+            fi
+            dnf -y update
+            dnf -y install \
+                                git \
+                                cmake \
+                                boost-devel \
+                                boost-python3-devel \
+                                gcc-c++ \
+                                python3-devel \
+                                rpm-build \
+                                make \
+                                json-devel
+            ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
             exit 2
@@ -362,6 +377,23 @@ function bootstrapOnRockyLinux ()
                                 json-devel
             ;;
         "10.0")
+            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+            then
+                dnf -y upgrade --refresh
+            fi
+            dnf -y update
+            dnf -y install \
+                                git \
+                                cmake \
+                                boost-devel \
+                                boost-python3-devel \
+                                gcc-c++ \
+                                python3-devel \
+                                rpm-build \
+                                make \
+                                json-devel
+            ;;
+        "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
