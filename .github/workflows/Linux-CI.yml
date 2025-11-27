@@ -54,7 +54,7 @@ jobs:
           - 'opensuse/leap:16.0'
           - 'fedora:43'
           - 'fedora:42'
-          - 'rockylinux_rockylinux:10.0'
+          - 'rockylinux/rockylinux:10.1'
           - 'manjarolinux/base'
         preset-name:
           - 'linux-ninja-pie-enabled-debug'

@@ -312,8 +312,7 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make \
-                                json-devel
+                                make
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -329,8 +328,7 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make \
-                                json-devel
+                                make
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -346,8 +344,7 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make \
-                                json-devel
+                                make
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -373,8 +370,7 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make \
-                                json-devel
+                                make
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -390,8 +386,7 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make \
-                                json-devel
+                                make
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -407,8 +402,7 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make \
-                                json-devel
+                                make
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
