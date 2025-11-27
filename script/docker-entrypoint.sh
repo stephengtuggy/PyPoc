@@ -24,7 +24,7 @@
 set -e
 
 echo "-----------------------------------------"
-echo "--- docker-entrypoint.sh | 2025-11-26 ---"
+echo "--- docker-entrypoint.sh | 2025-11-27 ---"
 echo "-----------------------------------------"
 
 #----------------------------------
@@ -63,3 +63,5 @@ fi
 script/bootstrap
 
 script/build --preset_name="${preset_name}"
+
+build/"${preset_name}"/"${build_type}"/PyPoc
