@@ -1,0 +1,13 @@
+.git/
+.vs/
+.vscode/
+bin/
+build/
+build-*/
+cmake-build-**/
+data/
+ext/
+*.pyc
+*.log
+*.bak
+packages/
