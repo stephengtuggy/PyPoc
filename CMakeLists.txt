@@ -66,6 +66,9 @@ OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchCo
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
 
 include(FetchContent)
+
+FIND_PACKAGE(Protobuf)
+
 IF (FETCH_OPEN_TELEMETRY)
     FETCHCONTENT_DECLARE(
             opentelemetry-cpp
