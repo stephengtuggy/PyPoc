@@ -1,1 +1,1 @@
-script/cibuild --preset-name="linux-ninja-pie-enabled-debug" --from="rockylinux/rockylinux:10.1"
+script/cibuild --preset-name="linux-fetch-use-open-telemetry-pie-enabled-debug" --from="manjarolinux/base"

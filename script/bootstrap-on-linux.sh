@@ -64,9 +64,13 @@ function bootstrapOnDebian()
                             build-essential \
                             libboost-python-dev \
                             lsb-release \
+                            libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
                             opentelemetry-cpp-dev \
+                            libgrpc-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             make \
                             pkg-config \
                             ninja-build
@@ -84,9 +88,13 @@ function bootstrapOnDebian()
                             build-essential \
                             libboost-python1.81-dev \
                             lsb-release \
+                            libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
                             opentelemetry-cpp-dev \
+                            libgrpc-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             make \
                             pkg-config \
                             ninja-build
@@ -122,9 +130,13 @@ function bootstrapOnUbuntu()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
                             opentelemetry-cpp-dev \
+                            libgrpc-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             ninja-build
             ;;
         "plucky")
@@ -137,9 +149,13 @@ function bootstrapOnUbuntu()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
                             opentelemetry-cpp-dev \
+                            libgrpc-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             ninja-build
             ;;
         "noble")
@@ -152,8 +168,12 @@ function bootstrapOnUbuntu()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
+                            libgrpc-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             ninja-build
             ;;
         "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
@@ -188,8 +208,12 @@ function bootstrapOnLinuxMint ()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
+                            libgrpc-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             ninja-build
             ;;
         "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
@@ -219,6 +243,10 @@ function bootstrapOnOpenSuseLeap ()
                                     python3-devel \
                                     git \
                                     rpm-build \
+                                    libabsl2401_0_0 \
+                                    nlohmann_json-devel \
+                                    protobuf-devel \
+                                    libgrpc++1_60
             ;;
         "16.0")
             zypper --non-interactive refresh
@@ -228,7 +256,11 @@ function bootstrapOnOpenSuseLeap ()
                                     gcc-c++ \
                                     python3-devel \
                                     git \
-                                    rpm-build
+                                    rpm-build \
+                                    libabsl_2407_0_0 \
+                                    nlohmann_json-devel \
+                                    protobuf-devel \
+                                    libgrpc++1_59
             ;;
         *)
             echo "Sorry, this version of openSUSE Leap is unsupported"
@@ -240,31 +272,9 @@ function bootstrapOnOpenSuseLeap ()
 function bootstrapOnFedora ()
 {
     case "${LINUX_VERSION_ID}" in
-        30|31|32|33|34|35|36|37|38|39)
+        30|31|32|33|34|35|36|37|38|39|40|41)
             echo "Sorry, Fedora ${LINUX_VERSION_ID} is no longer supported"
             exit 2
-            ;;
-        40)
-            dnf install -y \
-                                git \
-                                cmake \
-                                boost-devel \
-                                gcc-c++ \
-                                python3-devel \
-                                rpm-build \
-                                make \
-                                json-devel
-            ;;
-        41)
-            dnf install -y \
-                                git \
-                                cmake \
-                                boost-devel \
-                                gcc-c++ \
-                                python3-devel \
-                                rpm-build \
-                                make \
-                                json-devel
             ;;
         42)
             dnf install -y \
@@ -275,7 +285,11 @@ function bootstrapOnFedora ()
                                 python3-devel \
                                 rpm-build \
                                 make \
-                                json-devel
+                                json-devel \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         43)
             dnf install -y \
@@ -286,7 +300,11 @@ function bootstrapOnFedora ()
                                 python3-devel \
                                 rpm-build \
                                 make \
-                                json-devel
+                                json-devel \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
@@ -303,6 +321,10 @@ function bootstrapOnRedHat ()
             then
                 dnf -y upgrade --refresh
             fi
+            dnf -y install dnf-plugins-core
+            dnf config-manager --set-enabled crb
+            dnf config-manager --set-enabled devel
+            dnf -y install epel-release
             dnf -y update
             dnf -y install \
                                 git \
@@ -312,13 +334,21 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make
+                                make \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
             fi
+            dnf -y install 'dnf-command(config-manager)'
+            dnf -y config-manager --set-enabled crb
+            dnf -y config-manager --set-enabled devel
+            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
             dnf -y update
             dnf -y install \
                                 git \
@@ -328,13 +358,21 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make
+                                make \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
             fi
+            dnf -y install 'dnf-command(config-manager)'
+            dnf -y config-manager --set-enabled crb
+            dnf -y config-manager --set-enabled devel
+            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
             dnf -y update
             dnf -y install \
                                 git \
@@ -344,7 +382,11 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make
+                                make \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -361,6 +403,10 @@ function bootstrapOnRockyLinux ()
             then
                 dnf -y upgrade --refresh
             fi
+            dnf -y install dnf-plugins-core
+            dnf config-manager --set-enabled crb
+            dnf config-manager --set-enabled devel
+            dnf -y install epel-release
             dnf -y update
             dnf -y install \
                                 git \
@@ -370,13 +416,21 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make
+                                make \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
             fi
+            dnf -y install 'dnf-command(config-manager)'
+            dnf -y config-manager --set-enabled crb
+            dnf -y config-manager --set-enabled devel
+            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
             dnf -y update
             dnf -y install \
                                 git \
@@ -386,13 +440,21 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make
+                                make \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
             fi
+            dnf -y install 'dnf-command(config-manager)'
+            dnf -y config-manager --set-enabled crb
+            dnf -y config-manager --set-enabled devel
+            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
             dnf -y update
             dnf -y install \
                                 git \
@@ -402,7 +464,11 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 python3-devel \
                                 rpm-build \
-                                make
+                                make \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
@@ -426,7 +492,10 @@ function bootstrapOnManjaro ()
                          gcc-libs \
                          python \
                          git \
-                         make
+                         make \
+                         abseil-cpp \
+                         nlohmann-json \
+                         grpc
 }
 
 function bootstrapOnFuntoo ()
@@ -460,7 +529,10 @@ function bootstrapOnArch ()
               gcc12 \
               python \
               git \
-              make
+              make \
+              abseil-cpp \
+              nlohmann-json \
+              grpc
 }
 
 function bootstrapOnEndeavourOS ()
@@ -481,7 +553,10 @@ function bootstrapOnEndeavourOS ()
               sdl2 \
               python \
               git \
-              make
+              make \
+              abseil-cpp \
+              nlohmann-json \
+              grpc
 }
 
 case "${LINUX_ID}" in
