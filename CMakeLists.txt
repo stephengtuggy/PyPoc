@@ -30,6 +30,8 @@ IF (POLICY CMP0167)
     CMAKE_POLICY (SET CMP0167 NEW)
 ENDIF (POLICY CMP0167)
 
+SET(CMAKE_BUILD_PARALLEL_LEVEL 8)
+
 project(PyPoc
         LANGUAGES CXX
         VERSION 0.2.2)
@@ -64,16 +66,20 @@ ADD_LINK_OPTIONS(
 
 OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
+OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF)
 
 include(FetchContent)
 
-FIND_PACKAGE(Protobuf)
+IF (USE_LOCALLY_INSTALLED_PROTOBUF)
+    FIND_PACKAGE(Protobuf)
+ENDIF ()
 
 IF (FETCH_OPEN_TELEMETRY)
     FETCHCONTENT_DECLARE(
             opentelemetry-cpp
             GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
             GIT_TAG             a7b100834dce58c949ab9bdfccdf1613db460d1c                # v1.24.0
+            CMAKE_ARGS          -DBUILD_TESTING=OFF
             )
     SET(WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
     MESSAGE(STATUS "Downloading opentelemetry-cpp")
