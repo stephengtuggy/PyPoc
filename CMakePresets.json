@@ -1044,6 +1044,47 @@
         "lhs": "${hostSystemName}",
         "rhs": "Windows"
       }
+    },
+    {
+      "name": "macOS-base",
+      "displayName": "macOS Default",
+      "inherits": "default",
+      "hidden": true,
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "macOS-fetch-use-open-telemetry-pie-enabled-debug",
+      "displayName": "macOS - Fetch and Use OpenTelemetry-Cpp - PIE Enabled, Debug",
+      "inherits": [
+        "macOS-base",
+        "fetch-use-open-telemetry",
+        "pie-enabled",
+        "debug"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "macOS-fetch-use-open-telemetry-pie-enabled-release",
+      "displayName": "macOS - Fetch and Use OpenTelemetry-Cpp - PIE Enabled, Release",
+      "inherits": [
+        "macOS-base",
+        "fetch-use-open-telemetry",
+        "pie-enabled",
+        "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
     }
   ],
   "buildPresets": [
@@ -1705,6 +1746,28 @@
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-macOS-fetch-use-open-telemetry-pie-enabled-debug",
+      "configurePreset": "macOS-fetch-use-open-telemetry-pie-enabled-debug",
+      "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
+      "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "build-macOS-fetch-use-open-telemetry-pie-enabled-release",
+      "configurePreset": "macOS-fetch-use-open-telemetry-pie-enabled-release",
+      "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
+      "configuration": "Release",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
       }
     }
   ]
