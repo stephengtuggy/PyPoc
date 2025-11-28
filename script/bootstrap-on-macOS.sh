@@ -31,7 +31,12 @@ brew install \
     gcc \
     python3 \
     boost-python3 \
-    ninja
+    ninja \
+    abseil \
+    nlohmann-json \
+    protobuf-c \
+    opentelemetry-cpp \
+    grpc
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
