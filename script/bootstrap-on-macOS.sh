@@ -35,7 +35,7 @@ brew install \
     abseil \
     nlohmann-json \
     protobuf-c \
-    opentelemetry-cpp \
+    re2 \
     grpc
 
 # Only install cmake if it isn't installed yet
