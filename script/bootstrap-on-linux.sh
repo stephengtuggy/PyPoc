@@ -91,7 +91,6 @@ function bootstrapOnDebian()
                             libabsl-dev \
                             nlohmann-json3-dev \
                             libprotobuf-dev \
-                            opentelemetry-cpp-dev \
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \

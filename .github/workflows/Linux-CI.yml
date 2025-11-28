@@ -53,13 +53,12 @@ jobs:
           - 'linuxmintd/mint22-amd64'
           - 'debian:trixie'
           - 'debian:bookworm'
-          - 'opensuse/leap:16.0'
+          #- 'opensuse/leap:16.0' # Requires c++17 or later
           - 'opensuse/leap:15.6'
           - 'fedora:43'
           - 'fedora:42'
           - 'rockylinux/rockylinux:10.1'
           - 'manjarolinux/base'
-          - 'alex5402/endeavouros'
         preset-name:
           - 'linux-fetch-use-open-telemetry-pie-enabled-debug'
     steps:
