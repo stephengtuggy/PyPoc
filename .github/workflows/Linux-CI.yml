@@ -47,15 +47,19 @@ jobs:
       matrix:
         FROM:
           - 'ubuntu:questing'
+          - 'ubuntu:plucky'
           - 'ubuntu:noble'
           - 'linuxmintd/mint22.2-amd64'
           - 'linuxmintd/mint22-amd64'
           - 'debian:trixie'
+          - 'debian:bookworm'
           - 'opensuse/leap:16.0'
+          - 'opensuse/leap:15.6'
           - 'fedora:43'
           - 'fedora:42'
           - 'rockylinux/rockylinux:10.1'
           - 'manjarolinux/base'
+          - 'alex5402/endeavouros'
         preset-name:
           - 'linux-fetch-use-open-telemetry-pie-enabled-debug'
     steps:
