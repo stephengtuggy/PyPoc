@@ -2378,6 +2378,17 @@
       }
     },
     {
+      "name": "build-macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
       "name": "build-macOS-pie-enabled-release-fetch-and-use-otel",
       "configurePreset": "macOS-pie-enabled-release-fetch-and-use-otel",
       "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
