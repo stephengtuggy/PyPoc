@@ -53,7 +53,7 @@ jobs:
           - 'linuxmintd/mint22-amd64'
           - 'debian:trixie'
           - 'debian:bookworm'
-          #- 'opensuse/leap:16.0' # Requires c++17 or later
+          - 'opensuse/leap:16.0' # Requires c++17 or later
           - 'opensuse/leap:15.6'
           - 'fedora:43'
           - 'fedora:42'
