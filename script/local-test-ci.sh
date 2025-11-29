@@ -1,1 +1,1 @@
-script/cibuild --preset-name="linux-fetch-use-open-telemetry-pie-enabled-debug" --from="manjarolinux/base"
+script/cibuild --preset-name="linux-pie-enabled-debug-fetch-and-use-otel" --from="opensuse/leap:16.0"

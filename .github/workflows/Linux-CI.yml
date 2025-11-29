@@ -60,7 +60,7 @@ jobs:
           - 'rockylinux/rockylinux:10.1'
           - 'manjarolinux/base'
         preset-name:
-          - 'linux-fetch-use-open-telemetry-pie-enabled-debug'
+          - 'linux-pie-enabled-debug-fetch-and-use-otel'
     steps:
       - name: Check out repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0

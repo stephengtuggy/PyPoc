@@ -54,6 +54,15 @@
       }
     },
     {
+      "name": "RelWithDebInfo",
+      "hidden": true,
+      "displayName": "RelWithDebInfo",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    },
+    {
       "name": "pie-enabled",
       "hidden": true,
       "inherits": "default",
@@ -100,6 +109,20 @@
       }
     },
     {
+      "name": "linux-pie-enabled-RelWithDebInfo",
+      "displayName": "Linux, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "linux-base",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
       "name": "linux-pie-enabled-release",
       "displayName": "Linux, PIE Enabled, Release",
       "inherits": [
@@ -128,6 +151,20 @@
       }
     },
     {
+      "name": "linux-pie-disabled-RelWithDebInfo",
+      "displayName": "Linux, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "linux-base",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
       "name": "linux-pie-disabled-release",
       "displayName": "Linux, PIE Disabled, Release",
       "inherits": [
@@ -142,7 +179,7 @@
       }
     },
     {
-      "name": "linux-use-open-telemetry-pie-enabled-debug",
+      "name": "linux-pie-enabled-debug-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "inherits": [
         "linux-base",
@@ -157,7 +194,22 @@
       }
     },
     {
-      "name": "linux-use-open-telemetry-pie-enabled-release",
+      "name": "linux-pie-enabled-RelWithDebInfo-use-otel",
+      "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "linux-base",
+        "use-open-telemetry",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-pie-enabled-release-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "inherits": [
         "linux-base",
@@ -172,7 +224,7 @@
       }
     },
     {
-      "name": "linux-use-open-telemetry-pie-disabled-debug",
+      "name": "linux-pie-disabled-debug-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "inherits": [
         "linux-base",
@@ -187,7 +239,22 @@
       }
     },
     {
-      "name": "linux-use-open-telemetry-pie-disabled-release",
+      "name": "linux-pie-disabled-RelWithDebInfo-use-otel",
+      "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "linux-base",
+        "use-open-telemetry",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-pie-disabled-release-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "inherits": [
         "linux-base",
@@ -202,7 +269,7 @@
       }
     },
     {
-      "name": "linux-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "linux-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "inherits": [
         "linux-base",
@@ -217,7 +284,22 @@
       }
     },
     {
-      "name": "linux-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "linux-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "linux-base",
+        "fetch-use-open-telemetry",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-pie-enabled-release-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "inherits": [
         "linux-base",
@@ -232,7 +314,7 @@
       }
     },
     {
-      "name": "linux-fetch-use-open-telemetry-pie-disabled-debug",
+      "name": "linux-pie-disabled-debug-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "inherits": [
         "linux-base",
@@ -247,7 +329,22 @@
       }
     },
     {
-      "name": "linux-fetch-use-open-telemetry-pie-disabled-release",
+      "name": "linux-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "linux-base",
+        "fetch-use-open-telemetry",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "linux-pie-disabled-release-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "inherits": [
         "linux-base",
@@ -356,12 +453,116 @@
       }
     },
     {
+      "name": "windows-ninja-pie-enabled-RelWithDebInfo",
+      "displayName": "Windows, Ninja, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "windows-ninja-pie-enabled-release",
       "displayName": "Windows, Ninja, PIE Enabled, Release",
       "inherits": [
         "ninja-windows",
         "pie-enabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-enabled-debug-use-otel",
+      "displayName": "Windows, Ninja, PIE Enabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-enabled-RelWithDebInfo-use-otel",
+      "displayName": "Windows, Ninja, PIE Enabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-enabled-release-use-otel",
+      "displayName": "Windows, Ninja, PIE Enabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-enabled-debug-fetch-and-use-otel",
+      "displayName": "Windows, Ninja, PIE Enabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "Windows, Ninja, PIE Enabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-enabled-release-fetch-and-use-otel",
+      "displayName": "Windows, Ninja, PIE Enabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-enabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -384,12 +585,116 @@
       }
     },
     {
+      "name": "windows-ninja-pie-disabled-RelWithDebInfo",
+      "displayName": "Windows, Ninja, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "windows-ninja-pie-disabled-release",
       "displayName": "Windows, Ninja, PIE Disabled, Release",
       "inherits": [
         "ninja-windows",
         "pie-disabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-disabled-debug-use-otel",
+      "displayName": "Windows, Ninja, PIE Disabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-disabled-RelWithDebInfo-use-otel",
+      "displayName": "Windows, Ninja, PIE Disabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-disabled-release-use-otel",
+      "displayName": "Windows, Ninja, PIE Disabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-disabled-debug-fetch-and-use-otel",
+      "displayName": "Windows, Ninja, PIE Disabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "Windows, Ninja, PIE Disabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-ninja-pie-disabled-release-fetch-and-use-otel",
+      "displayName": "Windows, Ninja, PIE Disabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "ninja-windows",
+        "pie-disabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -412,12 +717,116 @@
       }
     },
     {
+      "name": "VS2019Win64-pie-enabled-RelWithDebInfo",
+      "displayName": "VS2019Win64, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "VS2019Win64-pie-enabled-release",
       "displayName": "VS2019Win64, PIE Enabled, Release",
       "inherits": [
         "VS2019Win64",
         "pie-enabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-enabled-debug-use-otel",
+      "displayName": "VS2019Win64, PIE Enabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-enabled-RelWithDebInfo-use-otel",
+      "displayName": "VS2019Win64, PIE Enabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-enabled-release-use-otel",
+      "displayName": "VS2019Win64, PIE Enabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-enabled-debug-fetch-and-use-otel",
+      "displayName": "VS2019Win64, PIE Enabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "VS2019Win64, PIE Enabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-enabled-release-fetch-and-use-otel",
+      "displayName": "VS2019Win64, PIE Enabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-enabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -440,12 +849,116 @@
       }
     },
     {
+      "name": "VS2019Win64-pie-disabled-RelWithDebInfo",
+      "displayName": "VS2019Win64, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "VS2019Win64-pie-disabled-release",
       "displayName": "VS2019Win64, PIE Disabled, Release",
       "inherits": [
         "VS2019Win64",
         "pie-disabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-disabled-debug-use-otel",
+      "displayName": "VS2019Win64, PIE Disabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-disabled-RelWithDebInfo-use-otel",
+      "displayName": "VS2019Win64, PIE Disabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-disabled-release-use-otel",
+      "displayName": "VS2019Win64, PIE Disabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-disabled-debug-fetch-and-use-otel",
+      "displayName": "VS2019Win64, PIE Disabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "VS2019Win64, PIE Disabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2019Win64-pie-disabled-release-fetch-and-use-otel",
+      "displayName": "VS2019Win64, PIE Disabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2019Win64",
+        "pie-disabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -468,12 +981,116 @@
       }
     },
     {
+      "name": "VS2022Win64-pie-enabled-RelWithDebInfo",
+      "displayName": "VS2022Win64, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "VS2022Win64-pie-enabled-release",
       "displayName": "VS2022Win64, PIE Enabled, Release",
       "inherits": [
         "VS2022Win64",
         "pie-enabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-enabled-debug-use-otel",
+      "displayName": "VS2022Win64, PIE Enabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-enabled-RelWithDebInfo-use-otel",
+      "displayName": "VS2022Win64, PIE Enabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-enabled-release-use-otel",
+      "displayName": "VS2022Win64, PIE Enabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-enabled-debug-fetch-and-use-otel",
+      "displayName": "VS2022Win64, PIE Enabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "VS2022Win64, PIE Enabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-enabled-release-fetch-and-use-otel",
+      "displayName": "VS2022Win64, PIE Enabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-enabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -496,12 +1113,116 @@
       }
     },
     {
+      "name": "VS2022Win64-pie-disabled-RelWithDebInfo",
+      "displayName": "VS2022Win64, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "VS2022Win64-pie-disabled-release",
       "displayName": "VS2022Win64, PIE Disabled, Release",
       "inherits": [
         "VS2022Win64",
         "pie-disabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-disabled-debug-use-otel",
+      "displayName": "VS2022Win64, PIE Disabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-disabled-RelWithDebInfo-use-otel",
+      "displayName": "VS2022Win64, PIE Disabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-disabled-release-use-otel",
+      "displayName": "VS2022Win64, PIE Disabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-disabled-debug-fetch-and-use-otel",
+      "displayName": "VS2022Win64, PIE Disabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "VS2022Win64, PIE Disabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2022Win64-pie-disabled-release-fetch-and-use-otel",
+      "displayName": "VS2022Win64, PIE Disabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2022Win64",
+        "pie-disabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -524,12 +1245,116 @@
       }
     },
     {
+      "name": "VS2026Win64-pie-enabled-RelWithDebInfo",
+      "displayName": "VS2026Win64, PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "VS2026Win64-pie-enabled-release",
       "displayName": "VS2026Win64, PIE Enabled, Release",
       "inherits": [
         "VS2026Win64",
         "pie-enabled",
         "release"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-debug-use-otel",
+      "displayName": "VS2026Win64, PIE Enabled, Debug, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "debug",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-RelWithDebInfo-use-otel",
+      "displayName": "VS2026Win64, PIE Enabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-release-use-otel",
+      "displayName": "VS2026Win64, PIE Enabled, Release, Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "release",
+        "use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-debug-fetch-and-use-otel",
+      "displayName": "VS2026Win64, PIE Enabled, Debug, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "debug",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "VS2026Win64, PIE Enabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "VS2026Win64-pie-enabled-release-fetch-and-use-otel",
+      "displayName": "VS2026Win64, PIE Enabled, Release, Fetch and Use OpenTelemetry-Cpp",
+      "inherits": [
+        "VS2026Win64",
+        "pie-enabled",
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -552,6 +1377,20 @@
       }
     },
     {
+      "name": "VS2026Win64-pie-disabled-RelWithDebInfo",
+      "displayName": "VS2026Win64, PIE Disabled, RelWithDebInfo",
+      "inherits": [
+        "VS2026Win64",
+        "pie-disabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "VS2026Win64-pie-disabled-release",
       "displayName": "VS2026Win64, PIE Disabled, Release",
       "inherits": [
@@ -566,193 +1405,13 @@
       }
     },
     {
-      "name": "windows-ninja-use-open-telemetry-pie-enabled-debug",
-      "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
-      "inherits": [
-        "ninja-windows",
-        "use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "windows-ninja-use-open-telemetry-pie-enabled-release",
-      "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "ninja-windows",
-        "use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "windows-ninja-use-open-telemetry-pie-disabled-debug",
-      "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "ninja-windows",
-        "use-open-telemetry",
-        "pie-disabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "windows-ninja-use-open-telemetry-pie-disabled-release",
-      "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Disabled, Release",
-      "inherits": [
-        "ninja-windows",
-        "use-open-telemetry",
-        "pie-disabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-use-open-telemetry-pie-enabled-debug",
-      "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
-      "inherits": [
-        "VS2019Win64",
-        "use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-use-open-telemetry-pie-enabled-release",
-      "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "VS2019Win64",
-        "use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-use-open-telemetry-pie-disabled-debug",
-      "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "VS2019Win64",
-        "use-open-telemetry",
-        "pie-disabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-use-open-telemetry-pie-disabled-release",
-      "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Disabled, Release",
-      "inherits": [
-        "VS2019Win64",
-        "use-open-telemetry",
-        "pie-disabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-use-open-telemetry-pie-enabled-debug",
-      "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
-      "inherits": [
-        "VS2022Win64",
-        "use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-use-open-telemetry-pie-enabled-release",
-      "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "VS2022Win64",
-        "use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-use-open-telemetry-pie-disabled-debug",
-      "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "VS2022Win64",
-        "use-open-telemetry",
-        "pie-disabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-use-open-telemetry-pie-disabled-release",
-      "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Disabled, Release",
-      "inherits": [
-        "VS2022Win64",
-        "use-open-telemetry",
-        "pie-disabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2026Win64-use-open-telemetry-pie-enabled-debug",
-      "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
+      "name": "VS2026Win64-pie-disabled-debug-use-otel",
+      "displayName": "VS2026Win64, PIE Disabled, Debug, Use OpenTelemetry-Cpp",
       "inherits": [
         "VS2026Win64",
-        "use-open-telemetry",
-        "pie-enabled",
-        "debug"
+        "pie-disabled",
+        "debug",
+        "use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -761,13 +1420,13 @@
       }
     },
     {
-      "name": "VS2026Win64-use-open-telemetry-pie-enabled-release",
-      "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Enabled, Release",
+      "name": "VS2026Win64-pie-disabled-RelWithDebInfo-use-otel",
+      "displayName": "VS2026Win64, PIE Disabled, RelWithDebInfo, Use OpenTelemetry-Cpp",
       "inherits": [
         "VS2026Win64",
-        "use-open-telemetry",
-        "pie-enabled",
-        "release"
+        "pie-disabled",
+        "RelWithDebInfo",
+        "use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -776,13 +1435,13 @@
       }
     },
     {
-      "name": "VS2026Win64-use-open-telemetry-pie-disabled-debug",
-      "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
+      "name": "VS2026Win64-pie-disabled-release-use-otel",
+      "displayName": "VS2026Win64, PIE Disabled, Release, Use OpenTelemetry-Cpp",
       "inherits": [
         "VS2026Win64",
-        "use-open-telemetry",
         "pie-disabled",
-        "debug"
+        "release",
+        "use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -791,13 +1450,13 @@
       }
     },
     {
-      "name": "VS2026Win64-use-open-telemetry-pie-disabled-release",
-      "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Disabled, Release",
+      "name": "VS2026Win64-pie-disabled-debug-fetch-and-use-otel",
+      "displayName": "VS2026Win64, PIE Disabled, Debug, Fetch and Use OpenTelemetry-Cpp",
       "inherits": [
         "VS2026Win64",
-        "use-open-telemetry",
         "pie-disabled",
-        "release"
+        "debug",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -806,223 +1465,13 @@
       }
     },
     {
-      "name": "windows-ninja-fetch-use-open-telemetry-pie-enabled-debug",
-      "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
-      "inherits": [
-        "ninja-windows",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "windows-ninja-fetch-use-open-telemetry-pie-enabled-release",
-      "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "ninja-windows",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "windows-ninja-fetch-use-open-telemetry-pie-disabled-debug",
-      "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "ninja-windows",
-        "fetch-use-open-telemetry",
-        "pie-disabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "windows-ninja-fetch-use-open-telemetry-pie-disabled-release",
-      "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
-      "inherits": [
-        "ninja-windows",
-        "fetch-use-open-telemetry",
-        "pie-disabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-fetch-use-open-telemetry-pie-enabled-debug",
-      "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
-      "inherits": [
-        "VS2019Win64",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-fetch-use-open-telemetry-pie-enabled-release",
-      "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "VS2019Win64",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-fetch-use-open-telemetry-pie-disabled-debug",
-      "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "VS2019Win64",
-        "fetch-use-open-telemetry",
-        "pie-disabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2019Win64-fetch-use-open-telemetry-pie-disabled-release",
-      "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
-      "inherits": [
-        "VS2019Win64",
-        "fetch-use-open-telemetry",
-        "pie-disabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-fetch-use-open-telemetry-pie-enabled-debug",
-      "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
-      "inherits": [
-        "VS2022Win64",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-fetch-use-open-telemetry-pie-enabled-release",
-      "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "VS2022Win64",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-fetch-use-open-telemetry-pie-disabled-debug",
-      "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "VS2022Win64",
-        "fetch-use-open-telemetry",
-        "pie-disabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2022Win64-fetch-use-open-telemetry-pie-disabled-release",
-      "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
-      "inherits": [
-        "VS2022Win64",
-        "fetch-use-open-telemetry",
-        "pie-disabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2026Win64-fetch-use-open-telemetry-pie-enabled-debug",
-      "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
+      "name": "VS2026Win64-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "VS2026Win64, PIE Disabled, RelWithDebInfo, Fetch and Use OpenTelemetry-Cpp",
       "inherits": [
         "VS2026Win64",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "debug"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2026Win64-fetch-use-open-telemetry-pie-enabled-release",
-      "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
-      "inherits": [
-        "VS2026Win64",
-        "fetch-use-open-telemetry",
-        "pie-enabled",
-        "release"
-      ],
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      }
-    },
-    {
-      "name": "VS2026Win64-fetch-use-open-telemetry-pie-disabled-debug",
-      "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
-      "inherits": [
-        "VS2026Win64",
-        "fetch-use-open-telemetry",
         "pie-disabled",
-        "debug"
+        "RelWithDebInfo",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -1031,13 +1480,13 @@
       }
     },
     {
-      "name": "VS2026Win64-fetch-use-open-telemetry-pie-disabled-release",
-      "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
+      "name": "VS2026Win64-pie-disabled-release-fetch-and-use-otel",
+      "displayName": "VS2026Win64, PIE Disabled, Release, Fetch and Use OpenTelemetry-Cpp",
       "inherits": [
         "VS2026Win64",
-        "fetch-use-open-telemetry",
         "pie-disabled",
-        "release"
+        "release",
+        "fetch-use-open-telemetry"
       ],
       "condition": {
         "type": "equals",
@@ -1057,7 +1506,7 @@
       }
     },
     {
-      "name": "macOS-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "macOS-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "macOS - Fetch and Use OpenTelemetry-Cpp - PIE Enabled, Debug",
       "inherits": [
         "macOS-base",
@@ -1072,7 +1521,22 @@
       }
     },
     {
-      "name": "macOS-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "macOS - Fetch and Use OpenTelemetry-Cpp - PIE Enabled, RelWithDebInfo",
+      "inherits": [
+        "macOS-base",
+        "fetch-use-open-telemetry",
+        "pie-enabled",
+        "RelWithDebInfo"
+      ],
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "macOS-pie-enabled-release-fetch-and-use-otel",
       "displayName": "macOS - Fetch and Use OpenTelemetry-Cpp - PIE Enabled, Release",
       "inherits": [
         "macOS-base",
@@ -1093,6 +1557,17 @@
       "configurePreset": "linux-pie-enabled-debug",
       "displayName": "Linux, PIE Enabled, Debug",
       "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-pie-enabled-RelWithDebInfo",
+      "configurePreset": "linux-pie-enabled-RelWithDebInfo",
+      "displayName": "Linux, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -1122,6 +1597,17 @@
       }
     },
     {
+      "name": "build-linux-pie-disabled-RelWithDebInfo",
+      "configurePreset": "linux-pie-disabled-RelWithDebInfo",
+      "displayName": "Linux, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
       "name": "build-linux-pie-disabled-release",
       "configurePreset": "linux-pie-disabled-release",
       "displayName": "Linux, PIE Disabled, Release",
@@ -1133,8 +1619,8 @@
       }
     },
     {
-      "name": "build-linux-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "linux-use-open-telemetry-pie-enabled-debug",
+      "name": "build-linux-pie-enabled-debug-use-otel",
+      "configurePreset": "linux-pie-enabled-debug-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1144,8 +1630,19 @@
       }
     },
     {
-      "name": "build-linux-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "linux-use-open-telemetry-pie-enabled-release",
+      "name": "build-linux-pie-enabled-RelWithDebInfo-use-otel",
+      "configurePreset": "linux-pie-enabled-RelWithDebInfo-use-otel",
+      "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-pie-enabled-release-use-otel",
+      "configurePreset": "linux-pie-enabled-release-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1155,8 +1652,8 @@
       }
     },
     {
-      "name": "build-linux-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "linux-use-open-telemetry-pie-disabled-debug",
+      "name": "build-linux-pie-disabled-debug-use-otel",
+      "configurePreset": "linux-pie-disabled-debug-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1166,8 +1663,19 @@
       }
     },
     {
-      "name": "build-linux-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "linux-use-open-telemetry-pie-disabled-release",
+      "name": "build-linux-pie-disabled-RelWithDebInfo-use-otel",
+      "configurePreset": "linux-pie-disabled-RelWithDebInfo-use-otel",
+      "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-pie-disabled-release-use-otel",
+      "configurePreset": "linux-pie-disabled-release-use-otel",
       "displayName": "Linux, Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1177,8 +1685,8 @@
       }
     },
     {
-      "name": "build-linux-fetch-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "linux-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "build-linux-pie-enabled-debug-fetch-and-use-otel",
+      "configurePreset": "linux-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1188,8 +1696,19 @@
       }
     },
     {
-      "name": "build-linux-fetch-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "linux-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "build-linux-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "configurePreset": "linux-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-pie-enabled-release-fetch-and-use-otel",
+      "configurePreset": "linux-pie-enabled-release-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1199,8 +1718,8 @@
       }
     },
     {
-      "name": "build-linux-fetch-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "linux-fetch-use-open-telemetry-pie-disabled-debug",
+      "name": "build-linux-pie-disabled-debug-fetch-and-use-otel",
+      "configurePreset": "linux-pie-disabled-debug-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1210,8 +1729,19 @@
       }
     },
     {
-      "name": "build-linux-fetch-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "linux-fetch-use-open-telemetry-pie-disabled-release",
+      "name": "build-linux-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "configurePreset": "linux-pie-disabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "build-linux-pie-disabled-release-fetch-and-use-otel",
+      "configurePreset": "linux-pie-disabled-release-fetch-and-use-otel",
       "displayName": "Linux, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1225,6 +1755,17 @@
       "configurePreset": "windows-ninja-pie-enabled-debug",
       "displayName": "Windows, Ninja, PIE Enabled, Debug",
       "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-windows-ninja-pie-enabled-RelWithDebInfo",
+      "configurePreset": "windows-ninja-pie-enabled-RelWithDebInfo",
+      "displayName": "Windows, Ninja, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -1254,6 +1795,17 @@
       }
     },
     {
+      "name": "build-windows-ninja-pie-disabled-RelWithDebInfo",
+      "configurePreset": "windows-ninja-pie-disabled-RelWithDebInfo",
+      "displayName": "Windows, Ninja, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "build-windows-ninja-pie-disabled-release",
       "configurePreset": "windows-ninja-pie-disabled-release",
       "displayName": "Windows, Ninja, PIE Disabled, Release",
@@ -1269,6 +1821,17 @@
       "configurePreset": "VS2019Win64-pie-enabled-debug",
       "displayName": "VS2019Win64, PIE Enabled, Debug",
       "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2019Win64-pie-enabled-RelWithDebInfo",
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo",
+      "displayName": "VS2019Win64, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -1298,6 +1861,17 @@
       }
     },
     {
+      "name": "build-VS2019Win64-pie-disabled-RelWithDebInfo",
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo",
+      "displayName": "VS2019Win64, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "build-VS2019Win64-pie-disabled-release",
       "configurePreset": "VS2019Win64-pie-disabled-release",
       "displayName": "VS2019Win64, PIE Disabled, Release",
@@ -1313,6 +1887,17 @@
       "configurePreset": "VS2022Win64-pie-enabled-debug",
       "displayName": "VS2022Win64, PIE Enabled, Debug",
       "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2022Win64-pie-enabled-RelWithDebInfo",
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo",
+      "displayName": "VS2022Win64, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -1342,6 +1927,17 @@
       }
     },
     {
+      "name": "build-VS2022Win64-pie-disabled-RelWithDebInfo",
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo",
+      "displayName": "VS2022Win64, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "build-VS2022Win64-pie-disabled-release",
       "configurePreset": "VS2022Win64-pie-disabled-release",
       "displayName": "VS2022Win64, PIE Disabled, Release",
@@ -1357,6 +1953,17 @@
       "configurePreset": "VS2026Win64-pie-enabled-debug",
       "displayName": "VS2026Win64, PIE Enabled, Debug",
       "configuration": "Debug",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "build-VS2026Win64-pie-enabled-RelWithDebInfo",
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo",
+      "displayName": "VS2026Win64, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
       "condition": {
         "type": "equals",
         "lhs": "${hostSystemName}",
@@ -1386,6 +1993,17 @@
       }
     },
     {
+      "name": "build-VS2026Win64-pie-disabled-RelWithDebInfo",
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo",
+      "displayName": "VS2026Win64, PIE Disabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
       "name": "build-VS2026Win64-pie-disabled-release",
       "configurePreset": "VS2026Win64-pie-disabled-release",
       "displayName": "VS2026Win64, PIE Disabled, Release",
@@ -1397,8 +2015,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "windows-ninja-use-open-telemetry-pie-enabled-debug",
+      "name": "build-windows-ninja-pie-enabled-debug-use-otel",
+      "configurePreset": "windows-ninja-pie-enabled-debug-use-otel",
       "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1408,8 +2026,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "windows-ninja-use-open-telemetry-pie-enabled-release",
+      "name": "build-windows-ninja-pie-enabled-release-use-otel",
+      "configurePreset": "windows-ninja-pie-enabled-release-use-otel",
       "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1419,8 +2037,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "windows-ninja-use-open-telemetry-pie-disabled-debug",
+      "name": "build-windows-ninja-pie-disabled-debug-use-otel",
+      "configurePreset": "windows-ninja-pie-disabled-debug-use-otel",
       "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1430,8 +2048,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "windows-ninja-use-open-telemetry-pie-disabled-release",
+      "name": "build-windows-ninja-pie-disabled-release-use-otel",
+      "configurePreset": "windows-ninja-pie-disabled-release-use-otel",
       "displayName": "Windows, Ninja, Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1441,8 +2059,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "VS2019Win64-use-open-telemetry-pie-enabled-debug",
+      "name": "build-VS2019Win64-pie-enabled-debug-use-otel",
+      "configurePreset": "VS2019Win64-pie-enabled-debug-use-otel",
       "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1452,8 +2070,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "VS2019Win64-use-open-telemetry-pie-enabled-release",
+      "name": "build-VS2019Win64-pie-enabled-release-use-otel",
+      "configurePreset": "VS2019Win64-pie-enabled-release-use-otel",
       "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1463,8 +2081,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "VS2019Win64-use-open-telemetry-pie-disabled-debug",
+      "name": "build-VS2019Win64-pie-disabled-debug-use-otel",
+      "configurePreset": "VS2019Win64-pie-disabled-debug-use-otel",
       "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1474,8 +2092,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "VS2019Win64-use-open-telemetry-pie-disabled-release",
+      "name": "build-VS2019Win64-pie-disabled-release-use-otel",
+      "configurePreset": "VS2019Win64-pie-disabled-release-use-otel",
       "displayName": "VS2019Win64, Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1485,8 +2103,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "VS2022Win64-use-open-telemetry-pie-enabled-debug",
+      "name": "build-VS2022Win64-pie-enabled-debug-use-otel",
+      "configurePreset": "VS2022Win64-pie-enabled-debug-use-otel",
       "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1496,8 +2114,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "VS2022Win64-use-open-telemetry-pie-enabled-release",
+      "name": "build-VS2022Win64-pie-enabled-release-use-otel",
+      "configurePreset": "VS2022Win64-pie-enabled-release-use-otel",
       "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1507,8 +2125,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "VS2022Win64-use-open-telemetry-pie-disabled-debug",
+      "name": "build-VS2022Win64-pie-disabled-debug-use-otel",
+      "configurePreset": "VS2022Win64-pie-disabled-debug-use-otel",
       "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1518,8 +2136,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "VS2022Win64-use-open-telemetry-pie-disabled-release",
+      "name": "build-VS2022Win64-pie-disabled-release-use-otel",
+      "configurePreset": "VS2022Win64-pie-disabled-release-use-otel",
       "displayName": "VS2022Win64, Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1529,8 +2147,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "VS2026Win64-use-open-telemetry-pie-enabled-debug",
+      "name": "build-VS2026Win64-pie-enabled-debug-use-otel",
+      "configurePreset": "VS2026Win64-pie-enabled-debug-use-otel",
       "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1540,8 +2158,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "VS2026Win64-use-open-telemetry-pie-enabled-release",
+      "name": "build-VS2026Win64-pie-enabled-release-use-otel",
+      "configurePreset": "VS2026Win64-pie-enabled-release-use-otel",
       "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1551,8 +2169,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "VS2026Win64-use-open-telemetry-pie-disabled-debug",
+      "name": "build-VS2026Win64-pie-disabled-debug-use-otel",
+      "configurePreset": "VS2026Win64-pie-disabled-debug-use-otel",
       "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1562,8 +2180,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "VS2026Win64-use-open-telemetry-pie-disabled-release",
+      "name": "build-VS2026Win64-pie-disabled-release-use-otel",
+      "configurePreset": "VS2026Win64-pie-disabled-release-use-otel",
       "displayName": "VS2026Win64, Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1573,8 +2191,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-fetch-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "windows-ninja-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "build-windows-ninja-pie-enabled-debug-fetch-and-use-otel",
+      "configurePreset": "windows-ninja-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1584,8 +2202,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-fetch-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "windows-ninja-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "build-windows-ninja-pie-enabled-release-fetch-and-use-otel",
+      "configurePreset": "windows-ninja-pie-enabled-release-fetch-and-use-otel",
       "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1595,8 +2213,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-fetch-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "windows-ninja-fetch-use-open-telemetry-pie-disabled-debug",
+      "name": "build-windows-ninja-pie-disabled-debug-fetch-and-use-otel",
+      "configurePreset": "windows-ninja-pie-disabled-debug-fetch-and-use-otel",
       "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1606,8 +2224,8 @@
       }
     },
     {
-      "name": "build-windows-ninja-fetch-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "windows-ninja-fetch-use-open-telemetry-pie-disabled-release",
+      "name": "build-windows-ninja-pie-disabled-release-fetch-and-use-otel",
+      "configurePreset": "windows-ninja-pie-disabled-release-fetch-and-use-otel",
       "displayName": "Windows, Ninja, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1617,8 +2235,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-fetch-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "VS2019Win64-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "build-VS2019Win64-pie-enabled-debug-fetch-and-use-otel",
+      "configurePreset": "VS2019Win64-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1628,8 +2246,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-fetch-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "VS2019Win64-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "build-VS2019Win64-pie-enabled-release-fetch-and-use-otel",
+      "configurePreset": "VS2019Win64-pie-enabled-release-fetch-and-use-otel",
       "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1639,8 +2257,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-fetch-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "VS2019Win64-fetch-use-open-telemetry-pie-disabled-debug",
+      "name": "build-VS2019Win64-pie-disabled-debug-fetch-and-use-otel",
+      "configurePreset": "VS2019Win64-pie-disabled-debug-fetch-and-use-otel",
       "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1650,8 +2268,8 @@
       }
     },
     {
-      "name": "build-VS2019Win64-fetch-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "VS2019Win64-fetch-use-open-telemetry-pie-disabled-release",
+      "name": "build-VS2019Win64-pie-disabled-release-fetch-and-use-otel",
+      "configurePreset": "VS2019Win64-pie-disabled-release-fetch-and-use-otel",
       "displayName": "VS2019Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1661,8 +2279,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-fetch-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "VS2022Win64-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "build-VS2022Win64-pie-enabled-debug-fetch-and-use-otel",
+      "configurePreset": "VS2022Win64-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1672,8 +2290,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-fetch-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "VS2022Win64-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "build-VS2022Win64-pie-enabled-release-fetch-and-use-otel",
+      "configurePreset": "VS2022Win64-pie-enabled-release-fetch-and-use-otel",
       "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1683,8 +2301,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-fetch-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "VS2022Win64-fetch-use-open-telemetry-pie-disabled-debug",
+      "name": "build-VS2022Win64-pie-disabled-debug-fetch-and-use-otel",
+      "configurePreset": "VS2022Win64-pie-disabled-debug-fetch-and-use-otel",
       "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1694,8 +2312,8 @@
       }
     },
     {
-      "name": "build-VS2022Win64-fetch-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "VS2022Win64-fetch-use-open-telemetry-pie-disabled-release",
+      "name": "build-VS2022Win64-pie-disabled-release-fetch-and-use-otel",
+      "configurePreset": "VS2022Win64-pie-disabled-release-fetch-and-use-otel",
       "displayName": "VS2022Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1705,8 +2323,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-fetch-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "VS2026Win64-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "build-VS2026Win64-pie-enabled-debug-fetch-and-use-otel",
+      "configurePreset": "VS2026Win64-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1716,8 +2334,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-fetch-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "VS2026Win64-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "build-VS2026Win64-pie-enabled-release-fetch-and-use-otel",
+      "configurePreset": "VS2026Win64-pie-enabled-release-fetch-and-use-otel",
       "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1727,8 +2345,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-fetch-use-open-telemetry-pie-disabled-debug",
-      "configurePreset": "VS2026Win64-fetch-use-open-telemetry-pie-disabled-debug",
+      "name": "build-VS2026Win64-pie-disabled-debug-fetch-and-use-otel",
+      "configurePreset": "VS2026Win64-pie-disabled-debug-fetch-and-use-otel",
       "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1738,8 +2356,8 @@
       }
     },
     {
-      "name": "build-VS2026Win64-fetch-use-open-telemetry-pie-disabled-release",
-      "configurePreset": "VS2026Win64-fetch-use-open-telemetry-pie-disabled-release",
+      "name": "build-VS2026Win64-pie-disabled-release-fetch-and-use-otel",
+      "configurePreset": "VS2026Win64-pie-disabled-release-fetch-and-use-otel",
       "displayName": "VS2026Win64, Fetch and Use OpenTelemetry-Cpp, PIE Disabled, Release",
       "configuration": "Release",
       "condition": {
@@ -1749,8 +2367,8 @@
       }
     },
     {
-      "name": "build-macOS-fetch-use-open-telemetry-pie-enabled-debug",
-      "configurePreset": "macOS-fetch-use-open-telemetry-pie-enabled-debug",
+      "name": "build-macOS-pie-enabled-debug-fetch-and-use-otel",
+      "configurePreset": "macOS-pie-enabled-debug-fetch-and-use-otel",
       "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Debug",
       "configuration": "Debug",
       "condition": {
@@ -1760,8 +2378,19 @@
       }
     },
     {
-      "name": "build-macOS-fetch-use-open-telemetry-pie-enabled-release",
-      "configurePreset": "macOS-fetch-use-open-telemetry-pie-enabled-release",
+      "name": "build-macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel",
+      "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, RelWithDebInfo",
+      "configuration": "RelWithDebInfo",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Darwin"
+      }
+    },
+    {
+      "name": "build-macOS-pie-enabled-release-fetch-and-use-otel",
+      "configurePreset": "macOS-pie-enabled-release-fetch-and-use-otel",
       "displayName": "macOS, Fetch and Use OpenTelemetry-Cpp, PIE Enabled, Release",
       "configuration": "Release",
       "condition": {
