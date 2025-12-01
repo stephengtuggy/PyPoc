@@ -37,18 +37,19 @@
 
 namespace logs  = opentelemetry::logs;
 namespace trace = opentelemetry::trace;
+namespace nostd     = opentelemetry::nostd;
 
 namespace
 {
-    opentelemetry::nostd::shared_ptr<trace::Tracer> get_tracer()
+    nostd::shared_ptr<trace::Tracer> get_tracer()
     {
-        auto provider = trace::Provider::GetTracerProvider();
+        const nostd::shared_ptr<trace::TracerProvider> provider = trace::Provider::GetTracerProvider();
         return provider->GetTracer("py_poc_library");
     }
 
-    opentelemetry::nostd::shared_ptr<logs::Logger> get_logger()
+    nostd::shared_ptr<logs::Logger> get_logger()
     {
-        auto provider = logs::Provider::GetLoggerProvider();
+        const nostd::shared_ptr<logs::LoggerProvider> provider = logs::Provider::GetLoggerProvider();
         return provider->GetLogger("py_poc_library_logger", "py_poc_library");
     }
 }  // namespace
@@ -58,10 +59,10 @@ namespace
 namespace py_poc {
     void PyPocLibrary::foo() {
 #if defined(USE_OPEN_TELEMETRY)
-        auto span        = get_tracer()->StartSpan("span 1");
-        auto scoped_span = trace::Scope(get_tracer()->StartSpan("py_poc_library"));
-        auto ctx         = span->GetContext();
-        auto logger      = get_logger();
+        const nostd::shared_ptr<trace::Span>  span        = get_tracer()->StartSpan("span 1");
+        trace::Scope                          scoped_span = trace::Scope(get_tracer()->StartSpan("py_poc_library"));
+        const trace::SpanContext              ctx         = span->GetContext();
+        const nostd::shared_ptr<logs::Logger> logger      = get_logger();
 
         logger->Debug("body", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
 #endif
