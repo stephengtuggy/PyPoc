@@ -66,8 +66,8 @@ std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
 void InitTracer()
 {
   // Create OTLP exporter instance
-  auto exporter   = otlp::OtlpFileExporterFactory::Create(opts);
-  auto processor  = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
+  std::unique_ptr<opentelemetry::sdk::trace::SpanExporter> exporter   = otlp::OtlpFileExporterFactory::Create(opts);
+  std::unique_ptr<opentelemetry::sdk::trace::SpanProcessor> processor  = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
   tracer_provider = trace_sdk::TracerProviderFactory::Create(std::move(processor));
 
   // Set the global trace provider
