@@ -90,8 +90,8 @@ jobs:
           PYTHONPATH: ""
         with:
           configurePreset: ${{ matrix.preset-name }}
-          buildPreset: "${{ matrix.preset-name }}"
-          #testPreset: "${{ matrix.preset-name }}"
+          buildPreset: "build-${{ matrix.preset-name }}"
+          #testPreset: "test-${{ matrix.preset-name }}"
 
       - name: Save vcpkg cache
         id: cache-vcpkg-save
