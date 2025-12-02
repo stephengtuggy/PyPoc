@@ -35,6 +35,21 @@ jobs:
           #  build-type: Debug
           #  preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
           #  python-version: 3.14.0
+          - os: windows-2022
+            triplet: x64-win10
+            build-type: Debug
+            preset-name: VS2022Win64-pie-enabled-debug-no-otel
+            python-version: 3.13.9
+          - os: windows-2025
+            triplet: x64-win10
+            build-type: RelWithDebInfo
+            preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
+            python-version: 3.14.0
+          #- os: windows-2025
+          #  triplet: x64-win10
+          #  build-type: Debug
+          #  preset-name: VS2026Win64-pie-enabled-debug-no-otel
+          #  python-version: 3.14.0
 
     env:
       ## Indicates the location of vcpkg
@@ -101,7 +116,7 @@ jobs:
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
 
       - name: Test
-        run: build\${{ matrix.preset-name }}\${{ matrix.build-type }}\PyPoc.exe
+        run: .\build\${{ matrix.preset-name }}\${{ matrix.build-type }}\PyPoc.exe
 
 #      - name: Upload test results
 #        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 #v4.3.3
