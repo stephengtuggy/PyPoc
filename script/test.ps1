@@ -26,10 +26,10 @@ param(
 )
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
-[String]$binaryDir = "$baseDir\build\$PresetName\$BuildType"
+[String]$binaryDir = "$baseDir\build\$PresetName\Debug"
 
 echo 'Listing Directory Contents'
-Get-ChildItem -LiteralPath "$baseDir\build\$PresetName" -Recurse -Force -File -Filter '*.exe'
+Get-ChildItem -LiteralPath "$baseDir\build\$PresetName" -Recurse -Force -File -Filter 'PyPoc.exe'
 
 Push-Location $binaryDir
 
