@@ -1603,1157 +1603,1157 @@
   "buildPresets": [
     {
       "name": "build-linux-ninja-pie-enabled-debug-no-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-debug-no-otel"
+      "configurePreset": "linux-ninja-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-debug-use-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-debug-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-release-no-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-release-no-otel"
+      "configurePreset": "linux-ninja-pie-enabled-release-no-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-release-use-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-release-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-release-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-ninja-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-linux-ninja-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-debug-no-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-debug-no-otel"
+      "configurePreset": "linux-ninja-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-debug-use-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-debug-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-release-no-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-release-no-otel"
+      "configurePreset": "linux-ninja-pie-disabled-release-no-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-release-use-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-release-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-release-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-ninja-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-linux-ninja-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-linux-ninja-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-debug-no-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-debug-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-debug-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-debug-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-release-no-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-release-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-release-no-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-release-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-release-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-release-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-debug-no-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-debug-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-debug-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-debug-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-release-no-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-release-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-release-no-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-release-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-release-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-release-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-linux-unix-makefiles-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-linux-unix-makefiles-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-macOS-pie-enabled-debug-no-otel",
-      "configurePreset": "build-macOS-pie-enabled-debug-no-otel"
+      "configurePreset": "macOS-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-macOS-pie-enabled-debug-use-otel",
-      "configurePreset": "build-macOS-pie-enabled-debug-use-otel"
+      "configurePreset": "macOS-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-macOS-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-macOS-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-macOS-pie-enabled-release-no-otel",
-      "configurePreset": "build-macOS-pie-enabled-release-no-otel"
+      "configurePreset": "macOS-pie-enabled-release-no-otel"
     },
     {
       "name": "build-macOS-pie-enabled-release-use-otel",
-      "configurePreset": "build-macOS-pie-enabled-release-use-otel"
+      "configurePreset": "macOS-pie-enabled-release-use-otel"
     },
     {
       "name": "build-macOS-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-macOS-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "macOS-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-macOS-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-macOS-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-macOS-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-macOS-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-macOS-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-macOS-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-macOS-pie-disabled-debug-no-otel",
-      "configurePreset": "build-macOS-pie-disabled-debug-no-otel"
+      "configurePreset": "macOS-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-macOS-pie-disabled-debug-use-otel",
-      "configurePreset": "build-macOS-pie-disabled-debug-use-otel"
+      "configurePreset": "macOS-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-macOS-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-macOS-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-macOS-pie-disabled-release-no-otel",
-      "configurePreset": "build-macOS-pie-disabled-release-no-otel"
+      "configurePreset": "macOS-pie-disabled-release-no-otel"
     },
     {
       "name": "build-macOS-pie-disabled-release-use-otel",
-      "configurePreset": "build-macOS-pie-disabled-release-use-otel"
+      "configurePreset": "macOS-pie-disabled-release-use-otel"
     },
     {
       "name": "build-macOS-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-macOS-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "macOS-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-macOS-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-macOS-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-macOS-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-macOS-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-macOS-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-macOS-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-debug-no-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-debug-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-debug-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-debug-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-release-no-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-release-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-release-no-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-release-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-release-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-release-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-debug-no-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-debug-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-debug-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-debug-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-release-no-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-release-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-release-no-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-release-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-release-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-release-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-macOS-MacPorts-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-macOS-MacPorts-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-debug-no-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-debug-no-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-debug-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-debug-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-release-no-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-release-no-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-release-no-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-release-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-release-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-release-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-debug-no-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-debug-no-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-debug-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-debug-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-release-no-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-release-no-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-release-no-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-release-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-release-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-release-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-VS2019Win64-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-VS2019Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-debug-no-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-debug-no-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-debug-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-debug-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-release-no-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-release-no-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-release-no-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-release-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-release-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-release-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-debug-no-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-debug-no-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-debug-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-debug-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-release-no-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-release-no-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-release-no-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-release-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-release-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-release-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-VS2022Win64-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-VS2022Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-debug-no-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-debug-no-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-debug-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-debug-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-release-no-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-release-no-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-release-no-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-release-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-release-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-release-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-debug-no-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-debug-no-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-debug-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-debug-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-release-no-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-release-no-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-release-no-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-release-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-release-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-release-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-VS2026Win64-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-VS2026Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-debug-no-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-debug-no-otel"
+      "configurePreset": "ninja-windows-pie-enabled-debug-no-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-debug-use-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-debug-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-debug-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-release-no-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-release-no-otel"
+      "configurePreset": "ninja-windows-pie-enabled-release-no-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-release-use-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-release-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-release-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "ninja-windows-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-ninja-windows-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-debug-no-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-debug-no-otel"
+      "configurePreset": "ninja-windows-pie-disabled-debug-no-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-debug-use-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-debug-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-debug-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-release-no-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-release-no-otel"
+      "configurePreset": "ninja-windows-pie-disabled-release-no-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-release-use-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-release-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-release-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "ninja-windows-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "build-ninja-windows-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "build-ninja-windows-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-RelWithDebInfo-fetch-use-otel"
     }
   ],
   "testPresets": [
     {
       "name": "test-linux-ninja-pie-enabled-debug-no-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-debug-no-otel"
+      "configurePreset": "linux-ninja-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-debug-use-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-debug-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-release-no-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-release-no-otel"
+      "configurePreset": "linux-ninja-pie-enabled-release-no-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-release-use-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-release-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-release-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-ninja-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-linux-ninja-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-debug-no-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-debug-no-otel"
+      "configurePreset": "linux-ninja-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-debug-use-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-debug-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-release-no-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-release-no-otel"
+      "configurePreset": "linux-ninja-pie-disabled-release-no-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-release-use-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-release-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-release-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-ninja-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-linux-ninja-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-linux-ninja-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-ninja-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-debug-no-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-debug-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-debug-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-debug-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-release-no-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-release-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-release-no-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-release-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-release-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-release-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-debug-no-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-debug-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-debug-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-debug-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-release-no-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-release-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-release-no-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-release-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-release-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-release-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-linux-unix-makefiles-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-linux-unix-makefiles-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "linux-unix-makefiles-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-macOS-pie-enabled-debug-no-otel",
-      "configurePreset": "test-macOS-pie-enabled-debug-no-otel"
+      "configurePreset": "macOS-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-macOS-pie-enabled-debug-use-otel",
-      "configurePreset": "test-macOS-pie-enabled-debug-use-otel"
+      "configurePreset": "macOS-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-macOS-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-macOS-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-macOS-pie-enabled-release-no-otel",
-      "configurePreset": "test-macOS-pie-enabled-release-no-otel"
+      "configurePreset": "macOS-pie-enabled-release-no-otel"
     },
     {
       "name": "test-macOS-pie-enabled-release-use-otel",
-      "configurePreset": "test-macOS-pie-enabled-release-use-otel"
+      "configurePreset": "macOS-pie-enabled-release-use-otel"
     },
     {
       "name": "test-macOS-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-macOS-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "macOS-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-macOS-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-macOS-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-macOS-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-macOS-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-macOS-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-macOS-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-macOS-pie-disabled-debug-no-otel",
-      "configurePreset": "test-macOS-pie-disabled-debug-no-otel"
+      "configurePreset": "macOS-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-macOS-pie-disabled-debug-use-otel",
-      "configurePreset": "test-macOS-pie-disabled-debug-use-otel"
+      "configurePreset": "macOS-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-macOS-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-macOS-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-macOS-pie-disabled-release-no-otel",
-      "configurePreset": "test-macOS-pie-disabled-release-no-otel"
+      "configurePreset": "macOS-pie-disabled-release-no-otel"
     },
     {
       "name": "test-macOS-pie-disabled-release-use-otel",
-      "configurePreset": "test-macOS-pie-disabled-release-use-otel"
+      "configurePreset": "macOS-pie-disabled-release-use-otel"
     },
     {
       "name": "test-macOS-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-macOS-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "macOS-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-macOS-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-macOS-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-macOS-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-macOS-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-macOS-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-macOS-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-debug-no-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-debug-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-debug-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-debug-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-release-no-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-release-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-release-no-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-release-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-release-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-release-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-debug-no-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-debug-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-debug-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-debug-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-release-no-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-release-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-release-no-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-release-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-release-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-release-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-macOS-MacPorts-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-macOS-MacPorts-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "macOS-MacPorts-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-debug-no-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-debug-no-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-debug-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-debug-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-release-no-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-release-no-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-release-no-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-release-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-release-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-release-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-debug-no-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-debug-no-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-debug-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-debug-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-release-no-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-release-no-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-release-no-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-release-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-release-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-release-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-VS2019Win64-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-VS2019Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2019Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-debug-no-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-debug-no-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-debug-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-debug-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-release-no-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-release-no-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-release-no-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-release-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-release-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-release-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-debug-no-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-debug-no-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-debug-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-debug-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-release-no-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-release-no-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-release-no-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-release-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-release-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-release-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-VS2022Win64-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-VS2022Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2022Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-debug-no-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-debug-no-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-debug-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-debug-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-release-no-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-release-no-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-release-no-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-release-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-release-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-release-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-debug-no-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-debug-no-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-debug-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-debug-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-release-no-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-release-no-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-release-no-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-release-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-release-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-release-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-VS2026Win64-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-VS2026Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "VS2026Win64-pie-disabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-debug-no-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-debug-no-otel"
+      "configurePreset": "ninja-windows-pie-enabled-debug-no-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-debug-use-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-debug-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-debug-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-debug-fetch-use-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-debug-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-debug-fetch-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-release-no-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-release-no-otel"
+      "configurePreset": "ninja-windows-pie-enabled-release-no-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-release-use-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-release-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-release-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-release-fetch-use-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-release-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-release-fetch-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-RelWithDebInfo-no-otel"
+      "configurePreset": "ninja-windows-pie-enabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-RelWithDebInfo-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-enabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-ninja-windows-pie-enabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-enabled-RelWithDebInfo-fetch-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-debug-no-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-debug-no-otel"
+      "configurePreset": "ninja-windows-pie-disabled-debug-no-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-debug-use-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-debug-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-debug-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-debug-fetch-use-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-debug-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-debug-fetch-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-release-no-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-release-no-otel"
+      "configurePreset": "ninja-windows-pie-disabled-release-no-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-release-use-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-release-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-release-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-release-fetch-use-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-release-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-release-fetch-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-RelWithDebInfo-no-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-RelWithDebInfo-no-otel"
+      "configurePreset": "ninja-windows-pie-disabled-RelWithDebInfo-no-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-RelWithDebInfo-use-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-RelWithDebInfo-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-RelWithDebInfo-use-otel"
     },
     {
       "name": "test-ninja-windows-pie-disabled-RelWithDebInfo-fetch-use-otel",
-      "configurePreset": "test-ninja-windows-pie-disabled-RelWithDebInfo-fetch-use-otel"
+      "configurePreset": "ninja-windows-pie-disabled-RelWithDebInfo-fetch-use-otel"
     }
   ]
 }
