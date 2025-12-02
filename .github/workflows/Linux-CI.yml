@@ -61,6 +61,7 @@ jobs:
           - 'manjarolinux/base'
         preset-name:
           - 'linux-ninja-pie-enabled-debug-fetch-use-otel'
+          - 'linux-ninja-pie-enabled-debug-no-otel'
     steps:
       - name: Check out repository
         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
