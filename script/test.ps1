@@ -29,7 +29,7 @@ param(
 [String]$binaryDir = "$baseDir\build\$PresetName\$BuildType"
 
 echo 'Listing Directory Contents'
-Get-ChildItem -Recurse -Force "$baseDir\build\$PresetName"
+Get-ChildItem -LiteralPath "$baseDir\build\$PresetName" -Recurse -Force -File -Filter '*.exe'
 
 Push-Location $binaryDir
 
