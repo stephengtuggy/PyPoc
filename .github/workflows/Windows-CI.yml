@@ -22,34 +22,44 @@ jobs:
         include:
           - os: windows-2022
             triplet: x64-win10
-            build-type: Release
-            preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
-            python-version: 3.12.10
-          - os: windows-2025
-            triplet: x64-win10
             build-type: Debug
             preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
+            python-version: 3.13.9
+          - os: windows-2022
+            triplet: x64-win10
+            build-type: Release
+            preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
+            python-version: 3.13.9
+          - os: windows-2022
+            triplet: x64-win10
+            build-type: RelWithDebInfo
+            preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
             python-version: 3.13.9
           #- os: windows-2025
           #  triplet: x64-win10
           #  build-type: Debug
           #  preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
-          #  python-version: 3.14.0
-          - os: windows-2022
+          #  python-version: 3.13.9
+          - os: windows-2025
             triplet: x64-win10
             build-type: Debug
             preset-name: VS2022Win64-pie-enabled-debug-no-otel
             python-version: 3.13.9
           - os: windows-2025
             triplet: x64-win10
+            build-type: Release
+            preset-name: VS2022Win64-pie-enabled-release-no-otel
+            python-version: 3.13.9
+          - os: windows-2025
+            triplet: x64-win10
             build-type: RelWithDebInfo
             preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
-            python-version: 3.14.0
+            python-version: 3.13.9
           #- os: windows-2025
           #  triplet: x64-win10
           #  build-type: Debug
           #  preset-name: VS2026Win64-pie-enabled-debug-no-otel
-          #  python-version: 3.14.0
+          #  python-version: 3.13.9
 
     env:
       ## Indicates the location of vcpkg
