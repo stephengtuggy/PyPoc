@@ -57,10 +57,11 @@ namespace
 namespace py_poc {
     void PyPocLibrary::foo() {
 #if defined(USE_OPEN_TELEMETRY)
-        const nostd::shared_ptr<opentelemetry::trace::Span>  span        = get_tracer()->StartSpan("span 1");
-        opentelemetry::trace::Scope                          scoped_span = opentelemetry::trace::Scope(get_tracer()->StartSpan("py_poc_library"));
-        const opentelemetry::trace::SpanContext              ctx         = span->GetContext();
-        const nostd::shared_ptr<opentelemetry::logs::Logger> logger      = get_logger();
+        const nostd::shared_ptr<opentelemetry::trace::Tracer>   tracer      = get_tracer();
+        nostd::shared_ptr<opentelemetry::trace::Span>           span        = tracer->StartSpan("span 1");
+        opentelemetry::trace::Scope                             scoped_span = nostd::shared_ptr<opentelemetry::trace::Tracer>::element_type::WithActiveSpan(span);
+        const opentelemetry::trace::SpanContext                 ctx         = span->GetContext();
+        const nostd::shared_ptr<opentelemetry::logs::Logger>    logger      = get_logger();
 
         logger->Debug("Test Debug Message", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
         constexpr opentelemetry::logs::Severity severity = opentelemetry::logs::Severity::kDebug;
