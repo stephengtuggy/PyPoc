@@ -27,10 +27,11 @@ param(
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
 [String]$binaryDir = "$baseDir\build\$PresetName\$BuildType"
-Push-Location $binaryDir
 
 echo 'Listing Directory Contents'
 Get-ChildItem -Recurse -Force "$baseDir\build\$PresetName"
+
+Push-Location $binaryDir
 
 .\PyPoc.exe
 
