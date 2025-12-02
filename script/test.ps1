@@ -29,6 +29,9 @@ param(
 [String]$binaryDir = "$baseDir\build\$PresetName\$BuildType"
 Push-Location $binaryDir
 
+echo 'Listing Directory Contents'
+Get-ChildItem -Recurse -Force "$baseDir\build\$PresetName"
+
 .\PyPoc.exe
 
 Pop-Location
