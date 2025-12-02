@@ -1,1 +1,1 @@
-script/cibuild --preset-name="linux-pie-enabled-debug-fetch-and-use-otel" --from="opensuse/leap:16.0"
+script/cibuild --preset-name="linux-ninja-pie-enabled-debug-fetch-use-otel" --from="opensuse/leap:16.0"

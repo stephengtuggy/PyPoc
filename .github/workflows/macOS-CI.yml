@@ -49,27 +49,51 @@ jobs:
         include:
           - os: macOS-14
             build-type: Debug
-            preset-name: macOS-pie-enabled-debug-fetch-and-use-otel
+            preset-name: macOS-pie-enabled-debug-fetch-use-otel
             python-version: 3.12.10
           - os: macOS-14
             build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel
+            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
             python-version: 3.12.10
           - os: macOS-15
             build-type: Debug
-            preset-name: macOS-pie-enabled-debug-fetch-and-use-otel
+            preset-name: macOS-pie-enabled-debug-fetch-use-otel
             python-version: 3.13.9
           - os: macOS-15
             build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel
+            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
             python-version: 3.13.9
           - os: macOS-15-intel
             build-type: Debug
-            preset-name: macOS-pie-enabled-debug-fetch-and-use-otel
+            preset-name: macOS-pie-enabled-debug-fetch-use-otel
             python-version: 3.14.0
           - os: macOS-15-intel
             build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-and-use-otel
+            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
+            python-version: 3.14.0
+          - os: macOS-14
+            build-type: Debug
+            preset-name: macOS-pie-enabled-debug-no-otel
+            python-version: 3.12.10
+          - os: macOS-14
+            build-type: RelWithDebInfo
+            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
+            python-version: 3.12.10
+          - os: macOS-15
+            build-type: Debug
+            preset-name: macOS-pie-enabled-debug-no-otel
+            python-version: 3.13.9
+          - os: macOS-15
+            build-type: RelWithDebInfo
+            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
+            python-version: 3.13.9
+          - os: macOS-15-intel
+            build-type: Debug
+            preset-name: macOS-pie-enabled-debug-no-otel
+            python-version: 3.14.0
+          - os: macOS-15-intel
+            build-type: RelWithDebInfo
+            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
             python-version: 3.14.0
 
     steps:

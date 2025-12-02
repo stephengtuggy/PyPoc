@@ -123,11 +123,6 @@ TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${Python3_INCLUDE_DIRS} ${Boost_
 
 IF (USE_OPEN_TELEMETRY)
     target_compile_definitions(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
-    if(DEFINED OPENTELEMETRY_BUILD_DLL)
-        target_compile_definitions(PyPoc
-                PRIVATE OPENTELEMETRY_BUILD_IMPORT_DLL
-        )
-    endif()
     TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${OPENTELEMETRY_CPP_INCLUDE_DIRS})
     TARGET_LINK_LIBRARIES(PyPoc PRIVATE opentelemetry-cpp::api
                           opentelemetry-cpp::common

@@ -2,6 +2,8 @@
   <dictionary name="project">
     <words>
       <w>fetchcontent</w>
+      <w>makeavailable</w>
+      <w>opentelemetry</w>
     </words>
   </dictionary>
 </component>
