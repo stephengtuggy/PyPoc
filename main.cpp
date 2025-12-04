@@ -41,24 +41,21 @@
 #include "opentelemetry/sdk/logs/logger_provider.h"
 #include "opentelemetry/sdk/logs/logger_provider_factory.h"
 #include "opentelemetry/logs/provider.h"
+#include "opentelemetry/sdk/logs/provider.h"
 #include "opentelemetry/sdk/logs/simple_log_record_processor_factory.h"
+#include "opentelemetry/sdk/trace/provider.h"
 #include "opentelemetry/trace/provider.h"
 #include "opentelemetry/sdk/trace/simple_processor_factory.h"
 #include "opentelemetry/sdk/trace/tracer_provider.h"
 #include "opentelemetry/sdk/trace/tracer_provider_factory.h"
 #include "opentelemetry/trace/tracer_provider.h"
 
-namespace trace     = opentelemetry::trace;
-namespace nostd     = opentelemetry::nostd;
-namespace otlp      = opentelemetry::exporter::otlp;
-namespace logs_sdk  = opentelemetry::sdk::logs;
-namespace logs      = opentelemetry::logs;
-namespace trace_sdk = opentelemetry::sdk::trace;
+namespace nostd = opentelemetry::nostd;
 
 namespace
 {
-otlp::OtlpFileExporterOptions opts;
-otlp::OtlpFileLogRecordExporterOptions log_opts;
+opentelemetry::exporter::otlp::OtlpFileExporterOptions opts;
+opentelemetry::exporter::otlp::OtlpFileLogRecordExporterOptions log_opts;
 
 std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
 std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
@@ -66,13 +63,13 @@ std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
 void InitTracer()
 {
   // Create OTLP exporter instance
-  std::unique_ptr<opentelemetry::sdk::trace::SpanExporter> exporter   = otlp::OtlpFileExporterFactory::Create(opts);
-  std::unique_ptr<opentelemetry::sdk::trace::SpanProcessor> processor  = trace_sdk::SimpleSpanProcessorFactory::Create(std::move(exporter));
-  tracer_provider = trace_sdk::TracerProviderFactory::Create(std::move(processor));
+  auto exporter   = opentelemetry::exporter::otlp::OtlpFileExporterFactory::Create(opts);
+  auto processor  = opentelemetry::sdk::trace::SimpleSpanProcessorFactory::Create(std::move(exporter));
+  tracer_provider = opentelemetry::sdk::trace::TracerProviderFactory::Create(std::move(processor));
 
   // Set the global trace provider
-  std::shared_ptr<trace::TracerProvider> api_provider = tracer_provider;
-  trace::Provider::SetTracerProvider(api_provider);
+  std::shared_ptr<opentelemetry::trace::TracerProvider> api_provider = tracer_provider;
+  opentelemetry::sdk::trace::Provider::SetTracerProvider(api_provider);
 }
 
 void CleanupTracer()
@@ -83,20 +80,20 @@ void CleanupTracer()
     tracer_provider->ForceFlush();
   }
 
-  tracer_provider.reset();
-  std::shared_ptr<trace::TracerProvider> none;
-  trace::Provider::SetTracerProvider(none);
+  tracer_provider = nullptr;
+  std::shared_ptr<opentelemetry::trace::TracerProvider> none;
+  opentelemetry::sdk::trace::Provider::SetTracerProvider(none);
 }
 
 void InitLogger()
 {
   // Create OTLP exporter instance
-  auto exporter   = otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
-  auto processor  = logs_sdk::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
-  logger_provider = logs_sdk::LoggerProviderFactory::Create(std::move(processor));
+  auto exporter   = opentelemetry::exporter::otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
+  auto processor  = opentelemetry::sdk::logs::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
+  logger_provider = opentelemetry::sdk::logs::LoggerProviderFactory::Create(std::move(processor));
 
-  std::shared_ptr<logs::LoggerProvider> api_provider = logger_provider;
-  logs::Provider::SetLoggerProvider(api_provider);
+  std::shared_ptr<opentelemetry::logs::LoggerProvider> api_provider = logger_provider;
+  opentelemetry::sdk::logs::Provider::SetLoggerProvider(api_provider);
 }
 
 void CleanupLogger()
@@ -107,9 +104,9 @@ void CleanupLogger()
     logger_provider->ForceFlush();
   }
 
-  logger_provider.reset();
-  nostd::shared_ptr<logs::LoggerProvider> none;
-  logs::Provider::SetLoggerProvider(none);
+  logger_provider = nullptr;
+  nostd::shared_ptr<opentelemetry::logs::LoggerProvider> none;
+  opentelemetry::logs::Provider::SetLoggerProvider(none);
 }
 }  // namespace
 
@@ -119,12 +116,12 @@ int main(int argc, char *argv[]) {
 #if defined(USE_OPEN_TELEMETRY)
     if (argc > 1)
     {
-        otlp::OtlpFileClientFileSystemOptions fs_backend;
+        opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
         fs_backend.file_pattern = argv[1];
         opts.backend_options    = fs_backend;
         if (argc > 2)
         {
-            otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
+            opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
             logs_fs_backend.file_pattern = argv[2];
             log_opts.backend_options     = logs_fs_backend;
         }

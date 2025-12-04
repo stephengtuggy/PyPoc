@@ -35,21 +35,19 @@
 #include "opentelemetry/trace/tracer.h"
 #include "opentelemetry/trace/tracer_provider.h"
 
-namespace logs  = opentelemetry::logs;
-namespace trace = opentelemetry::trace;
-namespace nostd     = opentelemetry::nostd;
+namespace nostd = opentelemetry::nostd;
 
 namespace
 {
-    nostd::shared_ptr<trace::Tracer> get_tracer()
+    nostd::shared_ptr<opentelemetry::trace::Tracer> get_tracer()
     {
-        const nostd::shared_ptr<trace::TracerProvider> provider = trace::Provider::GetTracerProvider();
+        const nostd::shared_ptr<opentelemetry::trace::TracerProvider> provider = opentelemetry::trace::Provider::GetTracerProvider();
         return provider->GetTracer("py_poc_library");
     }
 
-    nostd::shared_ptr<logs::Logger> get_logger()
+    nostd::shared_ptr<opentelemetry::logs::Logger> get_logger()
     {
-        const nostd::shared_ptr<logs::LoggerProvider> provider = logs::Provider::GetLoggerProvider();
+        const nostd::shared_ptr<opentelemetry::logs::LoggerProvider> provider = opentelemetry::logs::Provider::GetLoggerProvider();
         return provider->GetLogger("py_poc_library_logger", "py_poc_library");
     }
 }  // namespace
@@ -59,12 +57,15 @@ namespace
 namespace py_poc {
     void PyPocLibrary::foo() {
 #if defined(USE_OPEN_TELEMETRY)
-        const nostd::shared_ptr<trace::Span>  span        = get_tracer()->StartSpan("span 1");
-        trace::Scope                          scoped_span = trace::Scope(get_tracer()->StartSpan("py_poc_library"));
-        const trace::SpanContext              ctx         = span->GetContext();
-        const nostd::shared_ptr<logs::Logger> logger      = get_logger();
+        const nostd::shared_ptr<opentelemetry::trace::Tracer>   tracer      = get_tracer();
+        nostd::shared_ptr<opentelemetry::trace::Span>           span        = tracer->StartSpan("span 1");
+        opentelemetry::trace::Scope                             scoped_span = nostd::shared_ptr<opentelemetry::trace::Tracer>::element_type::WithActiveSpan(span);
+        const opentelemetry::trace::SpanContext                 ctx         = span->GetContext();
+        const nostd::shared_ptr<opentelemetry::logs::Logger>    logger      = get_logger();
 
-        logger->Debug("body", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
+        logger->Debug("Test Debug Message", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
+        constexpr opentelemetry::logs::Severity severity = opentelemetry::logs::Severity::kDebug;
+        logger->Log(severity, "Test Log Message");
 #endif
     }
 } // py_poc
