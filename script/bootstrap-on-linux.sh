@@ -361,7 +361,8 @@ function bootstrapOnFedora ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         43)
             dnf install -y \
@@ -385,7 +386,8 @@ function bootstrapOnFedora ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
@@ -428,7 +430,8 @@ function bootstrapOnRedHat ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -461,7 +464,8 @@ function bootstrapOnRedHat ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -494,7 +498,8 @@ function bootstrapOnRedHat ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -537,7 +542,8 @@ function bootstrapOnRockyLinux ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -570,7 +576,8 @@ function bootstrapOnRockyLinux ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -603,7 +610,8 @@ function bootstrapOnRockyLinux ()
                                 zip \
                                 unzip \
                                 tar \
-                                kernel-headers
+                                kernel-headers \
+                                perl-IPC-Cmd
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
