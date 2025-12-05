@@ -1,7 +1,7 @@
 ARG  from
 FROM ${from}
 
-WORKDIR /usr/src/PyPoc
+WORKDIR /usr/local/src/PyPoc
 
 COPY . .
 
