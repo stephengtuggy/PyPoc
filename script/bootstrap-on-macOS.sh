@@ -40,3 +40,9 @@ brew install \
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
+
+git clone https://github.com/microsoft/vcpkg.git "$HOME/vcpkg"
+export VCPKG_ROOT="$HOME/vcpkg"
+export PATH="$VCPKG_ROOT:$PATH"
+cd "$HOME/vcpkg"
+./bootstrap-vcpkg.sh
