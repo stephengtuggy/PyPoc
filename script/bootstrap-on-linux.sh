@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-linux.sh | 2025-11-26 ---"
+echo "--- bootstrap-on-linux.sh | 2025-12-05 ---"
 echo "------------------------------------------"
 
 UPDATE_ALL_SYSTEM_PACKAGES="$1"
@@ -73,7 +73,11 @@ function bootstrapOnDebian()
                             protobuf-compiler-grpc \
                             make \
                             pkg-config \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool
             ;;
         "bookworm")
             apt-get -qy remove \
@@ -96,7 +100,11 @@ function bootstrapOnDebian()
                             protobuf-compiler-grpc \
                             make \
                             pkg-config \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool
             ;;
         "bullseye"|"buster"|"stretch")
             echo "Sorry, Debian ${LINUX_CODENAME} is no longer supported"
@@ -136,7 +144,11 @@ function bootstrapOnUbuntu()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool
             ;;
         "plucky")
             apt-get -qy install \
@@ -155,7 +167,11 @@ function bootstrapOnUbuntu()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool
             ;;
         "noble")
             apt-get -qy install \
@@ -173,7 +189,11 @@ function bootstrapOnUbuntu()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool
             ;;
         "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
             echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
@@ -213,7 +233,11 @@ function bootstrapOnLinuxMint ()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool
             ;;
         "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
             echo "Sorry, Linux Mint ${LINUX_CODENAME} is no longer supported"
@@ -245,7 +269,11 @@ function bootstrapOnOpenSuseLeap ()
                                     libabsl2401_0_0 \
                                     nlohmann_json-devel \
                                     protobuf-devel \
-                                    libgrpc++1_60
+                                    libgrpc++1_60 \
+                                    autoconf \
+                                    autoconf-archive \
+                                    automake \
+                                    libtool
             ;;
         "16.0")
             zypper --non-interactive refresh
@@ -259,7 +287,11 @@ function bootstrapOnOpenSuseLeap ()
                                     libabsl_2407_0_0 \
                                     nlohmann_json-devel \
                                     protobuf-devel \
-                                    libgrpc++1_59
+                                    libgrpc++1_59 \
+                                    autoconf \
+                                    autoconf-archive \
+                                    automake \
+                                    libtool
             ;;
         *)
             echo "Sorry, this version of openSUSE Leap is unsupported"
@@ -288,7 +320,11 @@ function bootstrapOnFedora ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         43)
             dnf install -y \
@@ -303,7 +339,11 @@ function bootstrapOnFedora ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
@@ -337,7 +377,11 @@ function bootstrapOnRedHat ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -361,7 +405,11 @@ function bootstrapOnRedHat ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -385,7 +433,11 @@ function bootstrapOnRedHat ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -419,7 +471,11 @@ function bootstrapOnRockyLinux ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -443,7 +499,11 @@ function bootstrapOnRockyLinux ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -467,7 +527,11 @@ function bootstrapOnRockyLinux ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
@@ -494,7 +558,11 @@ function bootstrapOnManjaro ()
                          make \
                          abseil-cpp \
                          nlohmann-json \
-                         grpc
+                         grpc \
+                         autoconf \
+                         autoconf-archive \
+                         automake \
+                         libtool
 }
 
 function bootstrapOnFuntoo ()
@@ -531,7 +599,11 @@ function bootstrapOnArch ()
               make \
               abseil-cpp \
               nlohmann-json \
-              grpc
+              grpc \
+              autoconf \
+              autoconf-archive \
+              automake \
+              libtool
 }
 
 function bootstrapOnEndeavourOS ()
@@ -555,7 +627,11 @@ function bootstrapOnEndeavourOS ()
               make \
               abseil-cpp \
               nlohmann-json \
-              grpc
+              grpc \
+              autoconf \
+              autoconf-archive \
+              automake \
+              libtool
 }
 
 case "${LINUX_ID}" in
@@ -601,6 +677,10 @@ case "${LINUX_ID}" in
         ;;
 esac
 
-mkdir -p /usr/src/PyPoc
+mkdir -p /usr/local/src/PyPoc
+cd /usr/local/src
+git clone https://github.com/microsoft/vcpkg.git
+cd vcpkg
+./bootstrap-vcpkg.sh
 
 echo "Bootstrapping finished!"
