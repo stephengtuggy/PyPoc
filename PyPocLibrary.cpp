@@ -35,6 +35,9 @@
 #include "opentelemetry/trace/tracer.h"
 #include "opentelemetry/trace/tracer_provider.h"
 
+#include <map>
+#include <string>
+
 namespace nostd = opentelemetry::nostd;
 
 namespace
