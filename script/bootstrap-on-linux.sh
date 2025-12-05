@@ -757,7 +757,8 @@ mkdir -p /usr/local/src/PyPoc
 export VCPKG_ROOT="$(pwd)/../vcpkg"
 git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
 export PATH="$VCPKG_ROOT:$PATH"
-cd "$VCPKG_ROOT"
+pushd "$VCPKG_ROOT"
 ./bootstrap-vcpkg.sh
+popd
 
 echo "Bootstrapping finished!"

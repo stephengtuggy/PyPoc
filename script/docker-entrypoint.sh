@@ -60,8 +60,8 @@ then
     preset_name="${PRESET_NAME}"
 fi
 
-. script/bootstrap
+. ./script/bootstrap
 
-script/build --preset_name="${preset_name}"
+./script/build --preset_name="${preset_name}"
 
-build/"${preset_name}"/"${build_type}"/PyPoc
+./build/"${preset_name}"/"${build_type}"/PyPoc
