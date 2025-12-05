@@ -15,6 +15,15 @@
       "binaryDir": "build/${presetName}",
       "debug": {
         "output": true
+      },
+      "environment": {
+        "VCPKG_FEATURE_FLAGS": "manifests,registries"
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": {
+          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+          "type": "FILEPATH"
+        }
       }
     },
     {
