@@ -77,7 +77,11 @@ function bootstrapOnDebian()
                             autoconf \
                             autoconf-archive \
                             automake \
-                            libtool
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "bookworm")
             apt-get -qy remove \
@@ -104,7 +108,11 @@ function bootstrapOnDebian()
                             autoconf \
                             autoconf-archive \
                             automake \
-                            libtool
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "bullseye"|"buster"|"stretch")
             echo "Sorry, Debian ${LINUX_CODENAME} is no longer supported"
@@ -148,7 +156,11 @@ function bootstrapOnUbuntu()
                             autoconf \
                             autoconf-archive \
                             automake \
-                            libtool
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "plucky")
             apt-get -qy install \
@@ -171,7 +183,11 @@ function bootstrapOnUbuntu()
                             autoconf \
                             autoconf-archive \
                             automake \
-                            libtool
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "noble")
             apt-get -qy install \
@@ -193,7 +209,11 @@ function bootstrapOnUbuntu()
                             autoconf \
                             autoconf-archive \
                             automake \
-                            libtool
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
             echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
@@ -237,7 +257,11 @@ function bootstrapOnLinuxMint ()
                             autoconf \
                             autoconf-archive \
                             automake \
-                            libtool
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
             echo "Sorry, Linux Mint ${LINUX_CODENAME} is no longer supported"
@@ -273,7 +297,11 @@ function bootstrapOnOpenSuseLeap ()
                                     autoconf \
                                     autoconf-archive \
                                     automake \
-                                    libtool
+                                    libtool \
+                                    curl \
+                                    zip \
+                                    unzip \
+                                    tar
             ;;
         "16.0")
             zypper --non-interactive refresh
@@ -291,7 +319,11 @@ function bootstrapOnOpenSuseLeap ()
                                     autoconf \
                                     autoconf-archive \
                                     automake \
-                                    libtool
+                                    libtool \
+                                    curl \
+                                    zip \
+                                    unzip \
+                                    tar
             ;;
         *)
             echo "Sorry, this version of openSUSE Leap is unsupported"
@@ -324,7 +356,11 @@ function bootstrapOnFedora ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         43)
             dnf install -y \
@@ -343,7 +379,11 @@ function bootstrapOnFedora ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
@@ -381,7 +421,11 @@ function bootstrapOnRedHat ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -409,7 +453,11 @@ function bootstrapOnRedHat ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -437,7 +485,11 @@ function bootstrapOnRedHat ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -475,7 +527,11 @@ function bootstrapOnRockyLinux ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -503,7 +559,11 @@ function bootstrapOnRockyLinux ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -531,7 +591,11 @@ function bootstrapOnRockyLinux ()
                                 autoconf \
                                 autoconf-archive \
                                 automake \
-                                libtool
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
@@ -562,7 +626,11 @@ function bootstrapOnManjaro ()
                          autoconf \
                          autoconf-archive \
                          automake \
-                         libtool
+                         libtool \
+                         curl \
+                         zip \
+                         unzip \
+                         tar
 }
 
 function bootstrapOnFuntoo ()
@@ -603,7 +671,11 @@ function bootstrapOnArch ()
               autoconf \
               autoconf-archive \
               automake \
-              libtool
+              libtool \
+              curl \
+              zip \
+              unzip \
+              tar
 }
 
 function bootstrapOnEndeavourOS ()
@@ -631,7 +703,11 @@ function bootstrapOnEndeavourOS ()
               autoconf \
               autoconf-archive \
               automake \
-              libtool
+              libtool \
+              curl \
+              zip \
+              unzip \
+              tar
 }
 
 case "${LINUX_ID}" in
