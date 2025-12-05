@@ -360,7 +360,8 @@ function bootstrapOnFedora ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         43)
             dnf install -y \
@@ -383,7 +384,8 @@ function bootstrapOnFedora ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
@@ -425,7 +427,8 @@ function bootstrapOnRedHat ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -457,7 +460,8 @@ function bootstrapOnRedHat ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -489,7 +493,8 @@ function bootstrapOnRedHat ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -531,7 +536,8 @@ function bootstrapOnRockyLinux ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -563,7 +569,8 @@ function bootstrapOnRockyLinux ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -595,7 +602,8 @@ function bootstrapOnRockyLinux ()
                                 curl \
                                 zip \
                                 unzip \
-                                tar
+                                tar \
+                                kernel-headers
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
@@ -613,6 +621,7 @@ function bootstrapOnManjaro ()
             pacman -Syyu --refresh --noconfirm
         fi
 
+        pacman -Sy --noconfirm base-devel --needed
         pacman -Sy --noconfirm cmake \
                          boost \
                          gcc \
