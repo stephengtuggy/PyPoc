@@ -36,7 +36,11 @@ brew install \
     nlohmann-json \
     protobuf-c \
     re2 \
-    grpc
+    grpc \
+    autoconf \
+    autoconf-archive \
+    automake \
+    libtool
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
