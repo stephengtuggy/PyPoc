@@ -754,9 +754,10 @@ case "${LINUX_ID}" in
 esac
 
 mkdir -p /usr/local/src/PyPoc
-cd /usr/local/src
-git clone https://github.com/microsoft/vcpkg.git
-cd vcpkg
+export VCPKG_ROOT="$(pwd)/../vcpkg"
+git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
+export PATH="$VCPKG_ROOT:$PATH"
+cd "$VCPKG_ROOT"
 ./bootstrap-vcpkg.sh
 
 echo "Bootstrapping finished!"

@@ -60,7 +60,7 @@ then
     preset_name="${PRESET_NAME}"
 fi
 
-script/bootstrap
+. script/bootstrap
 
 script/build --preset_name="${preset_name}"
 
