@@ -35,6 +35,9 @@
 #include "opentelemetry/trace/tracer.h"
 #include "opentelemetry/trace/tracer_provider.h"
 
+#include <map>
+#include <string>
+
 namespace nostd = opentelemetry::nostd;
 
 namespace
@@ -66,6 +69,11 @@ namespace py_poc {
         logger->Debug("Test Debug Message", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
         constexpr opentelemetry::logs::Severity severity = opentelemetry::logs::Severity::kDebug;
         logger->Log(severity, "Test Log Message");
+
+        const opentelemetry::logs::EventId event_id{1, "TestEventID"};
+        std::map<std::string, std::string> labels{};
+        const auto labelkv = opentelemetry::common::KeyValueIterableView<decltype(labels)>{labels};
+        logger->Log(severity, event_id, "Test Log Message with attributes and event ID", labelkv);
 #endif
     }
 } // py_poc
