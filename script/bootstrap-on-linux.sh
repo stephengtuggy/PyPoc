@@ -362,7 +362,8 @@ function bootstrapOnFedora ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
             dnf group install -y c-development development-tools
             ;;
         43)
@@ -388,7 +389,8 @@ function bootstrapOnFedora ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
             dnf group install -y c-development development-tools
             ;;
         *)
@@ -433,7 +435,9 @@ function bootstrapOnRedHat ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
+            dnf group install -y c-development development-tools
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -467,7 +471,9 @@ function bootstrapOnRedHat ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
+            dnf group install -y c-development development-tools
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -501,7 +507,9 @@ function bootstrapOnRedHat ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
+            dnf group install -y c-development development-tools
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -545,7 +553,9 @@ function bootstrapOnRockyLinux ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
+            dnf group install -y c-development development-tools
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -579,7 +589,9 @@ function bootstrapOnRockyLinux ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
+            dnf group install -y c-development development-tools
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -613,7 +625,9 @@ function bootstrapOnRockyLinux ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd
+                                perl-IPC-Cmd \
+                                kernel-devel-matched
+            dnf group install -y c-development development-tools
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
