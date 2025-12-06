@@ -1,1 +1,1 @@
-script/cibuild --preset-name="linux-ninja-pie-enabled-debug-fetch-use-otel" --from="fedora:43"
+script/cibuild --preset-name="linux-ninja-pie-enabled-debug-use-otel" --from="fedora:43"
