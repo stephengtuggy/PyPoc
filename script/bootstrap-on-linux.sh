@@ -363,6 +363,7 @@ function bootstrapOnFedora ()
                                 tar \
                                 kernel-headers \
                                 perl-IPC-Cmd
+            dnf group install -y c-development development-tools
             ;;
         43)
             dnf install -y \
@@ -388,6 +389,7 @@ function bootstrapOnFedora ()
                                 tar \
                                 kernel-headers \
                                 perl-IPC-Cmd
+            dnf group install -y c-development development-tools
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
