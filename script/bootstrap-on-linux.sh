@@ -339,7 +339,7 @@ function bootstrapOnFedora ()
             echo "Sorry, Fedora ${LINUX_VERSION_ID} is no longer supported"
             exit 2
             ;;
-        42)
+        42|43)
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
@@ -366,40 +366,7 @@ function bootstrapOnFedora ()
                                 unzip \
                                 tar \
                                 kernel-headers \
-                                perl-IPC-Cmd \
-                                kernel-devel-matched
-            dnf group install -y c-development development-tools
-            ;;
-        43)
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
-            dnf install -y \
-                                git \
-                                cmake \
-                                boost-devel \
-                                gcc-c++ \
-                                python3-devel \
-                                rpm-build \
-                                make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                autoconf \
-                                autoconf-archive \
-                                automake \
-                                libtool \
-                                curl \
-                                zip \
-                                unzip \
-                                tar \
-                                kernel-headers \
-                                perl-IPC-Cmd \
-                                kernel-devel-matched
-            dnf group install -y c-development development-tools
+                                perl
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
