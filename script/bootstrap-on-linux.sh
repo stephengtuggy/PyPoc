@@ -340,6 +340,10 @@ function bootstrapOnFedora ()
             exit 2
             ;;
         42)
+            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+            then
+                dnf -y upgrade --refresh
+            fi
             dnf install -y \
                                 git \
                                 cmake \
@@ -367,6 +371,10 @@ function bootstrapOnFedora ()
             dnf group install -y c-development development-tools
             ;;
         43)
+            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+            then
+                dnf -y upgrade --refresh
+            fi
             dnf install -y \
                                 git \
                                 cmake \
