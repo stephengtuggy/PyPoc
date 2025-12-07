@@ -60,8 +60,9 @@ then
     preset_name="${PRESET_NAME}"
 fi
 
-script/bootstrap
+./script/bootstrap
+export VCPKG_ROOT="$(pwd)/../vcpkg"
 
-script/build --preset_name="${preset_name}"
+./script/build --preset_name="${preset_name}"
 
-build/"${preset_name}"/"${build_type}"/PyPoc
+./build/"${preset_name}"/PyPoc

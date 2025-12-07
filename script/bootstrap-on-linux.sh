@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-linux.sh | 2025-11-26 ---"
+echo "--- bootstrap-on-linux.sh | 2025-12-05 ---"
 echo "------------------------------------------"
 
 UPDATE_ALL_SYSTEM_PACKAGES="$1"
@@ -73,7 +73,15 @@ function bootstrapOnDebian()
                             protobuf-compiler-grpc \
                             make \
                             pkg-config \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "bookworm")
             apt-get -qy remove \
@@ -96,7 +104,15 @@ function bootstrapOnDebian()
                             protobuf-compiler-grpc \
                             make \
                             pkg-config \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "bullseye"|"buster"|"stretch")
             echo "Sorry, Debian ${LINUX_CODENAME} is no longer supported"
@@ -136,7 +152,15 @@ function bootstrapOnUbuntu()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "plucky")
             apt-get -qy install \
@@ -155,7 +179,15 @@ function bootstrapOnUbuntu()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "noble")
             apt-get -qy install \
@@ -173,7 +205,15 @@ function bootstrapOnUbuntu()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
             echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
@@ -213,7 +253,15 @@ function bootstrapOnLinuxMint ()
                             libgrpc-dev \
                             libgrpc++-dev \
                             protobuf-compiler-grpc \
-                            ninja-build
+                            ninja-build \
+                            autoconf \
+                            autoconf-archive \
+                            automake \
+                            libtool \
+                            curl \
+                            zip \
+                            unzip \
+                            tar
             ;;
         "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
             echo "Sorry, Linux Mint ${LINUX_CODENAME} is no longer supported"
@@ -245,7 +293,15 @@ function bootstrapOnOpenSuseLeap ()
                                     libabsl2401_0_0 \
                                     nlohmann_json-devel \
                                     protobuf-devel \
-                                    libgrpc++1_60
+                                    libgrpc++1_60 \
+                                    autoconf \
+                                    autoconf-archive \
+                                    automake \
+                                    libtool \
+                                    curl \
+                                    zip \
+                                    unzip \
+                                    tar
             ;;
         "16.0")
             zypper --non-interactive refresh
@@ -259,7 +315,15 @@ function bootstrapOnOpenSuseLeap ()
                                     libabsl_2407_0_0 \
                                     nlohmann_json-devel \
                                     protobuf-devel \
-                                    libgrpc++1_59
+                                    libgrpc++1_59 \
+                                    autoconf \
+                                    autoconf-archive \
+                                    automake \
+                                    libtool \
+                                    curl \
+                                    zip \
+                                    unzip \
+                                    tar
             ;;
         *)
             echo "Sorry, this version of openSUSE Leap is unsupported"
@@ -275,7 +339,11 @@ function bootstrapOnFedora ()
             echo "Sorry, Fedora ${LINUX_VERSION_ID} is no longer supported"
             exit 2
             ;;
-        42)
+        42|43)
+            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+            then
+                dnf -y upgrade --refresh
+            fi
             dnf install -y \
                                 git \
                                 cmake \
@@ -288,22 +356,17 @@ function bootstrapOnFedora ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
-            ;;
-        43)
-            dnf install -y \
-                                git \
-                                cmake \
-                                boost-devel \
-                                gcc-c++ \
-                                python3-devel \
-                                rpm-build \
-                                make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         *)
             echo "Sorry, this version of Fedora is unsupported"
@@ -337,7 +400,17 @@ function bootstrapOnRedHat ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -361,7 +434,17 @@ function bootstrapOnRedHat ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -385,7 +468,17 @@ function bootstrapOnRedHat ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -419,7 +512,17 @@ function bootstrapOnRockyLinux ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         "10.0")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -443,7 +546,17 @@ function bootstrapOnRockyLinux ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         "10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -467,7 +580,17 @@ function bootstrapOnRockyLinux ()
                                 abseil-cpp \
                                 grpc-cpp \
                                 protobuf-compiler \
-                                protobuf-devel
+                                protobuf-devel \
+                                autoconf \
+                                autoconf-archive \
+                                automake \
+                                libtool \
+                                curl \
+                                zip \
+                                unzip \
+                                tar \
+                                kernel-headers \
+                                perl
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
@@ -485,6 +608,7 @@ function bootstrapOnManjaro ()
             pacman -Syyu --refresh --noconfirm
         fi
 
+        pacman -Sy --noconfirm base-devel --needed
         pacman -Sy --noconfirm cmake \
                          boost \
                          gcc \
@@ -494,7 +618,15 @@ function bootstrapOnManjaro ()
                          make \
                          abseil-cpp \
                          nlohmann-json \
-                         grpc
+                         grpc \
+                         autoconf \
+                         autoconf-archive \
+                         automake \
+                         libtool \
+                         curl \
+                         zip \
+                         unzip \
+                         tar
 }
 
 function bootstrapOnFuntoo ()
@@ -531,7 +663,15 @@ function bootstrapOnArch ()
               make \
               abseil-cpp \
               nlohmann-json \
-              grpc
+              grpc \
+              autoconf \
+              autoconf-archive \
+              automake \
+              libtool \
+              curl \
+              zip \
+              unzip \
+              tar
 }
 
 function bootstrapOnEndeavourOS ()
@@ -555,7 +695,15 @@ function bootstrapOnEndeavourOS ()
               make \
               abseil-cpp \
               nlohmann-json \
-              grpc
+              grpc \
+              autoconf \
+              autoconf-archive \
+              automake \
+              libtool \
+              curl \
+              zip \
+              unzip \
+              tar
 }
 
 case "${LINUX_ID}" in
@@ -601,6 +749,12 @@ case "${LINUX_ID}" in
         ;;
 esac
 
-mkdir -p /usr/src/PyPoc
+mkdir -p /usr/local/src/PyPoc
+export VCPKG_ROOT="$(pwd)/../vcpkg"
+git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
+export PATH="$VCPKG_ROOT:$PATH"
+pushd "$VCPKG_ROOT"
+./bootstrap-vcpkg.sh
+popd
 
 echo "Bootstrapping finished!"

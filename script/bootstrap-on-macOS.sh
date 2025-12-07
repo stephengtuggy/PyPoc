@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-macOS.sh | 2025-11-26 ---"
+echo "--- bootstrap-on-macOS.sh | 2025-12-05 ---"
 echo "------------------------------------------"
 
 brew install \
@@ -36,7 +36,18 @@ brew install \
     nlohmann-json \
     protobuf-c \
     re2 \
-    grpc
+    grpc \
+    autoconf \
+    autoconf-archive \
+    automake \
+    libtool
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
+
+export VCPKG_ROOT="$(pwd)/../vcpkg"
+git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
+export PATH="$VCPKG_ROOT:$PATH"
+pushd "$VCPKG_ROOT"
+./bootstrap-vcpkg.sh
+popd
