@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-linux.sh | 2025-12-05 ---"
+echo "--- bootstrap-on-linux.sh | 2025-12-08 ---"
 echo "------------------------------------------"
 
 UPDATE_ALL_SYSTEM_PACKAGES="$1"
@@ -56,52 +56,12 @@ function bootstrapOnDebian()
     fi
 
     case "$LINUX_CODENAME" in
-        "trixie")
+        "trixie"|"bookworm")
             apt-get -qy install \
                             git \
                             cmake \
-                            python3-dev \
                             build-essential \
-                            libboost-python-dev \
                             lsb-release \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            opentelemetry-cpp-dev \
-                            libgrpc-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            make \
-                            pkg-config \
-                            ninja-build \
-                            autoconf \
-                            autoconf-archive \
-                            automake \
-                            libtool \
-                            curl \
-                            zip \
-                            unzip \
-                            tar
-            ;;
-        "bookworm")
-            apt-get -qy remove \
-                            libboost-python-dev \
-                            libboost-log-dev \
-                            libboost-regex-dev
-            apt-get -qy autoremove
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            python3-dev \
-                            build-essential \
-                            libboost-python1.81-dev \
-                            lsb-release \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
                             make \
                             pkg-config \
                             ninja-build \
@@ -135,76 +95,14 @@ function bootstrapOnUbuntu()
     fi
 
     case "$LINUX_CODENAME" in
-        "questing")
+        "questing"|"plucky"|"noble")
             apt-get -qy install \
                             git \
                             cmake \
-                            python3-dev \
                             build-essential \
-                            libboost-python-dev \
                             lsb-release \
                             make \
                             pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            opentelemetry-cpp-dev \
-                            libgrpc-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            autoconf \
-                            autoconf-archive \
-                            automake \
-                            libtool \
-                            curl \
-                            zip \
-                            unzip \
-                            tar
-            ;;
-        "plucky")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            python3-dev \
-                            build-essential \
-                            libboost-python-dev \
-                            lsb-release \
-                            make \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            opentelemetry-cpp-dev \
-                            libgrpc-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            autoconf \
-                            autoconf-archive \
-                            automake \
-                            libtool \
-                            curl \
-                            zip \
-                            unzip \
-                            tar
-            ;;
-        "noble")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            python3-dev \
-                            build-essential \
-                            libboost-python-dev \
-                            lsb-release \
-                            make \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
                             ninja-build \
                             autoconf \
                             autoconf-archive \
@@ -241,18 +139,10 @@ function bootstrapOnLinuxMint ()
             apt-get -qy install \
                             git \
                             cmake \
-                            python3-dev \
                             build-essential \
-                            libboost-python-dev \
                             lsb-release \
                             make \
                             pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
                             ninja-build \
                             autoconf \
                             autoconf-archive \
@@ -281,41 +171,13 @@ function bootstrapOnOpenSuseLeap ()
             echo "Sorry, openSUSE Leap ${LINUX_VERSION_ID} is no longer supported"
             exit 2
             ;;
-        "15.6")
+        "15.6"|"16.0")
             zypper --non-interactive refresh
             zypper --non-interactive install -y \
-                                    libboost_python-py3-1_75_0-devel \
                                     cmake \
                                     gcc-c++ \
-                                    python3-devel \
                                     git \
                                     rpm-build \
-                                    libabsl2401_0_0 \
-                                    nlohmann_json-devel \
-                                    protobuf-devel \
-                                    libgrpc++1_60 \
-                                    autoconf \
-                                    autoconf-archive \
-                                    automake \
-                                    libtool \
-                                    curl \
-                                    zip \
-                                    unzip \
-                                    tar
-            ;;
-        "16.0")
-            zypper --non-interactive refresh
-            zypper --non-interactive install -y \
-                                    libboost_python-py3-1_86_0-devel \
-                                    cmake \
-                                    gcc-c++ \
-                                    python3-devel \
-                                    git \
-                                    rpm-build \
-                                    libabsl_2407_0_0 \
-                                    nlohmann_json-devel \
-                                    protobuf-devel \
-                                    libgrpc++1_59 \
                                     autoconf \
                                     autoconf-archive \
                                     automake \
@@ -347,16 +209,9 @@ function bootstrapOnFedora ()
             dnf install -y \
                                 git \
                                 cmake \
-                                boost-devel \
                                 gcc-c++ \
-                                python3-devel \
                                 rpm-build \
                                 make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -384,23 +239,16 @@ function bootstrapOnRedHat ()
                 dnf -y upgrade --refresh
             fi
             dnf -y install dnf-plugins-core
-            dnf config-manager --set-enabled crb
-            dnf config-manager --set-enabled devel
+            dnf -y config-manager --set-enabled crb
+            dnf -y config-manager --set-enabled devel
             dnf -y install epel-release
             dnf -y update
             dnf -y install \
                                 git \
                                 cmake \
-                                boost-devel \
-                                boost-python3-devel \
                                 gcc-c++ \
-                                python3-devel \
                                 rpm-build \
                                 make \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -412,7 +260,7 @@ function bootstrapOnRedHat ()
                                 kernel-headers \
                                 perl
             ;;
-        "10.0")
+        "10.0"|"10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
@@ -425,50 +273,9 @@ function bootstrapOnRedHat ()
             dnf -y install \
                                 git \
                                 cmake \
-                                boost-devel \
-                                boost-python3-devel \
                                 gcc-c++ \
-                                python3-devel \
                                 rpm-build \
                                 make \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                autoconf \
-                                autoconf-archive \
-                                automake \
-                                libtool \
-                                curl \
-                                zip \
-                                unzip \
-                                tar \
-                                kernel-headers \
-                                perl
-            ;;
-        "10.1")
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
-            dnf -y install 'dnf-command(config-manager)'
-            dnf -y config-manager --set-enabled crb
-            dnf -y config-manager --set-enabled devel
-            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
-            dnf -y update
-            dnf -y install \
-                                git \
-                                cmake \
-                                boost-devel \
-                                boost-python3-devel \
-                                gcc-c++ \
-                                python3-devel \
-                                rpm-build \
-                                make \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -496,23 +303,16 @@ function bootstrapOnRockyLinux ()
                 dnf -y upgrade --refresh
             fi
             dnf -y install dnf-plugins-core
-            dnf config-manager --set-enabled crb
-            dnf config-manager --set-enabled devel
+            dnf -y config-manager --set-enabled crb
+            dnf -y config-manager --set-enabled devel
             dnf -y install epel-release
             dnf -y update
             dnf -y install \
                                 git \
                                 cmake \
-                                boost-devel \
-                                boost-python3-devel \
                                 gcc-c++ \
-                                python3-devel \
                                 rpm-build \
                                 make \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -524,7 +324,7 @@ function bootstrapOnRockyLinux ()
                                 kernel-headers \
                                 perl
             ;;
-        "10.0")
+        "10.0"|"10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
@@ -537,50 +337,9 @@ function bootstrapOnRockyLinux ()
             dnf -y install \
                                 git \
                                 cmake \
-                                boost-devel \
-                                boost-python3-devel \
                                 gcc-c++ \
-                                python3-devel \
                                 rpm-build \
                                 make \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                autoconf \
-                                autoconf-archive \
-                                automake \
-                                libtool \
-                                curl \
-                                zip \
-                                unzip \
-                                tar \
-                                kernel-headers \
-                                perl
-            ;;
-        "10.1")
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
-            dnf -y install 'dnf-command(config-manager)'
-            dnf -y config-manager --set-enabled crb
-            dnf -y config-manager --set-enabled devel
-            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
-            dnf -y update
-            dnf -y install \
-                                git \
-                                cmake \
-                                boost-devel \
-                                boost-python3-devel \
-                                gcc-c++ \
-                                python3-devel \
-                                rpm-build \
-                                make \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -610,15 +369,10 @@ function bootstrapOnManjaro ()
 
         pacman -Sy --noconfirm base-devel --needed
         pacman -Sy --noconfirm cmake \
-                         boost \
                          gcc \
                          gcc-libs \
-                         python \
                          git \
                          make \
-                         abseil-cpp \
-                         nlohmann-json \
-                         grpc \
                          autoconf \
                          autoconf-archive \
                          automake \
@@ -655,15 +409,10 @@ function bootstrapOnArch ()
     pacman -Sy --noconfirm \
               base-devel \
               cmake \
-              boost \
               gcc \
               gcc12 \
-              python \
               git \
               make \
-              abseil-cpp \
-              nlohmann-json \
-              grpc \
               autoconf \
               autoconf-archive \
               automake \
@@ -687,15 +436,9 @@ function bootstrapOnEndeavourOS ()
               base-devel \
               icu \
               cmake \
-              boost \
               gcc \
-              sdl2 \
-              python \
               git \
               make \
-              abseil-cpp \
-              nlohmann-json \
-              grpc \
               autoconf \
               autoconf-archive \
               automake \
@@ -750,7 +493,10 @@ case "${LINUX_ID}" in
 esac
 
 mkdir -p /usr/local/src/PyPoc
-export VCPKG_ROOT="$(pwd)/../vcpkg"
+if [ -z $VCPKG_ROOT ]
+then
+    export VCPKG_ROOT="$(pwd)/../vcpkg"
+fi
 git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
 export PATH="$VCPKG_ROOT:$PATH"
 pushd "$VCPKG_ROOT"
