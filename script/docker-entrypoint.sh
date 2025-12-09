@@ -24,7 +24,7 @@
 set -e
 
 echo "-----------------------------------------"
-echo "--- docker-entrypoint.sh | 2025-11-27 ---"
+echo "--- docker-entrypoint.sh | 2025-12-08 ---"
 echo "-----------------------------------------"
 
 #----------------------------------
@@ -61,7 +61,11 @@ then
 fi
 
 ./script/bootstrap
-export VCPKG_ROOT="$(pwd)/../vcpkg"
+
+if [ -z $VCPKG_ROOT ]
+then
+    export VCPKG_ROOT="$(pwd)/../vcpkg"
+fi
 
 ./script/build --preset_name="${preset_name}"
 
