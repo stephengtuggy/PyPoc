@@ -45,7 +45,7 @@ brew install \
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
 
-if [ -z $VCPKG_ROOT ]
+if [ -z "$VCPKG_ROOT" ]
 then
     export VCPKG_ROOT="$(pwd)/../vcpkg"
 fi

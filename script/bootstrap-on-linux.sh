@@ -493,7 +493,7 @@ case "${LINUX_ID}" in
 esac
 
 mkdir -p /usr/local/src/PyPoc
-if [ -z $VCPKG_ROOT ]
+if [ -z "$VCPKG_ROOT" ]
 then
     export VCPKG_ROOT="$(pwd)/../vcpkg"
 fi
