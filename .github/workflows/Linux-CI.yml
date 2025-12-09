@@ -57,7 +57,6 @@ jobs:
           - 'fedora:43'
           - 'fedora:42'
           - 'rockylinux/rockylinux:10.1'
-          - 'manjarolinux/base'
         preset-name:
           - 'linux-ninja-pie-enabled-debug-use-otel'
           - 'linux-ninja-pie-enabled-debug-no-otel'
