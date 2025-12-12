@@ -118,7 +118,9 @@ function bootstrapOnDebian()
                             opentelemetry-cpp-dev \
                             libprotobuf-dev \
                             libaudio-dev \
-                            libfribidi-dev
+                            libfribidi-dev \
+                            libglu1-mesa-dev \
+                            mesa-common-dev
             ;;
         "bookworm")
             echo "Bookworm does NOT support SDL3"
@@ -185,7 +187,9 @@ function bootstrapOnDebian()
                             clang \
                             libprotobuf-dev \
                             libaudio-dev \
-                            libfribidi-dev
+                            libfribidi-dev \
+                            libglu1-mesa-dev \
+                            mesa-common-dev
             ;;
         "bullseye"|"buster"|"stretch")
             echo "Sorry, Debian ${LINUX_CODENAME} is no longer supported"
@@ -270,7 +274,9 @@ function bootstrapOnUbuntu()
                             opentelemetry-cpp-dev \
                             libprotobuf-dev \
                             libaudio-dev \
-                            libfribidi-dev
+                            libfribidi-dev \
+                            libglu1-mesa-dev \
+                            mesa-common-dev
             ;;
         "noble")
             echo "Noble does NOT support SDL3"
@@ -332,7 +338,9 @@ function bootstrapOnUbuntu()
                             clang \
                             libprotobuf-dev \
                             libaudio-dev \
-                            libfribidi-dev
+                            libfribidi-dev \
+                            libglu1-mesa-dev \
+                            mesa-common-dev
             ;;
         "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
             echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
@@ -415,7 +423,9 @@ function bootstrapOnLinuxMint ()
                             clang \
                             libprotobuf-dev \
                             libaudio-dev \
-                            libfribidi-dev
+                            libfribidi-dev \
+                            libglu1-mesa-dev \
+                            mesa-common-dev
             ;;
         "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
             echo "Sorry, Linux Mint ${LINUX_CODENAME} is no longer supported"
@@ -490,7 +500,9 @@ function bootstrapOnOpenSuseLeap ()
                                     libgtk-3-0 \
                                     gtk3-devel \
                                     python3-devel \
-                                    clang
+                                    clang \
+                                    glu-devel \
+                                    Mesa-devel
             ;;
         "16.0")
             zypper --non-interactive refresh
@@ -547,7 +559,9 @@ function bootstrapOnOpenSuseLeap ()
                                     libgtk-3-0 \
                                     gtk3-devel \
                                     python3-devel \
-                                    clang
+                                    clang \
+                                    glu-devel \
+                                    Mesa-devel
             ;;
         *)
             echo "Sorry, this version of openSUSE Leap is unsupported"
@@ -611,7 +625,8 @@ function bootstrapOnFedora ()
                             libarchive-devel \
                             rpm-build \
                             clang \
-                            fribidi-devel
+                            fribidi-devel \
+                            mesa-libGLU-devel
     else
         echo "Sorry, Fedora ${LINUX_VERSION_ID} is no longer supported"
         exit 2
@@ -675,7 +690,8 @@ function bootstrapOnRedHat ()
                                 python3-devel \
                                 libarchive-devel \
                                 clang \
-                                fribidi-devel
+                                fribidi-devel \
+                                mesa-libGLU-devel
             ;;
         "10.0"|"10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -732,7 +748,8 @@ function bootstrapOnRedHat ()
                                 python3-devel \
                                 libarchive-devel \
                                 clang \
-                                fribidi-devel
+                                fribidi-devel \
+                                mesa-libGLU-devel
             ;;
         *)
             echo "Sorry, this version of Red Hat is unsupported"
@@ -798,7 +815,8 @@ function bootstrapOnRockyLinux ()
                                 python3-devel \
                                 libarchive-devel \
                                 clang \
-                                fribidi-devel
+                                fribidi-devel \
+                                mesa-libGLU-devel
             ;;
         "10.0"|"10.1")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
@@ -855,7 +873,8 @@ function bootstrapOnRockyLinux ()
                                 python3-devel \
                                 libarchive-devel \
                                 clang \
-                                fribidi-devel
+                                fribidi-devel \
+                                mesa-libGLU-devel
             ;;
         *)
             echo "Sorry, this version of Rocky Linux is unsupported"
@@ -909,7 +928,8 @@ function bootstrapOnManjaro ()
                          libusb \
                          ninja \
                          wayland \
-                         wayland-protocols
+                         wayland-protocols \
+                         glu
 
         # NOTE: `yay` requires SystemD which isn't available in Docker
         # AUR related packages that are not in pacman by default
@@ -998,7 +1018,8 @@ function bootstrapOnArch ()
               libusb \
               ninja \
               wayland \
-              wayland-protocols
+              wayland-protocols \
+              glu
 }
 
 function bootstrapOnEndeavourOS ()
@@ -1047,7 +1068,8 @@ function bootstrapOnEndeavourOS ()
               libusb \
               ninja \
               wayland \
-              wayland-protocols
+              wayland-protocols \
+              glu
 }
 
 case "${LINUX_ID}" in
