@@ -88,6 +88,4 @@ jobs:
           submodules: false
 
       - name: Build and test
-        env:
-          FROM: ${{ matrix.FROM }}
-        run: script/cibuild --from=${{ matrix.FROM }} --preset_name=${{ matrix.preset-name }}
+        run: script/cibuild --preset_name=${{ matrix.preset-name }}
