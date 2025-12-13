@@ -49,7 +49,10 @@ if [ -z "$VCPKG_ROOT" ]
 then
     export VCPKG_ROOT="$(pwd)/../vcpkg"
 fi
-git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
+if [ ! -d "$VCPKG_ROOT" ]
+then
+    git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
+fi
 export PATH="$VCPKG_ROOT:$PATH"
 pushd "$VCPKG_ROOT"
 ./bootstrap-vcpkg.sh
