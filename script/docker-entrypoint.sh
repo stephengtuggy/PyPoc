@@ -24,7 +24,7 @@
 set -e
 
 echo "-----------------------------------------"
-echo "--- docker-entrypoint.sh | 2025-12-11 ---"
+echo "--- docker-entrypoint.sh | 2025-12-21 ---"
 echo "-----------------------------------------"
 
 #----------------------------------
@@ -62,11 +62,6 @@ fi
 
 echo "Re-run bootstrap"
 ./script/bootstrap
-
-if [ -z "$VCPKG_ROOT" ]
-then
-    export VCPKG_ROOT="$(pwd)/../vcpkg"
-fi
 
 ./script/build --preset_name="${preset_name}"
 
