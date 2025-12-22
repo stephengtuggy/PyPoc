@@ -115,7 +115,12 @@ function bootstrapOnDebian()
                             libboost-json-dev \
                             libboost-program-options-dev \
                             clang \
-                            opentelemetry-cpp-dev \
+                            libabsl-dev \
+                            nlohmann-json3-dev \
+                            libprotobuf-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
+                            zlib1g-dev \
                             libprotobuf-dev \
                             libaudio-dev \
                             libfribidi-dev \
@@ -128,7 +133,9 @@ function bootstrapOnDebian()
             apt-get -qy remove \
                             libboost-python-dev \
                             libboost-log-dev \
-                            libboost-regex-dev
+                            libboost-regex-dev \
+                            libboost-json-dev \
+                            libboost-program-options-dev
             apt-get -qy autoremove
             apt-get -qy install \
                             git \
@@ -186,7 +193,11 @@ function bootstrapOnDebian()
                             libboost-json1.81-dev \
                             libboost-program-options1.81-dev \
                             clang \
+                            libabsl-dev \
+                            nlohmann-json3-dev \
                             libprotobuf-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
                             libaudio-dev \
                             libfribidi-dev \
                             libglu1-mesa-dev \
@@ -222,6 +233,12 @@ function bootstrapOnUbuntu()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
+                            nlohmann-json3-dev \
+                            libprotobuf-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
+                            zlib1g-dev \
                             ninja-build \
                             autoconf \
                             autoconf-archive \
@@ -273,7 +290,7 @@ function bootstrapOnUbuntu()
                             libboost-json-dev \
                             libboost-program-options-dev \
                             clang \
-                            opentelemetry-cpp-dev \
+                            zlib1g-dev \
                             libprotobuf-dev \
                             libaudio-dev \
                             libfribidi-dev \
@@ -290,6 +307,12 @@ function bootstrapOnUbuntu()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
+                            nlohmann-json3-dev \
+                            libprotobuf-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
+                            zlib1g-dev \
                             ninja-build \
                             autoconf \
                             autoconf-archive \
@@ -376,6 +399,12 @@ function bootstrapOnLinuxMint ()
                             lsb-release \
                             make \
                             pkg-config \
+                            libabsl-dev \
+                            nlohmann-json3-dev \
+                            libprotobuf-dev \
+                            libgrpc++-dev \
+                            protobuf-compiler-grpc \
+                            zlib1g-dev \
                             ninja-build \
                             autoconf \
                             autoconf-archive \
@@ -457,6 +486,11 @@ function bootstrapOnOpenSuseLeap ()
                                     gcc-c++ \
                                     git \
                                     rpm-build \
+                                    libabsl2401_0_0 \
+                                    nlohmann_json-devel \
+                                    protobuf-devel \
+                                    libgrpc++1_60 \
+                                    zlib-devel \
                                     autoconf \
                                     autoconf-archive \
                                     automake \
@@ -529,6 +563,11 @@ function bootstrapOnOpenSuseLeap ()
                                     gcc-c++ \
                                     git \
                                     rpm-build \
+                                    libabsl_2407_0_0 \
+                                    nlohmann_json-devel \
+                                    protobuf-devel \
+                                    libgrpc++1_59 \
+                                    zlib-ng-compat-devel \
                                     autoconf \
                                     autoconf-archive \
                                     automake \
@@ -599,6 +638,12 @@ function bootstrapOnFedora ()
                             gcc-c++ \
                             rpm-build \
                             make \
+                            json-devel \
+                            abseil-cpp \
+                            grpc-cpp \
+                            protobuf-compiler \
+                            protobuf-devel \
+                            zlib-ng-compat-devel \
                             autoconf \
                             autoconf-archive \
                             automake \
@@ -662,6 +707,12 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 rpm-build \
                                 make \
+                                json-devel \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel \
+                                zlib-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -720,6 +771,12 @@ function bootstrapOnRedHat ()
                                 gcc-c++ \
                                 rpm-build \
                                 make \
+                                json-devel \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel \
+                                zlib-ng-compat-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -789,6 +846,12 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 rpm-build \
                                 make \
+                                json-devel \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel \
+                                zlib-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -847,6 +910,12 @@ function bootstrapOnRockyLinux ()
                                 gcc-c++ \
                                 rpm-build \
                                 make \
+                                json-devel \
+                                abseil-cpp \
+                                grpc-cpp \
+                                protobuf-compiler \
+                                protobuf-devel \
+                                zlib-ng-compat-devel \
                                 autoconf \
                                 autoconf-archive \
                                 automake \
@@ -912,6 +981,10 @@ function bootstrapOnManjaro ()
                          gcc-libs \
                          git \
                          make \
+                         abseil-cpp \
+                         nlohmann-json \
+                         grpc \
+                         zlib-ng-compat \
                          autoconf \
                          autoconf-archive \
                          automake \
@@ -1000,6 +1073,10 @@ function bootstrapOnArch ()
               gcc12 \
               git \
               make \
+              abseil-cpp \
+              nlohmann-json \
+              grpc \
+              zlib-ng-compat \
               autoconf \
               autoconf-archive \
               automake \
@@ -1054,6 +1131,10 @@ function bootstrapOnEndeavourOS ()
               gcc \
               git \
               make \
+              abseil-cpp \
+              nlohmann-json \
+              grpc \
+              zlib-ng-compat \
               autoconf \
               autoconf-archive \
               automake \
