@@ -46,41 +46,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: macOS-14
-            build-type: Debug
-            preset-name: macOS-pie-enabled-debug-use-otel
-            python-version: 3.12.10
-          - os: macOS-14
-            build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-use-otel
-            python-version: 3.12.10
-          - os: macOS-15
-            build-type: Debug
-            preset-name: macOS-pie-enabled-debug-use-otel
-            python-version: 3.13.9
-          - os: macOS-15
-            build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-use-otel
-            python-version: 3.13.9
-          - os: macOS-14
-            build-type: Debug
-            preset-name: macOS-pie-enabled-debug-no-otel
-            python-version: 3.12.10
-          - os: macOS-14
-            build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
-            python-version: 3.12.10
-          - os: macOS-15
-            build-type: Debug
-            preset-name: macOS-pie-enabled-debug-no-otel
-            python-version: 3.13.9
-          - os: macOS-15
-            build-type: RelWithDebInfo
-            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
-            python-version: 3.13.9
+        os:
+          - macOS-14
+          - macOS-15
+          - macOS-15-intel
+        preset-name:
+          - macOS-pie-enabled-debug-fetch-use-otel
+          - macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
+          - macOS-pie-enabled-debug-no-otel
+          - macOS-pie-enabled-RelWithDebInfo-no-otel
 
     steps:
+      # The following dependencies are already present within macos-* images:
+      # MacOS has a Developers Tools package from Apple that gets installed which
+      # provides some minimal functionality:
+      #   XCode (which uses CLang/LLVM)
+      #   git
+      - name: Install the latest version of Bash so we can rely on it
+        run: brew install bash
+
       - name: Check out repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
