@@ -134,7 +134,6 @@ function bootstrapOnDebian()
                             libboost-python-dev \
                             libboost-log-dev \
                             libboost-regex-dev \
-                            libboost-json-dev \
                             libboost-program-options-dev
             apt-get -qy autoremove
             apt-get -qy install \
