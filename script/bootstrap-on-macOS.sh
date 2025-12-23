@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-macOS.sh | 2025-12-08 ---"
+echo "--- bootstrap-on-macOS.sh | 2025-12-21 ---"
 echo "------------------------------------------"
 
 brew install \
@@ -44,16 +44,3 @@ brew install \
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
-
-if [ -z "$VCPKG_ROOT" ]
-then
-    export VCPKG_ROOT="$(pwd)/../vcpkg"
-fi
-if [ ! -d "$VCPKG_ROOT" ]
-then
-    git clone https://github.com/microsoft/vcpkg.git "$VCPKG_ROOT"
-fi
-export PATH="$VCPKG_ROOT:$PATH"
-pushd "$VCPKG_ROOT"
-./bootstrap-vcpkg.sh
-popd

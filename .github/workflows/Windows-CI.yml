@@ -25,14 +25,14 @@ jobs:
         triplet:
           - x64-win10
         python-version:
-          - 3.13.9
+          - 3.14.2
         preset-name:
           - VS2022Win64-pie-enabled-debug-no-otel
           - VS2022Win64-pie-enabled-release-no-otel
           - VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
-          - VS2022Win64-pie-enabled-debug-use-otel
-          - VS2022Win64-pie-enabled-release-use-otel
-          - VS2022Win64-pie-enabled-RelWithDebInfo-use-otel
+          - VS2022Win64-pie-enabled-debug-fetch-use-otel
+          - VS2022Win64-pie-enabled-release-fetch-use-otel
+          - VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
 
     env:
       ## Indicates the location of vcpkg
