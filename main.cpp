@@ -118,11 +118,13 @@ int main(int argc, char *argv[]) {
     {
         opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
         fs_backend.file_pattern = argv[1];
+        fs_backend.alias_pattern = "PyPoc_trace_latest.jsonl";
         opts.backend_options    = fs_backend;
         if (argc > 2)
         {
             opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
             logs_fs_backend.file_pattern = argv[2];
+            logs_fs_backend.alias_pattern = "PyPoc_logs_latest.jsonl";
             log_opts.backend_options     = logs_fs_backend;
         }
         else
