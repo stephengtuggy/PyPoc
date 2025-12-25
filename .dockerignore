@@ -12,3 +12,4 @@ ext/
 *.log
 *.bak
 packages/
+*.jsonl
