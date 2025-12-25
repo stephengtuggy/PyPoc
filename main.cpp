@@ -133,6 +133,7 @@ int main(int argc, char *argv[]) {
     else
     {
         opts.backend_options = std::ref(std::cout);
+        log_opts.backend_options = std::ref(std::cout);
     }
     InitLogger();
     InitTracer();
