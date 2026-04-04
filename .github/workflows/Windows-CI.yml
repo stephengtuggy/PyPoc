@@ -19,31 +19,93 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - windows-2022
-          - windows-2025
-        triplet:
-          - x64-win10
-        python-version:
-          - 3.14.2
-        preset-name:
-          - VS2022Win64-pie-enabled-debug-no-otel
-          - VS2022Win64-pie-enabled-release-no-otel
-          - VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
-          - VS2022Win64-pie-enabled-debug-fetch-use-otel
-          - VS2022Win64-pie-enabled-release-fetch-use-otel
-          - VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+        include:
+          - preset-name: VS2022Win64-pie-enabled-debug-no-otel
+            os: windows-2022
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-release-no-otel
+            os: windows-2022
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
+            os: windows-2022
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
+            os: windows-2022
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
+            os: windows-2022
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            os: windows-2022
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-debug-no-otel
+            os: windows-2025
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-release-no-otel
+            os: windows-2025
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
+            os: windows-2025
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
+            os: windows-2025
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
+            os: windows-2025
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            os: windows-2025
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2026Win64-pie-enabled-debug-no-otel
+            os: windows-2025-vs2026
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2026Win64-pie-enabled-release-no-otel
+            os: windows-2025-vs2026
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-no-otel
+            os: windows-2025-vs2026
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
+            os: windows-2025-vs2026
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2026Win64-pie-enabled-release-fetch-use-otel
+            os: windows-2025-vs2026
+            triplet: x64-win10
+            python-version: 3.14.3
+          - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            os: windows-2025-vs2026
+            triplet: x64-win10
+            python-version: 3.14.3
 
     env:
-      ## Indicates the location of vcpkg
-      #VCPKG_ROOT: '${{ github.workspace }}/v'
-      # Tells vcpkg where binary packages are stored.
-      VCPKG_DEFAULT_BINARY_CACHE: '${{ github.workspace }}/vbincache'
+      # Indicates the location of vcpkg
+      VCPKG_ROOT: '${{ github.workspace }}/v'
+#      # Tells vcpkg where binary packages are stored.
+#      VCPKG_DEFAULT_BINARY_CACHE: '${{ github.workspace }}/vbincache'
       # Let's use GitHub Action cache as storage for the vcpkg Binary Caching feature.
       VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkg_cache,readwrite
+      VCPKG_OVERLAY_PORTS: ${{ github.workspace }}\\custom-triplets
       VCPKG_FEATURE_FLAGS: "manifests,registries"
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
       VCPKG_DEFAULT_HOST_TRIPLET: ${{ matrix.triplet }}
+      PYTHONHOME: ""
+      PYTHONPATH: ""
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -56,8 +118,7 @@ jobs:
         uses: actions/cache/restore@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
         with:
           path: ${{ github.workspace }}/vcpkg_cache
-          key: vcpkg-${{ matrix.os }}-${{ matrix.triplet }}-${{ hashFiles('vcpkg.json') }}
-          restore-keys: vcpkg-${{ matrix.os }}-${{ matrix.triplet }}-
+          key: vcpkg_cache-${{ github.repository_owner }}-${{ matrix.os }}-${{ matrix.triplet }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Setup Python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
@@ -66,30 +127,26 @@ jobs:
           python-version: ${{ matrix.python-version }}
           update-environment: false
 
-      - name: install-cmake
+      - name: Install CMake
         uses: lukka/get-cmake@ea83089aa35e08e459464341fe24ad024ee2466f # v4.3.1
 
-      - name: run-vcpkg
+      - name: Install vcpkg
         uses: lukka/run-vcpkg@08ab0cc59d3f33647c5dc2b1e8f2093266c7b873 # Node 24 compatible version
         env:
           Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-          PYTHONHOME: ""
-          PYTHONPATH: ""
 
-      - name: run-cmake
+      - name: Build and test the code
         uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956 # v10.9
         env:
           Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-          PYTHONHOME: ""
-          PYTHONPATH: ""
         with:
           configurePreset: ${{ matrix.preset-name }}
           buildPreset: "build-${{ matrix.preset-name }}"
-          #testPreset: "test-${{ matrix.preset-name }}"
+          testPreset: "test-${{ matrix.preset-name }}"
 
       - name: Save vcpkg cache
         id: cache-vcpkg-save
@@ -97,13 +154,4 @@ jobs:
         with:
           path: ${{ github.workspace }}/vcpkg_cache
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
-
-      - name: Test
-        run: .\script\test.ps1 -PresetName ${{ matrix.preset-name }} -BuildType Debug
-
-#      - name: Upload test results
-#        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 #v4.3.3
-#        if: failure()
-#        with:
-#          name: test_results_xml
-#          path: ${{ github.workspace }}/**/test-results/**/*.xml
+        if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
