@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # The MIT License (MIT)
 #
-# Copyright © 2022-2025 Stephen G. Tuggy
+# Copyright © 2022-2026 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -23,7 +23,7 @@
 
 set -e
 echo "----------------------------"
-echo "--- cibuild | 2025-12-11 ---"
+echo "--- cibuild | 2026-05-01 ---"
 echo "----------------------------"
 
 #----------------------------------
@@ -71,12 +71,12 @@ platform="$(uname | tr '[:upper:]' '[:lower:]')"
 
 case "$platform" in
     "linux"|"linux-gnu")
-        DOCKER_IMG_NAME="local_building-py-poc:$(echo "$from" | sed 's/:/_/' | sed 's/\//_/')"
-        DOCKER_CONTAINER_NAME="building-py-poc_$(echo "$from" | sed 's/:/_/' | sed 's/\//_/')"
+        DOCKER_IMG_NAME="local_building-py-poc:$(echo "${from}" | sed 's/:/_/' | sed 's/\//_/')"
+        DOCKER_CONTAINER_NAME="building-py-poc_$(echo "${from}" | sed 's/:/_/' | sed 's/\//_/')"
         PRESET_NAME="${preset_name}"
-        echo "Building docker image for $from"
-        docker build --build-arg from="$from" -t "$DOCKER_IMG_NAME" .
-        echo "Running docker image for $from"
+        echo "Building docker image for ${from}"
+        docker build --build-arg from="${from}" -t "$DOCKER_IMG_NAME" .
+        echo "Running docker image for ${from}"
         docker run --env TAG_NAME="$TAG_NAME" --env GITHUB_SHA="$GITHUB_SHA" --env SHORT_SHA="$SHORT_SHA" --env PRESET_NAME="$PRESET_NAME" --name "$DOCKER_CONTAINER_NAME" "$DOCKER_IMG_NAME"
         ;;
     "darwin")

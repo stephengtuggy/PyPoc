@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2022-2025 Stephen G. Tuggy
+# Copyright © 2022-2026 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -32,6 +32,9 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build_and_test:
