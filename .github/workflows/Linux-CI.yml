@@ -55,7 +55,7 @@ jobs:
           - 'linuxmintd/mint22.3-amd64'
           - 'linuxmintd/mint22.2-amd64'
           - 'linuxmintd/mint22-amd64'
-          - 'debian:trixie'
+          - 'dhi.io/python:3.13-debian13-dev'
           - 'debian:bookworm'
           - 'opensuse/leap:16.0' # Requires c++17 or later
           - 'opensuse/leap:15.6'
