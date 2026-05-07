@@ -48,75 +48,75 @@ jobs:
           - preset-name: VS2022Win64-pie-enabled-debug-no-otel
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-release-no-otel
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-debug-no-otel
             os: windows-2025
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-release-no-otel
             os: windows-2025
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
             os: windows-2025
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
             os: windows-2025
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
             os: windows-2025
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
             os: windows-2025
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2026Win64-pie-enabled-debug-no-otel
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2026Win64-pie-enabled-release-no-otel
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-no-otel
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2026Win64-pie-enabled-release-fetch-use-otel
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.3
+            python-version: 3.14.4
 
     env:
       # Indicates the location of vcpkg
