@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2022-2025 Stephen G. Tuggy
+# Copyright © 2022-2026 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -78,7 +78,7 @@ IF (FETCH_OPEN_TELEMETRY)
     FETCHCONTENT_DECLARE(
             opentelemetry-cpp
             GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
-            GIT_TAG             a7b100834dce58c949ab9bdfccdf1613db460d1c                # v1.24.0
+            GIT_TAG             e0c6c3389bbc0eb1fde87437ec88e222e30958a9                # v1.27.0
             CMAKE_ARGS          -DBUILD_TESTING=OFF
             )
     SET(WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
