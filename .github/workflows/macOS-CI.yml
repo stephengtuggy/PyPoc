@@ -50,9 +50,10 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macOS-14
           - macOS-15
           - macOS-15-intel
+          - macOS-26
+          - macOS-26-intel
         preset-name:
           - macOS-pie-enabled-debug-fetch-use-otel
           - macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
