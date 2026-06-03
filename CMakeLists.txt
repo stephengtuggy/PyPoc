@@ -79,13 +79,15 @@ IF (FETCH_OPEN_TELEMETRY)
             opentelemetry-cpp
             GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
             GIT_TAG             e0c6c3389bbc0eb1fde87437ec88e222e30958a9                # v1.27.0
-            CMAKE_ARGS          -DBUILD_TESTING=OFF
+            CMAKE_ARGS          -DBUILD_TESTING=OFF -DWITH_ABI_VERSION_1=OFF -DWITH_ABI_VERSION_2=ON
             )
     SET(WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
     SET(WITH_BENCHMARK OFF CACHE BOOL "")
     SET(WITH_EXAMPLES OFF CACHE BOOL "")
     SET(WITH_FUNC_TESTS OFF CACHE BOOL "")
     SET(BUILD_TESTING OFF CACHE BOOL "")
+    SET(WITH_ABI_VERSION_1 OFF CACHE BOOL "" FORCE)
+    SET(WITH_ABI_VERSION_2 ON CACHE BOOL "" FORCE)
     MESSAGE(STATUS "Downloading opentelemetry-cpp")
     FETCHCONTENT_MAKEAVAILABLE(opentelemetry-cpp)
     MESSAGE(STATUS "Finished fetching opentelemetry-cpp")
