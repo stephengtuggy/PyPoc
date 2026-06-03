@@ -4,12 +4,19 @@
   "version-string": "0.4.1",
   "dependencies": [
     "boost-python",
+    "python3",
     {
       "name": "opentelemetry-cpp",
       "version>=": "1.27.0",
       "features": [
         "otlp-file"
       ]
+    }
+  ],
+  "overrides": [
+    {
+      "name": "python3",
+      "version": "3.14.5"
     }
   ]
 }
