@@ -142,6 +142,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           update-environment: false
+          check-latest: true
 
       - name: Install CMake
         uses: lukka/get-cmake@591817e96fcad43505fb4eae36172462abb3a42e # v4.3.3
