@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright © 2022-2025 Stephen G. Tuggy
+// Copyright © 2022-2026 Stephen G. Tuggy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -74,12 +74,6 @@ void InitTracer()
 
 void CleanupTracer()
 {
-  // We call ForceFlush to prevent to cancel running exportings, It's optional.
-  if (tracer_provider)
-  {
-    tracer_provider->ForceFlush();
-  }
-
   tracer_provider = nullptr;
   std::shared_ptr<opentelemetry::trace::TracerProvider> none;
   opentelemetry::sdk::trace::Provider::SetTracerProvider(none);
@@ -98,12 +92,6 @@ void InitLogger()
 
 void CleanupLogger()
 {
-  // We call ForceFlush to prevent to cancel running exportings, It's optional.
-  if (logger_provider)
-  {
-    logger_provider->ForceFlush();
-  }
-
   logger_provider = nullptr;
   nostd::shared_ptr<opentelemetry::logs::LoggerProvider> none;
   opentelemetry::logs::Provider::SetLoggerProvider(none);

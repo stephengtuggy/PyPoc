@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2022-2025 Stephen G. Tuggy
+# Copyright © 2022-2026 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -34,7 +34,7 @@ SET(CMAKE_BUILD_PARALLEL_LEVEL 3)
 
 project(PyPoc
         LANGUAGES CXX
-        VERSION 0.4.0)
+        VERSION 0.4.1)
 
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -78,14 +78,16 @@ IF (FETCH_OPEN_TELEMETRY)
     FETCHCONTENT_DECLARE(
             opentelemetry-cpp
             GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
-            GIT_TAG             a7b100834dce58c949ab9bdfccdf1613db460d1c                # v1.24.0
-            CMAKE_ARGS          -DBUILD_TESTING=OFF
+            GIT_TAG             e0c6c3389bbc0eb1fde87437ec88e222e30958a9                # v1.27.0
+            CMAKE_ARGS          -DBUILD_TESTING=OFF -DWITH_ABI_VERSION_1=OFF -DWITH_ABI_VERSION_2=ON
             )
     SET(WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
     SET(WITH_BENCHMARK OFF CACHE BOOL "")
     SET(WITH_EXAMPLES OFF CACHE BOOL "")
     SET(WITH_FUNC_TESTS OFF CACHE BOOL "")
     SET(BUILD_TESTING OFF CACHE BOOL "")
+    SET(WITH_ABI_VERSION_1 OFF CACHE BOOL "" FORCE)
+    SET(WITH_ABI_VERSION_2 ON CACHE BOOL "" FORCE)
     MESSAGE(STATUS "Downloading opentelemetry-cpp")
     FETCHCONTENT_MAKEAVAILABLE(opentelemetry-cpp)
     MESSAGE(STATUS "Finished fetching opentelemetry-cpp")
