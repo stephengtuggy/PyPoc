@@ -167,6 +167,13 @@ jobs:
           buildPreset: "build-${{ matrix.preset-name }}"
           testPreset: "test-${{ matrix.preset-name }}"
 
+      - name: Run the built EXE
+        env:
+          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
+          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
+          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
+        run: ./build/"${{ matrix.preset-name }}"/PyPoc.exe
+
       - name: Save vcpkg cache
         id: cache-vcpkg-save
         uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
