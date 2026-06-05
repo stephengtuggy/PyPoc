@@ -172,7 +172,7 @@ jobs:
           Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-        run: ./script/test.ps1
+        run: ./script/test.ps1 -PresetName "${{ matrix.preset-name }}"
         shell: pwsh
 
       - name: Save vcpkg cache
