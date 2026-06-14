@@ -28,6 +28,8 @@ param(
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
 [String]$binaryDir = "$baseDir\build\$PresetName\Debug"
 
+$env:PYTHONUNBUFFERED = 1
+
 echo 'Listing Directory Contents'
 Get-ChildItem -LiteralPath "$baseDir\build\$PresetName" -Recurse -Force -File -Filter 'PyPoc.exe'
 
