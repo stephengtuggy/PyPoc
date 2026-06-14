@@ -139,7 +139,7 @@ jobs:
         id: vega-py-setup
         with:
           python-version: ${{ matrix.python-version }}
-          update-environment: false
+          update-environment: true
           check-latest: true
 
       - name: Install CMake
