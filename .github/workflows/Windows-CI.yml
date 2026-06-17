@@ -48,50 +48,62 @@ jobs:
       matrix:
         include:
           - preset-name: VS2022Win64-pie-enabled-debug-no-otel
+            build-type: Debug
             os: windows-2022
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-release-no-otel
+            build-type: Release
             os: windows-2022
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
+            build-type: RelWithDebInfo
             os: windows-2022
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
+            build-type: Debug
             os: windows-2022
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
+            build-type: Release
             os: windows-2022
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            build-type: RelWithDebInfo
             os: windows-2022
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-debug-no-otel
+            build-type: Debug
             os: windows-2025-vs2026
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-release-no-otel
+            build-type: Release
             os: windows-2025-vs2026
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-no-otel
+            build-type: RelWithDebInfo
             os: windows-2025-vs2026
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
+            build-type: Debug
             os: windows-2025-vs2026
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-release-fetch-use-otel
+            build-type: Release
             os: windows-2025-vs2026
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            build-type: RelWithDebInfo
             os: windows-2025-vs2026
             triplet: x64-win10
             python-version: 3.12.9
@@ -170,7 +182,7 @@ jobs:
           Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-        run: ./script/test.ps1 -PresetName "${{ matrix.preset-name }}"
+        run: ./script/test.ps1 -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
         shell: pwsh
 
       - name: Save vcpkg cache
