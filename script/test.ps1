@@ -39,7 +39,7 @@ echo 'Listing Directory Contents'
 Get-ChildItem . -Recurse -Force -File
 
 $env:PYTHONUNBUFFERED = 1
-PyPoc.exe
+bin\PyPoc.exe
 
 Pop-Location
 Pop-Location
