@@ -26,15 +26,20 @@ param(
 )
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
+[String]$presetDir = "$baseDir\build\$PresetName"
+[String]$installedDir = "$presetDir\installed"
 [String]$binaryDir = "$baseDir\build\$PresetName\Debug"
 
-$env:PYTHONUNBUFFERED = 1
+Push-Location $presetDir
+echo 'Running cmake install command'
+cmake --install . --config $BuildType --prefix $installedDir
 
+Push-Location $installedDir
 echo 'Listing Directory Contents'
-Get-ChildItem -LiteralPath "$baseDir\build\$PresetName" -Recurse -Force -File -Filter 'PyPoc.exe'
+Get-ChildItem . -Recurse -Force -File
 
-Push-Location $binaryDir
+$env:PYTHONUNBUFFERED = 1
+PyPoc.exe
 
-.\PyPoc.exe
-
+Pop-Location
 Pop-Location
