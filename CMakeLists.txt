@@ -139,3 +139,8 @@ IF (USE_OPEN_TELEMETRY)
 ENDIF ()
 
 target_link_libraries(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
+
+INSTALL(TARGETS PyPoc DESTINATION bin)
+
+# As per https://braintrekking.wordpress.com/2013/04/27/dll-hell-how-to-include-microsoft-redistributable-runtime-libraries-in-your-cmakecpack-project/
+INSTALL(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)
