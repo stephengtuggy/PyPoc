@@ -31,11 +31,14 @@ param(
 [String]$binaryDir = "$installedDir\bin"
 
 Push-Location $presetDir
+echo 'Listing preset dir directory contents'
+Get-ChildItem . -Recurse -Force -File -Filter 'PyPoc.exe'
+
 echo 'Running cmake install command'
 cmake --install . --config $BuildType --prefix $installedDir
 
 Push-Location $installedDir
-echo 'Listing Directory Contents'
+echo 'Listing installed dir directory contents'
 Get-ChildItem . -Recurse -Force -File
 
 $env:PYTHONUNBUFFERED = 1
