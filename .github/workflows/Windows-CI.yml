@@ -110,13 +110,13 @@ jobs:
 
     env:
       # Indicates the location of vcpkg
-      VCPKG_ROOT: ${{ github.workspace }}\vcpkg
-      VCPKG_ASSET_SOURCES: ${{ github.workspace }}\vcpkgAssets
-      X_VCPKG_ASSET_SOURCES: clear;x-azurl,file:///${{ github.workspace }}\vcpkgAssets,,readwrite
-      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}\vcpkgBin,readwrite
-      VCPKG_BUILD_TREES: ${{ github.workspace }}\vcpkgBuild
+      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
+      VCPKG_ASSET_SOURCES: ${{ github.workspace }}/vcpkgAssets
+      X_VCPKG_ASSET_SOURCES: clear;x-azurl,file:///${{ github.workspace }}/vcpkgAssets,,readwrite
+      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkgBin,readwrite
+      VCPKG_BUILD_TREES: ${{ github.workspace }}/vcpkgBuild
       VCPKG_INSTALL_OPTIONS: "--x-buildtrees-root=${{ github.workspace }}\\vcpkgBuild"
-      VCPKG_OVERLAY_PORTS: ${{ github.workspace }}\custom-triplets
+      VCPKG_OVERLAY_PORTS: ${{ github.workspace }}/custom-triplets
       VCPKG_FEATURE_FLAGS: "manifests,registries"
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
       VCPKG_DEFAULT_HOST_TRIPLET: ${{ matrix.triplet }}
@@ -132,18 +132,18 @@ jobs:
         uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: |
-            ${{ github.workspace }}\vcpkgAssets
-            ${{ github.workspace }}\vcpkgBCache
-            ${{ github.workspace }}\vcpkgBin
-            ${{ github.workspace }}\vcpkgBuild
+            ${{ github.workspace }}/vcpkgAssets
+            ${{ github.workspace }}/vcpkgBCache
+            ${{ github.workspace }}/vcpkgBin
+            ${{ github.workspace }}/vcpkgBuild
           key: vcpkgCache-${{ github.repository_owner }}-${{ matrix.os }}-${{ matrix.triplet }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Create directories on cache miss
         run: |
-          mkdir -p ${{ github.workspace }}\vcpkgAssets
-          mkdir -p ${{ github.workspace }}\vcpkgBCache
-          mkdir -p ${{ github.workspace }}\vcpkgBin
-          mkdir -p ${{ github.workspace }}\vcpkgBuild
+          mkdir -p ${{ github.workspace }}/vcpkgAssets
+          mkdir -p ${{ github.workspace }}/vcpkgBCache
+          mkdir -p ${{ github.workspace }}/vcpkgBin
+          mkdir -p ${{ github.workspace }}/vcpkgBuild
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
       - name: Setup Python
@@ -166,23 +166,22 @@ jobs:
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
 
-      - name: Build and test the code
-        uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956 # v10.9
+      - name: Build the code
+        run: |
+          & "${{ github.workspace }}\\script\\build.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
+        shell: pwsh
         env:
           Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-        with:
-          configurePreset: ${{ matrix.preset-name }}
-          buildPreset: "build-${{ matrix.preset-name }}"
-          testPreset: "test-${{ matrix.preset-name }}"
 
       - name: Run the built EXE
         env:
           Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
           pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-        run: ./script/test.ps1 -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
+        run: |
+          & "${{ github.workspace }}\\script\\test.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
         shell: pwsh
 
       - name: Save vcpkg cache
@@ -190,9 +189,9 @@ jobs:
         uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
           path: |
-            ${{ github.workspace }}\vcpkgAssets
-            ${{ github.workspace }}\vcpkgBCache
-            ${{ github.workspace }}\vcpkgBin
-            ${{ github.workspace }}\vcpkgBuild
+            ${{ github.workspace }}/vcpkgAssets
+            ${{ github.workspace }}/vcpkgBCache
+            ${{ github.workspace }}/vcpkgBin
+            ${{ github.workspace }}/vcpkgBuild
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
