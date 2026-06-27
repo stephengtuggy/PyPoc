@@ -48,63 +48,75 @@ jobs:
       matrix:
         include:
           - preset-name: VS2022Win64-pie-enabled-debug-no-otel
+            build-type: Debug
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-release-no-otel
+            build-type: Release
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-no-otel
+            build-type: RelWithDebInfo
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-debug-fetch-use-otel
+            build-type: Debug
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-release-fetch-use-otel
+            build-type: Release
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2022Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            build-type: RelWithDebInfo
             os: windows-2022
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-debug-no-otel
+            build-type: Debug
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-release-no-otel
+            build-type: Release
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-no-otel
+            build-type: RelWithDebInfo
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
+            build-type: Debug
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-release-fetch-use-otel
+            build-type: Release
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
+            build-type: RelWithDebInfo
             os: windows-2025-vs2026
             triplet: x64-win10
-            python-version: 3.14.5
+            python-version: 3.12.9
 
     env:
       # Indicates the location of vcpkg
-      VCPKG_ROOT: ${{ github.workspace }}\vcpkg
-      VCPKG_ASSET_SOURCES: ${{ github.workspace }}\vcpkgAssets
-      X_VCPKG_ASSET_SOURCES: clear;x-azurl,file:///${{ github.workspace }}\vcpkgAssets,,readwrite
-      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}\vcpkgBin,readwrite
-      VCPKG_BUILD_TREES: ${{ github.workspace }}\vcpkgBuild
+      VCPKG_ROOT: "${{ github.workspace }}\\vcpkg"
+      VCPKG_ASSET_SOURCES: "${{ github.workspace }}\\vcpkgAssets"
+      X_VCPKG_ASSET_SOURCES: clear;x-azurl,file:///${{ github.workspace }}/vcpkgAssets,,readwrite
+      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkgBin,readwrite
+      VCPKG_BUILD_TREES: "${{ github.workspace }}\\vcpkgBuild"
       VCPKG_INSTALL_OPTIONS: "--x-buildtrees-root=${{ github.workspace }}\\vcpkgBuild"
-      VCPKG_OVERLAY_PORTS: ${{ github.workspace }}\custom-triplets
+      VCPKG_OVERLAY_PORTS: "${{ github.workspace }}\\custom-triplets"
       VCPKG_FEATURE_FLAGS: "manifests,registries"
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
       VCPKG_DEFAULT_HOST_TRIPLET: ${{ matrix.triplet }}
@@ -122,18 +134,19 @@ jobs:
         uses: actions/cache/restore@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
         with:
           path: |
-            ${{ github.workspace }}\vcpkgAssets
-            ${{ github.workspace }}\vcpkgBCache
-            ${{ github.workspace }}\vcpkgBin
-            ${{ github.workspace }}\vcpkgBuild
+            "${{ github.workspace }}\vcpkgAssets"
+            "${{ github.workspace }}\vcpkgBCache"
+            "${{ github.workspace }}\vcpkgBin"
+            "${{ github.workspace }}\vcpkgBuild"
           key: vcpkgCache-${{ github.repository_owner }}-${{ matrix.os }}-${{ matrix.triplet }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Create directories on cache miss
         run: |
-          mkdir -p ${{ github.workspace }}\vcpkgAssets
-          mkdir -p ${{ github.workspace }}\vcpkgBCache
-          mkdir -p ${{ github.workspace }}\vcpkgBin
-          mkdir -p ${{ github.workspace }}\vcpkgBuild
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgAssets"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgBCache"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgBin"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgBuild"
+        shell: pwsh
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
       - name: Setup Python
@@ -141,7 +154,6 @@ jobs:
         id: vega-py-setup
         with:
           python-version: ${{ matrix.python-version }}
-          update-environment: false
 
       - name: Install CMake
         uses: lukka/get-cmake@f5b8fbb4d77cec1acc5a5f9f0df4beffaf5d98d9 # v4.3.4
@@ -149,31 +161,31 @@ jobs:
       - name: Install vcpkg
         uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
         with:
-          binaryCachePath: "${{ github.workspace }}/vcpkgBCache"
-        env:
-          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-
-      - name: Build and test the code
-        uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956 # v10.9
-        env:
-          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
-        with:
-          configurePreset: ${{ matrix.preset-name }}
-          buildPreset: "build-${{ matrix.preset-name }}"
-          testPreset: "test-${{ matrix.preset-name }}"
+          binaryCachePath: "${{ github.workspace }}\\vcpkgBCache"
+          runVcpkgInstall: true
 
       - name: Save vcpkg cache
         id: cache-vcpkg-save
         uses: actions/cache/save@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
         with:
           path: |
-            ${{ github.workspace }}\vcpkgAssets
-            ${{ github.workspace }}\vcpkgBCache
-            ${{ github.workspace }}\vcpkgBin
-            ${{ github.workspace }}\vcpkgBuild
+            "${{ github.workspace }}\vcpkgAssets"
+            "${{ github.workspace }}\vcpkgBCache"
+            "${{ github.workspace }}\vcpkgBin"
+            "${{ github.workspace }}\vcpkgBuild"
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
+
+      - name: Build the code
+        run: |
+          & "${{ github.workspace }}\\script\\build.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
+        shell: pwsh
+
+      - name: Look for the Boost.Python libraries
+        run: |
+          Get-ChildItem "${{ github.workspace }}" -Recurse -Force -Filter 'libboost_*' -File
+
+      - name: Run the built EXE
+        run: |
+          & "${{ github.workspace }}\\script\\test.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
+        shell: pwsh

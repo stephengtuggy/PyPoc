@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 #
-# Copyright © 2023-2025 Stephen G. Tuggy
+# Copyright © 2023-2026 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -26,13 +26,27 @@ param(
 )
 
 [String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
-[String]$binaryDir = "$baseDir\build\$PresetName\Debug"
+[String]$presetDir = "$baseDir\build\$PresetName"
+[String]$installedDir = "$presetDir\installed"
+[String]$binaryDir = "$installedDir\bin"
 
-echo 'Listing Directory Contents'
-Get-ChildItem -LiteralPath "$baseDir\build\$PresetName" -Recurse -Force -File -Filter 'PyPoc.exe'
+Push-Location $presetDir
+echo 'Listing preset dir directory contents'
+Get-ChildItem . -Recurse -Force -File -Filter 'PyPoc.exe'
 
+echo 'Running cmake install command'
+cmake --install . --config $BuildType --prefix $installedDir
+
+Push-Location $installedDir
+echo 'Listing installed dir directory contents'
+Get-ChildItem . -Recurse -Force -File
+
+$env:PYTHONUNBUFFERED = 1
+$env:PYTHONHOME = $null
+$env:PYTHONPATH = $null
 Push-Location $binaryDir
-
 .\PyPoc.exe
 
+Pop-Location
+Pop-Location
 Pop-Location
