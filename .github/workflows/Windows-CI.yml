@@ -170,7 +170,7 @@ jobs:
 
       - name: Look for the Boost.Python libraries
         run: |
-          Get-ChildItem "${{ github.workspace }}/vcpkg/packages" -Recurse -Force -Filter 'libboost_*' -File
+          Get-ChildItem "${{ github.workspace }}" -Recurse -Force -Filter 'libboost_*' -File
 
       - name: Run the built EXE
         run: |
