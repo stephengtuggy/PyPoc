@@ -151,8 +151,6 @@ jobs:
         id: vega-py-setup
         with:
           python-version: ${{ matrix.python-version }}
-          update-environment: true
-          check-latest: true
 
       - name: Install CMake
         uses: lukka/get-cmake@f5b8fbb4d77cec1acc5a5f9f0df4beffaf5d98d9 # v4.3.4
@@ -161,28 +159,16 @@ jobs:
         uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
         with:
           binaryCachePath: "${{ github.workspace }}/vcpkgBCache"
-        env:
-          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
 
       - name: Build the code
         run: |
           & "${{ github.workspace }}\\script\\build.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
         shell: pwsh
-        env:
-          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
 
       - name: Run the built EXE
         run: |
           & "${{ github.workspace }}\\script\\test.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
         shell: pwsh
-        env:
-          Python3_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          Python_ROOT_DIR: ${{ steps.vega-py-setup.outputs.python-path }}
-          pythonLocation: ${{ steps.vega-py-setup.outputs.python-path }}
 
       - name: Save vcpkg cache
         id: cache-vcpkg-save
