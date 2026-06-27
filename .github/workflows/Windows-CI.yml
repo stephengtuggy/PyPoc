@@ -116,6 +116,7 @@ jobs:
       VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}/vcpkgBin,readwrite
       VCPKG_BUILD_TREES: ${{ github.workspace }}/vcpkgBuild
       VCPKG_INSTALL_OPTIONS: "--x-buildtrees-root=${{ github.workspace }}\\vcpkgBuild"
+      VCPKG_INSTALLED_DIR: "${{ github.workspace }}/vcpkgInstalled"
       VCPKG_OVERLAY_PORTS: ${{ github.workspace }}/custom-triplets
       VCPKG_FEATURE_FLAGS: "manifests,registries"
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
@@ -164,6 +165,10 @@ jobs:
         run: |
           & "${{ github.workspace }}\\script\\build.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
         shell: pwsh
+
+      - name: Look for the Boost.Python libraries
+        run: |
+          Get-ChildItem "${{ github.workspace }}/vcpkgInstalled/${{ matrix.triplet}}" -Recurse -Force -Filter 'libboost_*' -File
 
       - name: Run the built EXE
         run: |
