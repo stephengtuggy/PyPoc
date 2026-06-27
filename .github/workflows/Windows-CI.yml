@@ -134,18 +134,18 @@ jobs:
         uses: actions/cache/restore@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
         with:
           path: |
-            "${{ github.workspace }}\\vcpkgAssets"
-            "${{ github.workspace }}\\vcpkgBCache"
-            "${{ github.workspace }}\\vcpkgBin"
-            "${{ github.workspace }}\\vcpkgBuild"
+            "${{ github.workspace }}\vcpkgAssets"
+            "${{ github.workspace }}\vcpkgBCache"
+            "${{ github.workspace }}\vcpkgBin"
+            "${{ github.workspace }}\vcpkgBuild"
           key: vcpkgCache-${{ github.repository_owner }}-${{ matrix.os }}-${{ matrix.triplet }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Create directories on cache miss
         run: |
-          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\\vcpkgAssets"
-          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\\vcpkgBCache"
-          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\\vcpkgBin"
-          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\\vcpkgBuild"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgAssets"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgBCache"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgBin"
+          New-Item -Force -ItemType Directory -Path "${{ github.workspace }}\vcpkgBuild"
         shell: pwsh
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
@@ -182,9 +182,9 @@ jobs:
         uses: actions/cache/save@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
         with:
           path: |
-            "${{ github.workspace }}\\vcpkgAssets"
-            "${{ github.workspace }}\\vcpkgBCache"
-            "${{ github.workspace }}\\vcpkgBin"
-            "${{ github.workspace }}\\vcpkgBuild"
+            "${{ github.workspace }}\vcpkgAssets"
+            "${{ github.workspace }}\vcpkgBCache"
+            "${{ github.workspace }}\vcpkgBin"
+            "${{ github.workspace }}\vcpkgBuild"
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
