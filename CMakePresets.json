@@ -240,7 +240,8 @@
           "type": "FILEPATH"
         },
         "VCPKG_TARGET_TRIPLET": "x64-win10",
-        "VCPKG_HOST_TRIPLET": "x64-win10"
+        "VCPKG_HOST_TRIPLET": "x64-win10",
+        "X_VCPKG_APPLOCAL_DEPS_INSTALL": true
       },
       "condition": {
         "type": "equals",
