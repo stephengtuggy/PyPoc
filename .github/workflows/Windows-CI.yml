@@ -162,6 +162,19 @@ jobs:
         uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
         with:
           binaryCachePath: "${{ github.workspace }}\\vcpkgBCache"
+          runVcpkgInstall: true
+
+      - name: Save vcpkg cache
+        id: cache-vcpkg-save
+        uses: actions/cache/save@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
+        with:
+          path: |
+            "${{ github.workspace }}\vcpkgAssets"
+            "${{ github.workspace }}\vcpkgBCache"
+            "${{ github.workspace }}\vcpkgBin"
+            "${{ github.workspace }}\vcpkgBuild"
+          key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
+        if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
       - name: Build the code
         run: |
@@ -176,15 +189,3 @@ jobs:
         run: |
           & "${{ github.workspace }}\\script\\test.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
         shell: pwsh
-
-      - name: Save vcpkg cache
-        id: cache-vcpkg-save
-        uses: actions/cache/save@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
-        with:
-          path: |
-            "${{ github.workspace }}\vcpkgAssets"
-            "${{ github.workspace }}\vcpkgBCache"
-            "${{ github.workspace }}\vcpkgBin"
-            "${{ github.workspace }}\vcpkgBuild"
-          key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
-        if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
