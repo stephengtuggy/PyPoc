@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-macOS.sh | 2025-12-21 ---"
+echo "--- bootstrap-on-macOS.sh | 2026-10-01 ---"
 echo "------------------------------------------"
 
 brew install \
@@ -40,7 +40,8 @@ brew install \
     autoconf \
     autoconf-archive \
     automake \
-    libtool
+    libtool \
+    zlib
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake
