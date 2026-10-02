@@ -112,6 +112,9 @@ ELSEIF (FETCH_PROTOBUF)
             GIT_REPOSITORY      https://github.com/protocolbuffers/protobuf.git
             GIT_TAG             2dca62f7296e5b49d729f7384f975cecb38382a0                # v4.23.1
     )
+    MESSAGE(STATUS "Downloading Protobuf")
+    FETCHCONTENT_MAKEAVAILABLE(Protobuf)
+    MESSAGE(STATUS "Finished fetching Protobuf")
 ENDIF ()
 
 IF (FETCH_OPEN_TELEMETRY)
