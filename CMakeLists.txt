@@ -23,7 +23,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.25 FATAL_ERROR)
 
 IF (POLICY CMP0087)
-    cmake_policy(SET CMP0087 NEW)
+    CMAKE_POLICY(SET CMP0087 NEW)
 ENDIF ()
 
 IF (POLICY CMP0167)
@@ -38,7 +38,7 @@ IF (WIN32)
     SET(VCPKG_MANIFEST_INSTALL ON)
 ENDIF (WIN32)
 
-project(PyPoc
+PROJECT(PyPoc
         LANGUAGES CXX
         VERSION 0.4.2)
 
@@ -52,8 +52,8 @@ INCLUDE(InstallRequiredSystemLibraries)
 
 OPTION(ENABLE_PIE "Enable Position Independent Executables" ON)
 
-include(CheckPIESupported)
-check_pie_supported()
+INCLUDE(CheckPIESupported)
+CHECK_PIE_SUPPORTED()
 UNSET(CMAKE_POSITION_INDEPENDENT_CODE)
 IF (ENABLE_PIE)
     SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -74,7 +74,7 @@ OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchCo
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
 OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF)
 
-include(FetchContent)
+INCLUDE(FetchContent)
 
 IF (USE_LOCALLY_INSTALLED_PROTOBUF)
     FIND_PACKAGE(Protobuf)
@@ -117,7 +117,7 @@ FIND_PACKAGE(Python3 REQUIRED COMPONENTS Development Interpreter)
 SET(BOOST_PYTHON_COMPONENT "python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR}")
 FIND_PACKAGE(Boost REQUIRED COMPONENTS ${BOOST_PYTHON_COMPONENT})
 
-add_executable(PyPoc main.cpp
+ADD_EXECUTABLE(PyPoc main.cpp
         PyPocLibrary.cpp)
 TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC "BOOST_ALL_DYN_LINK" "$<$<CONFIG:Debug>:BOOST_DEBUG_PYTHON>")
 IF (WIN32)
@@ -130,7 +130,7 @@ ENDIF ()
 TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${Python3_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 
 IF (USE_OPEN_TELEMETRY)
-    target_compile_definitions(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
+    TARGET_COMPILE_DEFINITIONS(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
     TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${OPENTELEMETRY_CPP_INCLUDE_DIRS})
     TARGET_LINK_LIBRARIES(PyPoc PRIVATE opentelemetry-cpp::api
             opentelemetry-cpp::common
