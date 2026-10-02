@@ -72,7 +72,7 @@ ADD_LINK_OPTIONS(
 
 OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
-OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF)
+OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" ON)
 
 INCLUDE(FetchContent)
 
@@ -84,16 +84,22 @@ IF (FETCH_OPEN_TELEMETRY)
     FETCHCONTENT_DECLARE(
             opentelemetry-cpp
             GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
-            GIT_TAG             e0c6c3389bbc0eb1fde87437ec88e222e30958a9                # v1.27.0
-            CMAKE_ARGS          -DBUILD_TESTING=OFF -DWITH_ABI_VERSION_1=OFF -DWITH_ABI_VERSION_2=ON
+            GIT_TAG             eb92442e9cacc3ecd20b481cb256471f03b70cf6                # v1.29.0
             )
-    SET(WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
-    SET(WITH_BENCHMARK OFF CACHE BOOL "")
-    SET(WITH_EXAMPLES OFF CACHE BOOL "")
-    SET(WITH_FUNC_TESTS OFF CACHE BOOL "")
-    SET(BUILD_TESTING OFF CACHE BOOL "")
-    SET(WITH_ABI_VERSION_1 OFF CACHE BOOL "" FORCE)
-    SET(WITH_ABI_VERSION_2 ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_WITH_BENCHMARK OFF CACHE BOOL "")
+    SET(OTELCPP_WITH_EXAMPLES OFF CACHE BOOL "")
+    SET(OTELCPP_WITH_FUNC_TESTS OFF CACHE BOOL "")
+    SET(OTELCPP_BUILD_TESTING OFF CACHE BOOL "")
+    SET(OTELCPP_WITH_ABI_VERSION_1 OFF CACHE BOOL "" FORCE)
+    SET(OTELCPP_WITH_ABI_VERSION_2 ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_CMAKE_POSITION_INDEPENDENT_CODE ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_INSTALL ON CACHE BOOL "" FORCE)
+    IF (WIN32)
+        SET(OTELCPP_BUILD_DLL ON CACHE BOOL "" FORCE)
+        SET(OPENTELEMETRY_BUILD_IMPORT_DLL ON CACHE BOOL "" FORCE)
+    ENDIF ()
     MESSAGE(STATUS "Downloading opentelemetry-cpp")
     FETCHCONTENT_MAKEAVAILABLE(opentelemetry-cpp)
     MESSAGE(STATUS "Finished fetching opentelemetry-cpp")
@@ -105,6 +111,9 @@ ELSEIF (USE_OPEN_TELEMETRY)
     #check whether opentelemetry libraries found
     IF (opentelemetry-cpp_FOUND)
         MESSAGE(STATUS "Found opentelemetry libraries; preparing to use them")
+        IF (WIN32)
+            SET(OPENTELEMETRY_BUILD_IMPORT_DLL ON CACHE BOOL "" FORCE) # ??
+        ENDIF ()
     ELSE ()
         MESSAGE(WARNING "Did not find opentelemetry libraries; building without")
         SET(USE_OPEN_TELEMETRY OFF)
@@ -139,9 +148,13 @@ IF (USE_OPEN_TELEMETRY)
             opentelemetry-cpp::resources
             opentelemetry-cpp::sdk
             opentelemetry-cpp::trace
+            opentelemetry-cpp::otlp_common
+            opentelemetry-cpp::proto
+            opentelemetry-cpp::otlp_recordable
             opentelemetry-cpp::otlp_file_exporter
             opentelemetry-cpp::otlp_file_metric_exporter
             opentelemetry-cpp::otlp_file_log_record_exporter)
+    #    TARGET_LINK_LIBRARIES(PyPoc PUBLIC opentelemetry_proto)
 ENDIF ()
 
 TARGET_LINK_LIBRARIES(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
