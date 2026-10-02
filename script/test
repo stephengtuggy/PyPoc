@@ -94,9 +94,10 @@ echo "Searching for libopentelemetry_exporter_otlp_file.so in baseDir ('$baseDir
 find "$baseDir" -name libopentelemetry_exporter_otlp_file.so
 
 export PYTHONUNBUFFERED=1
-pushd "$binaryDir"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/lib
 echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+
+pushd "$binaryDir"
 ./PyPoc
 
 popd
