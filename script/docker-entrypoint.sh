@@ -71,4 +71,3 @@ echo "Re-run bootstrap"
 ./script/build --preset_name="${preset_name}" --build_type="${build_type}"
 
 ./script/test --preset_name="${preset_name}" --build_type="${build_type}"
-#./build/"${preset_name}"/PyPoc
