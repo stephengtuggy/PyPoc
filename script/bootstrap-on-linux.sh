@@ -222,7 +222,7 @@ function bootstrapOnOpenSuseLeap() {
         python3-devel \
         clang \
         libltdl7 \
-        zlib
+        zlib-devel
       ;;
     *)
       echo "Sorry, this version of openSUSE Leap is unsupported"
