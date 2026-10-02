@@ -20,11 +20,21 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+# ====================================
+# @file   : bootstrap-on-linux.sh
+# @brief  : installs dependencies for building boost_log_python_poc on Linux
+# @usage  : sudo script/bootstrap-on-linux.sh 1 (to update all installed
+#           packages on the system in the process)
+#     or  : sudo script/bootstrap-on-linux.sh 0 (to skip updating, and
+#           just install the new packages that are needed)
+# @param  : just one parameter, either a 1 or a 0, to indicate whether or not to
+#           UPDATE_ALL_SYSTEM_PACKAGES
+# ====================================
 
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-linux.sh | 2026-05-01 ---"
+echo "--- bootstrap-on-linux.sh | 2026-10-01 ---"
 echo "------------------------------------------"
 
 UPDATE_ALL_SYSTEM_PACKAGES="$1"
@@ -74,7 +84,6 @@ function bootstrapOnDebian()
                             libltdl-dev
             ;;
         "bookworm")
-            echo "Bookworm does NOT support SDL3"
             apt-get -qy install \
                             git \
                             cmake \
@@ -112,7 +121,7 @@ function bootstrapOnUbuntu()
     fi
 
     case "$LINUX_CODENAME" in
-        "resolute"|"questing"|"plucky")
+        "resolute")
             apt-get -qy install \
                             git \
                             cmake \
@@ -132,7 +141,6 @@ function bootstrapOnUbuntu()
                             libltdl-dev
             ;;
         "noble")
-            echo "Noble does NOT support SDL3"
             apt-get -qy install \
                             git \
                             cmake \
@@ -151,7 +159,7 @@ function bootstrapOnUbuntu()
                             clang \
                             libltdl-dev
             ;;
-        "jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
+        "questing"|"plucky"|"jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
             echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
             exit 2
             ;;
@@ -171,9 +179,8 @@ function bootstrapOnLinuxMint ()
         apt-get -qy upgrade
     fi
 
-    echo "Linux Mint base Distros do NOT support SDL3"
     case "$LINUX_CODENAME" in
-        "alfa"|"zena"|"zara"|"wilma"|"virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
+        "zena"|"zara"|"wilma")
             apt-get -qy install \
                             git \
                             cmake \
@@ -192,6 +199,9 @@ function bootstrapOnLinuxMint ()
                             clang \
                             libltdl-dev
             ;;
+        "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
+            echo "Sorry, Linux Mint '${LINUX_CODENAME}' is no longer supported"
+            ;;
         *)
             echo "This version of Linux Mint is not directly supported. You may be able to use the corresponding Ubuntu installation package"
             exit 2
@@ -202,25 +212,9 @@ function bootstrapOnLinuxMint ()
 function bootstrapOnOpenSuseLeap ()
 {
     case "${LINUX_VERSION_ID}" in
-        "15.1"|"15.2"|"15.3"|"15.4"|"15.5")
+        "15.1"|"15.2"|"15.3"|"15.4"|"15.5"|"15.6")
             echo "Sorry, openSUSE Leap ${LINUX_VERSION_ID} is no longer supported"
             exit 2
-            ;;
-        "15.6")
-            zypper --non-interactive refresh
-            zypper --non-interactive install -y \
-                                    cmake \
-                                    gcc-c++ \
-                                    git \
-                                    rpm-build \
-                                    libabsl2401_0_0 \
-                                    nlohmann_json-devel \
-                                    protobuf-devel \
-                                    libgrpc++1_60 \
-                                    libboost_python-py3-1_75_0-devel \
-                                    python3-devel \
-                                    clang \
-                                    libltdl7
             ;;
         "16.0")
             zypper --non-interactive refresh
@@ -248,8 +242,8 @@ function bootstrapOnOpenSuseLeap ()
 function bootstrapOnFedora ()
 {
     export fedoraVersion=${LINUX_VERSION_ID}
-    export fedoraMaxSupportedVersion=44
-    export fedoraMinSupportedVersion=42
+    export fedoraMaxSupportedVersion=45
+    export fedoraMinSupportedVersion=43
     if [ ${fedoraVersion} -gt ${fedoraMaxSupportedVersion} ]
     then
         echo "Fedora Version ${fedoraVersion} is not yet supported. Pull requests welcome"
@@ -283,7 +277,7 @@ function bootstrapOnFedora ()
 function bootstrapOnRedHat ()
 {
     case "${LINUX_VERSION_ID}" in
-        "9.6"|"9.7")
+        "9.6"|"9.7"|"9.8")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
@@ -310,11 +304,7 @@ function bootstrapOnRedHat ()
                                 clang \
                                 libtool-ltdl-devel
             ;;
-        "10.0"|"10.1")
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
+        "10.0"|"10.1"|"10.2")
             dnf -y install 'dnf-command(config-manager)'
             dnf -y config-manager --set-enabled crb
             dnf -y config-manager --set-enabled devel
@@ -348,7 +338,7 @@ function bootstrapOnRedHat ()
 function bootstrapOnRockyLinux ()
 {
     case "${LINUX_VERSION_ID}" in
-        "9.6"|"9.7")
+        "9.6"|"9.7"|"9.8")
             if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
             then
                 dnf -y upgrade --refresh
@@ -376,11 +366,7 @@ function bootstrapOnRockyLinux ()
                                 clang \
                                 libtool-ltdl-devel
             ;;
-        "10.0"|"10.1")
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
+        "10.0"|"10.1"|"10.2")
             dnf -y install 'dnf-command(config-manager)'
             dnf -y config-manager --set-enabled crb
             dnf -y config-manager --set-enabled devel
@@ -411,29 +397,6 @@ function bootstrapOnRockyLinux ()
     esac
 }
 
-function bootstrapOnManjaro ()
-{
-        pacman -Sy --noconfirm archlinux-keyring manjaro-keyring
-
-        if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-        then
-            pacman -Syyu --refresh --noconfirm
-        fi
-
-        pacman -Sy --noconfirm base-devel --needed
-        pacman -Sy --noconfirm cmake \
-                         gcc \
-                         gcc-libs \
-                         git \
-                         make \
-                         abseil-cpp \
-                         nlohmann-json \
-                         grpc \
-                         boost \
-                         python \
-                         ninja
-}
-
 function bootstrapOnFuntoo ()
 {
     ego sync
@@ -457,13 +420,10 @@ function bootstrapOnArch ()
         pacman -Syyu --refresh --noconfirm
     fi
 
-    # NOTE: Arch requires GCC 12 right now
-    # also installing latest GCC.
-    pacman -Sy --noconfirm \
+    pacman -Syu --needed --noconfirm \
               base-devel \
               cmake \
               gcc \
-              gcc12 \
               git \
               make \
               abseil-cpp \
@@ -476,18 +436,66 @@ function bootstrapOnArch ()
               ninja
 }
 
-function bootstrapOnEndeavourOS ()
+function bootstrapOnManjaro ()
 {
-    pacman -Sy --noconfirm archlinux-keyring
+    pacman -Syu --needed --noconfirm archlinux-keyring manjaro-keyring
 
     if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
     then
         pacman -Syyu --refresh --noconfirm
     fi
 
-    # NOTE: Arch requires GCC 12 right now
-    # also installing latest GCC.
-    pacman -Sy --noconfirm \
+    pacman -Syu --needed --noconfirm base-devel
+    pacman -Syu --needed --noconfirm \
+                     cmake \
+                     gcc \
+                     gcc-libs \
+                     git \
+                     make \
+                     abseil-cpp \
+                     nlohmann-json \
+                     grpc \
+                     boost \
+                     python \
+                     ninja
+}
+
+function bootstrapOnEndeavourOS ()
+{
+    pacman -Syu --needed --noconfirm archlinux-keyring
+
+    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+    then
+        pacman -Syyu --refresh --noconfirm
+    fi
+
+    pacman -Syu --needed --noconfirm \
+              base-devel \
+              icu \
+              cmake \
+              gcc \
+              git \
+              make \
+              abseil-cpp \
+              nlohmann-json \
+              grpc \
+              boost \
+              llvm \
+              clang \
+              python \
+              ninja
+}
+
+function bootstrapOnCachyOS ()
+{
+#    pacman -Syu --needed --noconfirm archlinux-keyring
+
+    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
+    then
+        pacman -Syyu --refresh --noconfirm
+    fi
+
+    pacman -Syu --needed --noconfirm \
               base-devel \
               icu \
               cmake \
@@ -529,17 +537,20 @@ case "${LINUX_ID}" in
     "rocky")
         bootstrapOnRockyLinux
         ;;
-    "manjaro")
-        bootstrapOnManjaro
-        ;;
     "funtoo")
         bootstrapOnFuntoo
         ;;
     "arch")
         bootstrapOnArch
         ;;
+    "manjaro")
+        bootstrapOnManjaro
+        ;;
     "endeavouros")
         bootstrapOnEndeavourOS
+        ;;
+    "cachyos")
+        bootstrapOnCachyOS
         ;;
     *)
         echo "Sorry, unrecognized/unsupported Linux distribution"
