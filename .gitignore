@@ -118,6 +118,5 @@ ext/
 *.pyc
 *.log
 *.bak
-.editorconfig
 CMakeUserPresets.*.bak
 *.jsonl
