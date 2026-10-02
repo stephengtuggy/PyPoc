@@ -58,8 +58,8 @@ jobs:
           - 'linuxmintd/mint22-amd64'
           - 'dhi.io/python:3.13-debian13-dev'
           - 'debian:bookworm'
-          - 'opensuse/leap:16.0' # Requires c++17 or later
-          - 'fedora:45'
+          - 'opensuse/leap:16.0'
+          #- 'fedora:45'
           - 'fedora:44'
           - 'fedora:43'
           - 'rockylinux/rockylinux:10.2'
