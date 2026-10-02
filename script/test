@@ -86,11 +86,17 @@ ls -alR
 
 echo 'Searching for libopentelemetry_proto.so in /usr'
 find /usr -name libopentelemetry_proto.so
+echo 'Searching for libopentelemetry_exporter_otlp_file.so in /usr'
+find /usr -name libopentelemetry_exporter_otlp_file.so
 echo "Searching for libopentelemetry_proto.so in baseDir ('$baseDir')"
 find "$baseDir" -name libopentelemetry_proto.so
+echo "Searching for libopentelemetry_exporter_otlp_file.so in baseDir ('$baseDir')"
+find "$baseDir" -name libopentelemetry_exporter_otlp_file.so
 
 export PYTHONUNBUFFERED=1
 pushd "$binaryDir"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/lib
+echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 ./PyPoc
 
 popd
