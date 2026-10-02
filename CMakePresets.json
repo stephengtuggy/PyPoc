@@ -156,6 +156,11 @@
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Darwin"
+      },
+      "cacheVariables": {
+        "INSTALL_GTEST": "OFF",
+        "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "ON"
       }
     },
     {
@@ -181,7 +186,8 @@
         "Boost_DIR": "/opt/local/libexec/boost/1.87/lib/cmake/Boost-1.87.0",
         "CMAKE_FIND_FRAMEWORK": "LAST",
         "INSTALL_GTEST": "OFF",
-        "USE_GTEST": "OFF"
+        "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "ON"
       }
     },
     {
