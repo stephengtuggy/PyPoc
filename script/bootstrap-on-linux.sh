@@ -39,15 +39,13 @@ echo "------------------------------------------"
 
 UPDATE_ALL_SYSTEM_PACKAGES="$1"
 
-if [ -f /etc/os-release ]
-then
-    OS_RELEASE_LOCATION="/etc/os-release"
-elif [ -f /usr/lib/os-release ]
-then
-    OS_RELEASE_LOCATION="/usr/lib/os-release"
+if [ -f /etc/os-release ]; then
+  OS_RELEASE_LOCATION="/etc/os-release"
+elif [ -f /usr/lib/os-release ]; then
+  OS_RELEASE_LOCATION="/usr/lib/os-release"
 else
-    echo "os-release file not found; unable to continue"
-    exit 1
+  echo "os-release file not found; unable to continue"
+  exit 1
 fi
 LINUX_ID=$(grep ^ID= $OS_RELEASE_LOCATION | sed 's/^ID=//' | tr -d '"\n')
 echo "LINUX_ID = ${LINUX_ID}"
@@ -56,506 +54,482 @@ echo "LINUX_CODENAME = ${LINUX_CODENAME}"
 LINUX_VERSION_ID=$(grep ^VERSION_ID= $OS_RELEASE_LOCATION | sed 's/^VERSION_ID=//' | tr -d '"\n')
 echo "LINUX_VERSION_ID = ${LINUX_VERSION_ID}"
 
-function bootstrapOnDebian()
-{
-    apt-get update
+function bootstrapOnDebian() {
+  apt-get update
 
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        apt-get -qy upgrade
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    apt-get -qy upgrade
+  fi
+
+  case "$LINUX_CODENAME" in
+    "trixie")
+      apt-get -qy install \
+        git \
+        cmake \
+        build-essential \
+        lsb-release \
+        pkg-config \
+        libabsl-dev \
+        nlohmann-json3-dev \
+        libprotobuf-dev \
+        libgrpc++-dev \
+        protobuf-compiler-grpc \
+        ninja-build \
+        libboost-python-dev \
+        clang \
+        libltdl-dev
+      ;;
+    "bookworm")
+      apt-get -qy install \
+        git \
+        cmake \
+        build-essential \
+        lsb-release \
+        pkg-config \
+        libabsl-dev \
+        nlohmann-json3-dev \
+        libprotobuf-dev \
+        libgrpc++-dev \
+        protobuf-compiler-grpc \
+        ninja-build \
+        libboost-python-dev \
+        clang \
+        libltdl-dev
+      ;;
+    "bullseye" | "buster" | "stretch")
+      echo "Sorry, Debian ${LINUX_CODENAME} is no longer supported"
+      exit 2
+      ;;
+    *)
+      echo "Sorry, this version of Debian is unsupported"
+      exit 2
+      ;;
+  esac
+}
+
+function bootstrapOnUbuntu() {
+  apt-get update
+
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    apt-get -qy upgrade
+  fi
+
+  case "$LINUX_CODENAME" in
+    "resolute")
+      apt-get -qy install \
+        git \
+        cmake \
+        build-essential \
+        lsb-release \
+        pkg-config \
+        libabsl-dev \
+        nlohmann-json3-dev \
+        libprotobuf-dev \
+        libgrpc++-dev \
+        protobuf-compiler-grpc \
+        ninja-build \
+        python3-jinja2 \
+        python3-dev \
+        libboost-python-dev \
+        clang \
+        libltdl-dev
+      ;;
+    "noble")
+      apt-get -qy install \
+        git \
+        cmake \
+        build-essential \
+        lsb-release \
+        pkg-config \
+        libabsl-dev \
+        nlohmann-json3-dev \
+        libprotobuf-dev \
+        libgrpc++-dev \
+        protobuf-compiler-grpc \
+        ninja-build \
+        python3-jinja2 \
+        python3-dev \
+        libboost-python-dev \
+        clang \
+        libltdl-dev
+      ;;
+    "questing" | "plucky" | "jammy" | "hirsute" | "impish" | "focal" | "bionic" | "xenial")
+      echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
+      exit 2
+      ;;
+    *)
+      echo "Sorry, this version of Ubuntu is unsupported"
+      exit 2
+      ;;
+  esac
+}
+
+function bootstrapOnLinuxMint() {
+  apt-get update
+
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    apt-get -qy upgrade
+  fi
+
+  case "$LINUX_CODENAME" in
+    "zena" | "zara" | "wilma")
+      apt-get -qy install \
+        git \
+        cmake \
+        build-essential \
+        lsb-release \
+        pkg-config \
+        libabsl-dev \
+        nlohmann-json3-dev \
+        libprotobuf-dev \
+        libgrpc++-dev \
+        protobuf-compiler-grpc \
+        ninja-build \
+        python3-jinja2 \
+        python3-dev \
+        libboost-python-dev \
+        clang \
+        libltdl-dev
+      ;;
+    "virginia" | "victoria" | "vera" | "vanessa" | "ulyana")
+      echo "Sorry, Linux Mint '${LINUX_CODENAME}' is no longer supported"
+      ;;
+    *)
+      echo "This version of Linux Mint is not directly supported. You may be able to use the corresponding Ubuntu installation package"
+      exit 2
+      ;;
+  esac
+}
+
+function bootstrapOnOpenSuseLeap() {
+  case "${LINUX_VERSION_ID}" in
+    "15.1" | "15.2" | "15.3" | "15.4" | "15.5" | "15.6")
+      echo "Sorry, openSUSE Leap ${LINUX_VERSION_ID} is no longer supported"
+      exit 2
+      ;;
+    "16.0")
+      zypper --non-interactive refresh
+      zypper --non-interactive install -y \
+        libboost_python-py3-1_86_0-devel \
+        cmake \
+        gcc-c++ \
+        git \
+        rpm-build \
+        libabsl_2407_0_0 \
+        nlohmann_json-devel \
+        protobuf-devel \
+        libgrpc++1_59 \
+        python3-devel \
+        clang \
+        libltdl7
+      ;;
+    *)
+      echo "Sorry, this version of openSUSE Leap is unsupported"
+      exit 2
+      ;;
+  esac
+}
+
+function bootstrapOnFedora() {
+  export fedoraVersion=${LINUX_VERSION_ID}
+  export fedoraMaxSupportedVersion=45
+  export fedoraMinSupportedVersion=43
+  if [ ${fedoraVersion} -gt ${fedoraMaxSupportedVersion} ]; then
+    echo "Fedora Version ${fedoraVersion} is not yet supported. Pull requests welcome"
+  elif [ ${fedoraVersion} -ge ${fedoraMinSupportedVersion} ]; then
+    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+      dnf -y upgrade --refresh
     fi
-
-    case "$LINUX_CODENAME" in
-        "trixie")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            build-essential \
-                            lsb-release \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            libboost-python-dev \
-                            clang \
-                            libltdl-dev
-            ;;
-        "bookworm")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            build-essential \
-                            lsb-release \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            libboost-python-dev \
-                            clang \
-                            libltdl-dev
-            ;;
-        "bullseye"|"buster"|"stretch")
-            echo "Sorry, Debian ${LINUX_CODENAME} is no longer supported"
-            exit 2
-            ;;
-        *)
-            echo "Sorry, this version of Debian is unsupported"
-            exit 2
-            ;;
-    esac
+    dnf install -y \
+      git \
+      cmake \
+      gcc-c++ \
+      rpm-build \
+      make \
+      json-devel \
+      abseil-cpp \
+      grpc-cpp \
+      protobuf-compiler \
+      protobuf-devel \
+      boost-devel \
+      python3-devel \
+      clang \
+      libtool-ltdl-devel
+  else
+    echo "Sorry, Fedora ${LINUX_VERSION_ID} is no longer supported"
+    exit 2
+  fi
 }
 
-function bootstrapOnUbuntu()
-{
-    apt-get update
-
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        apt-get -qy upgrade
-    fi
-
-    case "$LINUX_CODENAME" in
-        "resolute")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            build-essential \
-                            lsb-release \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            python3-jinja2 \
-                            python3-dev \
-                            libboost-python-dev \
-                            clang \
-                            libltdl-dev
-            ;;
-        "noble")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            build-essential \
-                            lsb-release \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            python3-jinja2 \
-                            python3-dev \
-                            libboost-python-dev \
-                            clang \
-                            libltdl-dev
-            ;;
-        "questing"|"plucky"|"jammy"|"hirsute"|"impish"|"focal"|"bionic"|"xenial")
-            echo "Sorry, Ubuntu ${LINUX_CODENAME} is no longer supported"
-            exit 2
-            ;;
-        *)
-            echo "Sorry, this version of Ubuntu is unsupported"
-            exit 2
-            ;;
-    esac
+function bootstrapOnRedHat() {
+  case "${LINUX_VERSION_ID}" in
+    "9.6" | "9.7" | "9.8")
+      if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+        dnf -y upgrade --refresh
+      fi
+      dnf -y install dnf-plugins-core
+      dnf -y config-manager --set-enabled crb
+      dnf -y config-manager --set-enabled devel
+      dnf -y install epel-release
+      dnf -y update
+      dnf -y install \
+        git \
+        cmake \
+        gcc-c++ \
+        rpm-build \
+        make \
+        json-devel \
+        abseil-cpp \
+        grpc-cpp \
+        protobuf-compiler \
+        protobuf-devel \
+        boost-devel \
+        boost-python3-devel \
+        python3-devel \
+        clang \
+        libtool-ltdl-devel
+      ;;
+    "10.0" | "10.1" | "10.2")
+      dnf -y install 'dnf-command(config-manager)'
+      dnf -y config-manager --set-enabled crb
+      dnf -y config-manager --set-enabled devel
+      dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+      dnf -y update
+      dnf -y install \
+        git \
+        cmake \
+        gcc-c++ \
+        rpm-build \
+        make \
+        json-devel \
+        abseil-cpp \
+        grpc-cpp \
+        protobuf-compiler \
+        protobuf-devel \
+        boost-devel \
+        boost-python3-devel \
+        boost-json \
+        python3-devel \
+        clang \
+        libtool-ltdl-devel
+      ;;
+    *)
+      echo "Sorry, this version of Red Hat is unsupported"
+      exit 2
+      ;;
+  esac
 }
 
-function bootstrapOnLinuxMint ()
-{
-    apt-get update
-
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        apt-get -qy upgrade
-    fi
-
-    case "$LINUX_CODENAME" in
-        "zena"|"zara"|"wilma")
-            apt-get -qy install \
-                            git \
-                            cmake \
-                            build-essential \
-                            lsb-release \
-                            pkg-config \
-                            libabsl-dev \
-                            nlohmann-json3-dev \
-                            libprotobuf-dev \
-                            libgrpc++-dev \
-                            protobuf-compiler-grpc \
-                            ninja-build \
-                            python3-jinja2 \
-                            python3-dev \
-                            libboost-python-dev \
-                            clang \
-                            libltdl-dev
-            ;;
-        "virginia"|"victoria"|"vera"|"vanessa"|"ulyana")
-            echo "Sorry, Linux Mint '${LINUX_CODENAME}' is no longer supported"
-            ;;
-        *)
-            echo "This version of Linux Mint is not directly supported. You may be able to use the corresponding Ubuntu installation package"
-            exit 2
-            ;;
-    esac
+function bootstrapOnRockyLinux() {
+  case "${LINUX_VERSION_ID}" in
+    "9.6" | "9.7" | "9.8")
+      if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+        dnf -y upgrade --refresh
+      fi
+      dnf -y install dnf-plugins-core
+      dnf -y config-manager --set-enabled crb
+      dnf -y config-manager --set-enabled devel
+      dnf -y install epel-release
+      dnf -y update
+      dnf -y install \
+        git \
+        cmake \
+        gcc-c++ \
+        rpm-build \
+        make \
+        json-devel \
+        abseil-cpp \
+        grpc-cpp \
+        protobuf-compiler \
+        protobuf-devel \
+        boost-devel \
+        boost-python3-devel \
+        boost-json \
+        python3-devel \
+        clang \
+        libtool-ltdl-devel
+      ;;
+    "10.0" | "10.1" | "10.2")
+      dnf -y install 'dnf-command(config-manager)'
+      dnf -y config-manager --set-enabled crb
+      dnf -y config-manager --set-enabled devel
+      dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+      dnf -y update
+      dnf -y install \
+        git \
+        cmake \
+        gcc-c++ \
+        rpm-build \
+        make \
+        json-devel \
+        abseil-cpp \
+        grpc-cpp \
+        protobuf-compiler \
+        protobuf-devel \
+        boost-devel \
+        boost-python3-devel \
+        boost-json \
+        python3-devel \
+        clang \
+        libtool-ltdl-devel
+      ;;
+    *)
+      echo "Sorry, this version of Rocky Linux is unsupported"
+      exit 2
+      ;;
+  esac
 }
 
-function bootstrapOnOpenSuseLeap ()
-{
-    case "${LINUX_VERSION_ID}" in
-        "15.1"|"15.2"|"15.3"|"15.4"|"15.5"|"15.6")
-            echo "Sorry, openSUSE Leap ${LINUX_VERSION_ID} is no longer supported"
-            exit 2
-            ;;
-        "16.0")
-            zypper --non-interactive refresh
-            zypper --non-interactive install -y \
-                                    libboost_python-py3-1_86_0-devel \
-                                    cmake \
-                                    gcc-c++ \
-                                    git \
-                                    rpm-build \
-                                    libabsl_2407_0_0 \
-                                    nlohmann_json-devel \
-                                    protobuf-devel \
-                                    libgrpc++1_59 \
-                                    python3-devel \
-                                    clang \
-                                    libltdl7
-            ;;
-        *)
-            echo "Sorry, this version of openSUSE Leap is unsupported"
-            exit 2
-            ;;
-    esac
+function bootstrapOnFuntoo() {
+  ego sync
+  dispatch-conf
+  # enable `autounmask-write` so that USE flags
+  # change in the image appropriately
+  USE="-libffi -userland_GNU" emerge --autounmask-write \
+    cmake \
+    boost \
+    python \
+    git \
+    make \
+    python \
+    git
 }
 
-function bootstrapOnFedora ()
-{
-    export fedoraVersion=${LINUX_VERSION_ID}
-    export fedoraMaxSupportedVersion=45
-    export fedoraMinSupportedVersion=43
-    if [ ${fedoraVersion} -gt ${fedoraMaxSupportedVersion} ]
-    then
-        echo "Fedora Version ${fedoraVersion} is not yet supported. Pull requests welcome"
-    elif [ ${fedoraVersion} -ge ${fedoraMinSupportedVersion} ]
-    then
-        if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-        then
-            dnf -y upgrade --refresh
-        fi
-        dnf install -y \
-                            git \
-                            cmake \
-                            gcc-c++ \
-                            rpm-build \
-                            make \
-                            json-devel \
-                            abseil-cpp \
-                            grpc-cpp \
-                            protobuf-compiler \
-                            protobuf-devel \
-                            boost-devel \
-                            python3-devel \
-                            clang \
-                            libtool-ltdl-devel
-    else
-        echo "Sorry, Fedora ${LINUX_VERSION_ID} is no longer supported"
-        exit 2
-    fi
+function bootstrapOnArch() {
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    pacman -Syyu --refresh --noconfirm
+  fi
+
+  pacman -Syu --needed --noconfirm \
+    base-devel \
+    cmake \
+    gcc \
+    git \
+    make \
+    abseil-cpp \
+    nlohmann-json \
+    grpc \
+    boost \
+    llvm \
+    clang \
+    python \
+    ninja
 }
 
-function bootstrapOnRedHat ()
-{
-    case "${LINUX_VERSION_ID}" in
-        "9.6"|"9.7"|"9.8")
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
-            dnf -y install dnf-plugins-core
-            dnf -y config-manager --set-enabled crb
-            dnf -y config-manager --set-enabled devel
-            dnf -y install epel-release
-            dnf -y update
-            dnf -y install \
-                                git \
-                                cmake \
-                                gcc-c++ \
-                                rpm-build \
-                                make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                boost-devel \
-                                boost-python3-devel \
-                                python3-devel \
-                                clang \
-                                libtool-ltdl-devel
-            ;;
-        "10.0"|"10.1"|"10.2")
-            dnf -y install 'dnf-command(config-manager)'
-            dnf -y config-manager --set-enabled crb
-            dnf -y config-manager --set-enabled devel
-            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
-            dnf -y update
-            dnf -y install \
-                                git \
-                                cmake \
-                                gcc-c++ \
-                                rpm-build \
-                                make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                boost-devel \
-                                boost-python3-devel \
-                                boost-json \
-                                python3-devel \
-                                clang \
-                                libtool-ltdl-devel
-            ;;
-        *)
-            echo "Sorry, this version of Red Hat is unsupported"
-            exit 2
-            ;;
-    esac
+function bootstrapOnManjaro() {
+  pacman -Syu --needed --noconfirm archlinux-keyring manjaro-keyring
+
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    pacman -Syyu --refresh --noconfirm
+  fi
+
+  pacman -Syu --needed --noconfirm base-devel
+  pacman -Syu --needed --noconfirm \
+    cmake \
+    gcc \
+    gcc-libs \
+    git \
+    make \
+    abseil-cpp \
+    nlohmann-json \
+    grpc \
+    boost \
+    python \
+    ninja
 }
 
-function bootstrapOnRockyLinux ()
-{
-    case "${LINUX_VERSION_ID}" in
-        "9.6"|"9.7"|"9.8")
-            if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-            then
-                dnf -y upgrade --refresh
-            fi
-            dnf -y install dnf-plugins-core
-            dnf -y config-manager --set-enabled crb
-            dnf -y config-manager --set-enabled devel
-            dnf -y install epel-release
-            dnf -y update
-            dnf -y install \
-                                git \
-                                cmake \
-                                gcc-c++ \
-                                rpm-build \
-                                make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                boost-devel \
-                                boost-python3-devel \
-                                boost-json \
-                                python3-devel \
-                                clang \
-                                libtool-ltdl-devel
-            ;;
-        "10.0"|"10.1"|"10.2")
-            dnf -y install 'dnf-command(config-manager)'
-            dnf -y config-manager --set-enabled crb
-            dnf -y config-manager --set-enabled devel
-            dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
-            dnf -y update
-            dnf -y install \
-                                git \
-                                cmake \
-                                gcc-c++ \
-                                rpm-build \
-                                make \
-                                json-devel \
-                                abseil-cpp \
-                                grpc-cpp \
-                                protobuf-compiler \
-                                protobuf-devel \
-                                boost-devel \
-                                boost-python3-devel \
-                                boost-json \
-                                python3-devel \
-                                clang \
-                                libtool-ltdl-devel
-            ;;
-        *)
-            echo "Sorry, this version of Rocky Linux is unsupported"
-            exit 2
-            ;;
-    esac
+function bootstrapOnEndeavourOS() {
+  pacman -Syu --needed --noconfirm archlinux-keyring
+
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    pacman -Syyu --refresh --noconfirm
+  fi
+
+  pacman -Syu --needed --noconfirm \
+    base-devel \
+    icu \
+    cmake \
+    gcc \
+    git \
+    make \
+    abseil-cpp \
+    nlohmann-json \
+    grpc \
+    boost \
+    llvm \
+    clang \
+    python \
+    ninja
 }
 
-function bootstrapOnFuntoo ()
-{
-    ego sync
-    dispatch-conf
-    # enable `autounmask-write` so that USE flags
-    # change in the image appropriately
-    USE="-libffi -userland_GNU" emerge --autounmask-write \
-              cmake \
-              boost \
-              python \
-              git \
-              make \
-              python \
-              git
-}
+function bootstrapOnCachyOS() {
+  #    pacman -Syu --needed --noconfirm archlinux-keyring
 
-function bootstrapOnArch ()
-{
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        pacman -Syyu --refresh --noconfirm
-    fi
+  if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]; then
+    pacman -Syyu --refresh --noconfirm
+  fi
 
-    pacman -Syu --needed --noconfirm \
-              base-devel \
-              cmake \
-              gcc \
-              git \
-              make \
-              abseil-cpp \
-              nlohmann-json \
-              grpc \
-              boost \
-              llvm \
-              clang \
-              python \
-              ninja
-}
-
-function bootstrapOnManjaro ()
-{
-    pacman -Syu --needed --noconfirm archlinux-keyring manjaro-keyring
-
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        pacman -Syyu --refresh --noconfirm
-    fi
-
-    pacman -Syu --needed --noconfirm base-devel
-    pacman -Syu --needed --noconfirm \
-                     cmake \
-                     gcc \
-                     gcc-libs \
-                     git \
-                     make \
-                     abseil-cpp \
-                     nlohmann-json \
-                     grpc \
-                     boost \
-                     python \
-                     ninja
-}
-
-function bootstrapOnEndeavourOS ()
-{
-    pacman -Syu --needed --noconfirm archlinux-keyring
-
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        pacman -Syyu --refresh --noconfirm
-    fi
-
-    pacman -Syu --needed --noconfirm \
-              base-devel \
-              icu \
-              cmake \
-              gcc \
-              git \
-              make \
-              abseil-cpp \
-              nlohmann-json \
-              grpc \
-              boost \
-              llvm \
-              clang \
-              python \
-              ninja
-}
-
-function bootstrapOnCachyOS ()
-{
-#    pacman -Syu --needed --noconfirm archlinux-keyring
-
-    if [ "${UPDATE_ALL_SYSTEM_PACKAGES}" -eq 1 ]
-    then
-        pacman -Syyu --refresh --noconfirm
-    fi
-
-    pacman -Syu --needed --noconfirm \
-              base-devel \
-              icu \
-              cmake \
-              gcc \
-              git \
-              make \
-              abseil-cpp \
-              nlohmann-json \
-              grpc \
-              boost \
-              llvm \
-              clang \
-              python \
-              ninja
+  pacman -Syu --needed --noconfirm \
+    base-devel \
+    icu \
+    cmake \
+    gcc \
+    git \
+    make \
+    abseil-cpp \
+    nlohmann-json \
+    grpc \
+    boost \
+    llvm \
+    clang \
+    python \
+    ninja
 }
 
 case "${LINUX_ID}" in
-    "debian")
-        bootstrapOnDebian
-        ;;
-    "ubuntu")
-        bootstrapOnUbuntu
-        ;;
-    "linuxmint")
-        bootstrapOnLinuxMint
-        ;;
-    "opensuse-leap")
-        bootstrapOnOpenSuseLeap
-        ;;
-    "fedora")
-        bootstrapOnFedora
-        ;;
-    "rhel")
-        bootstrapOnRedHat
-        ;;
-    "redhat")
-        bootstrapOnRedHat
-        ;;
-    "rocky")
-        bootstrapOnRockyLinux
-        ;;
-    "funtoo")
-        bootstrapOnFuntoo
-        ;;
-    "arch")
-        bootstrapOnArch
-        ;;
-    "manjaro")
-        bootstrapOnManjaro
-        ;;
-    "endeavouros")
-        bootstrapOnEndeavourOS
-        ;;
-    "cachyos")
-        bootstrapOnCachyOS
-        ;;
-    *)
-        echo "Sorry, unrecognized/unsupported Linux distribution"
-        exit 2
-        ;;
+  "debian")
+    bootstrapOnDebian
+    ;;
+  "ubuntu")
+    bootstrapOnUbuntu
+    ;;
+  "linuxmint")
+    bootstrapOnLinuxMint
+    ;;
+  "opensuse-leap")
+    bootstrapOnOpenSuseLeap
+    ;;
+  "fedora")
+    bootstrapOnFedora
+    ;;
+  "rhel")
+    bootstrapOnRedHat
+    ;;
+  "redhat")
+    bootstrapOnRedHat
+    ;;
+  "rocky")
+    bootstrapOnRockyLinux
+    ;;
+  "funtoo")
+    bootstrapOnFuntoo
+    ;;
+  "arch")
+    bootstrapOnArch
+    ;;
+  "manjaro")
+    bootstrapOnManjaro
+    ;;
+  "endeavouros")
+    bootstrapOnEndeavourOS
+    ;;
+  "cachyos")
+    bootstrapOnCachyOS
+    ;;
+  *)
+    echo "Sorry, unrecognized/unsupported Linux distribution"
+    exit 2
+    ;;
 esac
 
 mkdir -p /usr/local/src/PyPoc
