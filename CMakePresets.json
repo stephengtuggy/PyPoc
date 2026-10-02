@@ -160,7 +160,8 @@
       "cacheVariables": {
         "INSTALL_GTEST": "OFF",
         "USE_GTEST": "OFF",
-        "USE_LOCALLY_INSTALLED_PROTOBUF": "ON"
+        "FETCH_PROTOBUF": "ON",
+        "FETCH_ZLIB": "ON"
       }
     },
     {
@@ -187,7 +188,8 @@
         "CMAKE_FIND_FRAMEWORK": "LAST",
         "INSTALL_GTEST": "OFF",
         "USE_GTEST": "OFF",
-        "USE_LOCALLY_INSTALLED_PROTOBUF": "ON"
+        "FETCH_PROTOBUF": "ON",
+        "FETCH_ZLIB": "ON"
       }
     },
     {

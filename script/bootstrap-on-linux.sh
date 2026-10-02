@@ -221,8 +221,7 @@ function bootstrapOnOpenSuseLeap() {
         libgrpc++1_59 \
         python3-devel \
         clang \
-        libltdl7 \
-        zlib-devel
+        libltdl7
       ;;
     *)
       echo "Sorry, this version of openSUSE Leap is unsupported"

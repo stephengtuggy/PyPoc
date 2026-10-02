@@ -40,8 +40,7 @@ brew install \
     autoconf \
     autoconf-archive \
     automake \
-    libtool \
-    zlib
+    libtool
 
 # Only install cmake if it isn't installed yet
 brew ls --versions cmake || brew install cmake

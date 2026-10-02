@@ -84,12 +84,34 @@ ADD_LINK_OPTIONS(
 
 OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
-OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" ON)
+OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF)
+OPTION(FETCH_PROTOBUF "Whether to download Protobuf using FetchContent_MakeAvailable" ON)
+OPTION(USE_LOCALLY_INSTALLED_ZLIB "Whether to use locally-installed copy of ZLIB" OFF)
+OPTION(FETCH_ZLIB "Whether to download ZLIB using FetchContent_MakeAvailable" ON)
 
 INCLUDE(FetchContent)
 
+IF (USE_LOCALLY_INSTALLED_ZLIB)
+    FIND_PACKAGE(ZLIB REQUIRED)
+ELSEIF (FETCH_ZLIB)
+    FETCHCONTENT_DECLARE(
+            zlib
+            GIT_REPOSITORY      https://github.com/madler/zlib.git
+            GIT_TAG             da607da739fa6047df13e66a2af6b8bec7c2a498                # v1.3.2
+    )
+    MESSAGE(STATUS "Downloading zlib")
+    FETCHCONTENT_MAKEAVAILABLE(zlib)
+    MESSAGE(STATUS "Finished fetching zlib")
+ENDIF ()
+
 IF (USE_LOCALLY_INSTALLED_PROTOBUF)
     FIND_PACKAGE(Protobuf REQUIRED)
+ELSEIF (FETCH_PROTOBUF)
+    FETCHCONTENT_DECLARE(
+            Protobuf
+            GIT_REPOSITORY      https://github.com/protocolbuffers/protobuf.git
+            GIT_TAG             2dca62f7296e5b49d729f7384f975cecb38382a0                # v4.23.1
+    )
 ENDIF ()
 
 IF (FETCH_OPEN_TELEMETRY)
