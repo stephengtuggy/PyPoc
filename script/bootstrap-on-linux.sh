@@ -34,7 +34,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-linux.sh | 2026-10-01 ---"
+echo "--- bootstrap-on-linux.sh | 2026-10-02 ---"
 echo "------------------------------------------"
 
 UPDATE_ALL_SYSTEM_PACKAGES="$1"
@@ -221,7 +221,8 @@ function bootstrapOnOpenSuseLeap() {
         libgrpc++1_59 \
         python3-devel \
         clang \
-        libltdl7
+        libltdl7 \
+        zlib
       ;;
     *)
       echo "Sorry, this version of openSUSE Leap is unsupported"
