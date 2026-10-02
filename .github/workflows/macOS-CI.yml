@@ -51,20 +51,35 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - macOS-15
-          - macOS-15-intel
-          - macOS-26
-          - macOS-26-intel
-        preset-name:
-          - macOS-pie-enabled-debug-fetch-use-otel
-          - macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
-          - macOS-pie-enabled-debug-no-otel
-          - macOS-pie-enabled-RelWithDebInfo-no-otel
+        include:
+          - os: macOS-15
+            preset-name: macOS-pie-enabled-debug-fetch-use-otel
+            build-type: Debug
+          - os: macOS-15
+            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
+            build-type: RelWithDebInfo
+          - os: macOS-15
+            preset-name: macOS-pie-enabled-debug-no-otel
+            build-type: Debug
+          - os: macOS-15
+            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
+            build-type: RelWithDebInfo
+          - os: macOS-26
+            preset-name: macOS-pie-enabled-debug-fetch-use-otel
+            build-type: Debug
+          - os: macOS-26
+            preset-name: macOS-pie-enabled-RelWithDebInfo-fetch-use-otel
+            build-type: RelWithDebInfo
+          - os: macOS-26
+            preset-name: macOS-pie-enabled-debug-no-otel
+            build-type: Debug
+          - os: macOS-26
+            preset-name: macOS-pie-enabled-RelWithDebInfo-no-otel
+            build-type: RelWithDebInfo
 
     steps:
       # The following dependencies are already present within macos-* images:
-      # MacOS has a Developers Tools package from Apple that gets installed which
+      # macOS has a Developers Tools package from Apple that gets installed which
       # provides some minimal functionality:
       #   XCode (which uses CLang/LLVM)
       #   git
@@ -72,10 +87,10 @@ jobs:
         run: brew install bash
 
       - name: Check out repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 2
           submodules: false
 
       - name: Build and test
-        run: script/cibuild --preset_name=${{ matrix.preset-name }}
+        run: script/cibuild --preset_name=${{ matrix.preset-name }} --build_type=${{ matrix.build-type }}

@@ -57,12 +57,18 @@ done
 
 if [ -z "$preset_name" ] && [ -n "$PRESET_NAME" ]
 then
-    preset_name="${PRESET_NAME}"
+  preset_name="${PRESET_NAME}"
+fi
+
+if [ -z "$build_type" ] && [ -n "$BUILD_TYPE" ]
+then
+  build_type="${BUILD_TYPE}"
 fi
 
 echo "Re-run bootstrap"
-./script/bootstrap
+./script/bootstrap 0
 
-./script/build --preset_name="${preset_name}"
+./script/build --preset_name="${preset_name}" --build_type="${build_type}"
 
-./build/"${preset_name}"/PyPoc
+./script/test --preset_name="${preset_name}" --build_type="${build_type}"
+#./build/"${preset_name}"/PyPoc
