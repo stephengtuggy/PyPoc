@@ -84,17 +84,43 @@ pushd "$installedDir"
 echo 'Listing installed dir directory contents'
 ls -alR
 
-echo 'Searching for libopentelemetry_proto.so in /usr'
-find /usr -name libopentelemetry_proto.so
-echo 'Searching for libopentelemetry_exporter_otlp_file.so in /usr'
-find /usr -name libopentelemetry_exporter_otlp_file.so
+platform="$(uname | tr '[:upper:]' '[:lower:]')"
+if [ "$platform" != "darwin" ]; then
+    echo 'Searching for libopentelemetry_proto.so in /usr'
+    find /usr -name libopentelemetry_proto.so
+    echo 'Searching for libopentelemetry_exporter_otlp_file.so in /usr'
+    find /usr -name libopentelemetry_exporter_otlp_file.so
+fi
+
 echo "Searching for libopentelemetry_proto.so in baseDir ('$baseDir')"
 find "$baseDir" -name libopentelemetry_proto.so
 echo "Searching for libopentelemetry_exporter_otlp_file.so in baseDir ('$baseDir')"
 find "$baseDir" -name libopentelemetry_exporter_otlp_file.so
 
+libraryPath="$(pwd)/lib"
+if [ "$platform" == "linux" ] || [ "$platform" == "linux-gnu" ]; then
+    if [ -f /etc/os-release ]; then
+        OS_RELEASE_LOCATION="/etc/os-release"
+    elif [ -f /usr/lib/os-release ]; then
+        OS_RELEASE_LOCATION="/usr/lib/os-release"
+    else
+        echo "os-release file not found; unable to continue"
+        exit 1
+    fi
+    LINUX_ID=$(grep ^ID= $OS_RELEASE_LOCATION | sed 's/^ID=//' | tr -d '"\n')
+    echo "LINUX_ID = ${LINUX_ID}"
+    LINUX_CODENAME=$(grep ^VERSION_CODENAME= $OS_RELEASE_LOCATION | sed 's/^VERSION_CODENAME=//' | tr -d '"\n')
+    echo "LINUX_CODENAME = ${LINUX_CODENAME}"
+    LINUX_VERSION_ID=$(grep ^VERSION_ID= $OS_RELEASE_LOCATION | sed 's/^VERSION_ID=//' | tr -d '"\n')
+    echo "LINUX_VERSION_ID = ${LINUX_VERSION_ID}"
+
+    if [ "${LINUX_ID}" == "fedora" ] || [ "${LINUX_ID}" == "rhel" ] || [ "${LINUX_ID}" == "redhat" ] || [ "${LINUX_ID}" == "rocky" ]; then
+        libraryPath="$(pwd)/lib64"
+    fi
+fi
+
 export PYTHONUNBUFFERED=1
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$libraryPath
 echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
 
 pushd "$binaryDir"
