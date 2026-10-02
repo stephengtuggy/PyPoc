@@ -162,10 +162,15 @@ IF (USE_OPEN_TELEMETRY)
             opentelemetry-cpp::otlp_file_exporter
             opentelemetry-cpp::otlp_file_metric_exporter
             opentelemetry-cpp::otlp_file_log_record_exporter)
-    #    TARGET_LINK_LIBRARIES(PyPoc PUBLIC opentelemetry_proto)
 ENDIF ()
 
 TARGET_LINK_LIBRARIES(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
+
+SET_TARGET_PROPERTIES(
+        PyPoc
+        PROPERTIES
+        INSTALL_RPATH
+        "${CMAKE_INSTALL_RPATH};${CMAKE_INSTALL_PREFIX}/lib")
 
 INSTALL(
         TARGETS PyPoc
