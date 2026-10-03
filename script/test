@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+# The MIT License (MIT)
+#
+# Copyright © 2026 Stephen G. Tuggy
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the “Software”), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+set -e
+
+echo "-------------------------"
+echo "--- test | 2026-10-02 ---"
+echo "-------------------------"
+
+#----------------------------------
+# validate parameters
+#----------------------------------
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+    --preset_name=*)
+        preset_name="${1#*=}"
+        ;;
+    --preset-name=*)
+        preset_name="${1#*=}"
+        ;;
+    --build_type=*)
+        build_type="${1#*=}"
+        ;;
+    --build-type=*)
+        build_type="${1#*=}"
+        ;;
+    --from=*)
+        from="${1#*=}"
+        ;;
+    *)
+        printf "***************************\n"
+        printf "* Error: Invalid argument.*\n"
+        printf "***************************\n"
+        exit 1
+        ;;
+    esac
+    shift
+done
+
+if [ -z "$preset_name" ] && [ -n "$PRESET_NAME" ]; then
+    preset_name="${PRESET_NAME}"
+fi
+
+if [ -z "$build_type" ] && [ -n "$BUILD_TYPE" ]; then
+    build_type="${BUILD_TYPE}"
+fi
+
+baseDir=$(pwd)
+presetDir="$baseDir/build/$preset_name"
+installedDir="$presetDir/installed"
+binaryDir="$installedDir/bin"
+
+pushd "$presetDir"
+echo 'Listing preset dir directory contents'
+find . -name 'PyPoc'
+
+echo 'Running cmake install command'
+cmake --install . --config "$build_type" --prefix "$installedDir"
+
+pushd "$installedDir"
+echo 'Listing installed dir directory contents'
+ls -alR
+
+platform="$(uname | tr '[:upper:]' '[:lower:]')"
+if [ "$platform" != "darwin" ]; then
+    echo 'Searching for libopentelemetry_proto.so in /usr'
+    find /usr -name libopentelemetry_proto.so
+    echo 'Searching for libopentelemetry_exporter_otlp_file.so in /usr'
+    find /usr -name libopentelemetry_exporter_otlp_file.so
+fi
+
+echo "Searching for libopentelemetry_proto.so in baseDir ('$baseDir')"
+find "$baseDir" -name libopentelemetry_proto.so
+echo "Searching for libopentelemetry_exporter_otlp_file.so in baseDir ('$baseDir')"
+find "$baseDir" -name libopentelemetry_exporter_otlp_file.so
+
+libraryPath="$(pwd)/lib"
+if [ "$platform" == "linux" ] || [ "$platform" == "linux-gnu" ]; then
+    if [ -f /etc/os-release ]; then
+        OS_RELEASE_LOCATION="/etc/os-release"
+    elif [ -f /usr/lib/os-release ]; then
+        OS_RELEASE_LOCATION="/usr/lib/os-release"
+    else
+        echo "os-release file not found; unable to continue"
+        exit 1
+    fi
+    LINUX_ID=$(grep ^ID= $OS_RELEASE_LOCATION | sed 's/^ID=//' | tr -d '"\n')
+    echo "LINUX_ID = ${LINUX_ID}"
+    LINUX_CODENAME=$(grep ^VERSION_CODENAME= $OS_RELEASE_LOCATION | sed 's/^VERSION_CODENAME=//' | tr -d '"\n')
+    echo "LINUX_CODENAME = ${LINUX_CODENAME}"
+    LINUX_VERSION_ID=$(grep ^VERSION_ID= $OS_RELEASE_LOCATION | sed 's/^VERSION_ID=//' | tr -d '"\n')
+    echo "LINUX_VERSION_ID = ${LINUX_VERSION_ID}"
+
+    if [ "${LINUX_ID}" == "fedora" ] || [ "${LINUX_ID}" == "rhel" ] || [ "${LINUX_ID}" == "redhat" ] || [ "${LINUX_ID}" == "rocky" ]; then
+        libraryPath="$(pwd)/lib64"
+    fi
+fi
+
+export PYTHONUNBUFFERED=1
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$libraryPath
+echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+
+pushd "$binaryDir"
+./PyPoc
+
+popd
+popd
+popd

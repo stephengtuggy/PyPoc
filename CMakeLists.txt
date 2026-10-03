@@ -20,19 +20,37 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.25 FATAL_ERROR)
 
 IF (POLICY CMP0087)
-    cmake_policy(SET CMP0087 NEW)
+    CMAKE_POLICY(SET CMP0087 NEW)
+ENDIF ()
+
+IF (POLICY CMP0102)
+    CMAKE_POLICY(SET CMP0102 OLD)
+ENDIF ()
+
+IF (POLICY CMP0126)
+    CMAKE_POLICY(SET CMP0126 NEW)
 ENDIF ()
 
 IF (POLICY CMP0167)
-    CMAKE_POLICY (SET CMP0167 NEW)
-ENDIF (POLICY CMP0167)
+    CMAKE_POLICY(SET CMP0167 NEW)
+ENDIF ()
+
+IF (POLICY CMP0207)
+    CMAKE_POLICY(SET CMP0207 NEW)
+ENDIF ()
 
 SET(CMAKE_BUILD_PARALLEL_LEVEL 3)
 
-project(PyPoc
+#IF (WIN32)
+#    SET(VCPKG_MANIFEST_MODE ON)
+#    SET(VCPKG_MANIFEST_DIR "${CMAKE_SOURCE_DIR}")
+#    SET(VCPKG_MANIFEST_INSTALL ON)
+#ENDIF (WIN32)
+
+PROJECT(PyPoc
         LANGUAGES CXX
         VERSION 0.4.2)
 
@@ -46,8 +64,8 @@ INCLUDE(InstallRequiredSystemLibraries)
 
 OPTION(ENABLE_PIE "Enable Position Independent Executables" ON)
 
-include(CheckPIESupported)
-check_pie_supported()
+INCLUDE(CheckPIESupported)
+CHECK_PIE_SUPPORTED()
 UNSET(CMAKE_POSITION_INDEPENDENT_CODE)
 IF (ENABLE_PIE)
     SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -67,38 +85,72 @@ ADD_LINK_OPTIONS(
 OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
 OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF)
+OPTION(FETCH_PROTOBUF "Whether to download Protobuf using FetchContent_MakeAvailable" ON)
+OPTION(USE_LOCALLY_INSTALLED_ZLIB "Whether to use locally-installed copy of ZLIB" OFF)
+OPTION(FETCH_ZLIB "Whether to download ZLIB using FetchContent_MakeAvailable" ON)
 
-include(FetchContent)
+INCLUDE(FetchContent)
+
+IF (USE_LOCALLY_INSTALLED_ZLIB)
+    FIND_PACKAGE(ZLIB REQUIRED)
+ELSEIF (FETCH_ZLIB)
+    FETCHCONTENT_DECLARE(
+            zlib
+            GIT_REPOSITORY      https://github.com/madler/zlib.git
+            GIT_TAG             da607da739fa6047df13e66a2af6b8bec7c2a498                # v1.3.2
+    )
+    MESSAGE(STATUS "Downloading zlib")
+    FETCHCONTENT_MAKEAVAILABLE(zlib)
+    MESSAGE(STATUS "Finished fetching zlib")
+ENDIF ()
 
 IF (USE_LOCALLY_INSTALLED_PROTOBUF)
-    FIND_PACKAGE(Protobuf)
+    FIND_PACKAGE(Protobuf REQUIRED)
+ELSEIF (FETCH_PROTOBUF)
+    FETCHCONTENT_DECLARE(
+            Protobuf
+            GIT_REPOSITORY      https://github.com/protocolbuffers/protobuf.git
+            GIT_TAG             2dca62f7296e5b49d729f7384f975cecb38382a0                # v4.23.1
+    )
+    MESSAGE(STATUS "Downloading Protobuf")
+    FETCHCONTENT_MAKEAVAILABLE(Protobuf)
+    MESSAGE(STATUS "Finished fetching Protobuf")
 ENDIF ()
 
 IF (FETCH_OPEN_TELEMETRY)
     FETCHCONTENT_DECLARE(
             opentelemetry-cpp
             GIT_REPOSITORY      https://github.com/open-telemetry/opentelemetry-cpp.git
-            GIT_TAG             e0c6c3389bbc0eb1fde87437ec88e222e30958a9                # v1.27.0
-            CMAKE_ARGS          -DBUILD_TESTING=OFF -DWITH_ABI_VERSION_1=OFF -DWITH_ABI_VERSION_2=ON
+            GIT_TAG             e51997b191565bdac2d72ab62021f8580dc7d01c                # Latest on main as of 2026-10-02
             )
-    SET(WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
-    SET(WITH_BENCHMARK OFF CACHE BOOL "")
-    SET(WITH_EXAMPLES OFF CACHE BOOL "")
-    SET(WITH_FUNC_TESTS OFF CACHE BOOL "")
-    SET(BUILD_TESTING OFF CACHE BOOL "")
-    SET(WITH_ABI_VERSION_1 OFF CACHE BOOL "" FORCE)
-    SET(WITH_ABI_VERSION_2 ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_WITH_OTLP_FILE ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_WITH_BENCHMARK OFF CACHE BOOL "")
+    SET(OTELCPP_WITH_EXAMPLES OFF CACHE BOOL "")
+    SET(OTELCPP_WITH_FUNC_TESTS OFF CACHE BOOL "")
+    SET(OTELCPP_BUILD_TESTING OFF CACHE BOOL "")
+    SET(OTELCPP_WITH_ABI_VERSION_1 OFF CACHE BOOL "" FORCE)
+    SET(OTELCPP_WITH_ABI_VERSION_2 ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_CMAKE_POSITION_INDEPENDENT_CODE ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+    SET(OTELCPP_INSTALL ON CACHE BOOL "" FORCE)
+    IF (WIN32)
+        SET(OTELCPP_BUILD_DLL ON CACHE BOOL "" FORCE)
+        SET(OPENTELEMETRY_BUILD_IMPORT_DLL ON CACHE BOOL "" FORCE)
+    ENDIF ()
     MESSAGE(STATUS "Downloading opentelemetry-cpp")
     FETCHCONTENT_MAKEAVAILABLE(opentelemetry-cpp)
     MESSAGE(STATUS "Finished fetching opentelemetry-cpp")
 ELSEIF (USE_OPEN_TELEMETRY)
-#    SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
+    #    SET(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "Debug")
 
     # Use find_package to include OpenTelemetry C++
     FIND_PACKAGE(opentelemetry-cpp CONFIG COMPONENTS api sdk exporters_otlp_file)
     #check whether opentelemetry libraries found
     IF (opentelemetry-cpp_FOUND)
         MESSAGE(STATUS "Found opentelemetry libraries; preparing to use them")
+        IF (WIN32)
+            SET(OPENTELEMETRY_BUILD_IMPORT_DLL ON CACHE BOOL "" FORCE) # ??
+        ENDIF ()
     ELSE ()
         MESSAGE(WARNING "Did not find opentelemetry libraries; building without")
         SET(USE_OPEN_TELEMETRY OFF)
@@ -109,9 +161,9 @@ ENDIF ()
 
 FIND_PACKAGE(Python3 REQUIRED COMPONENTS Development Interpreter)
 SET(BOOST_PYTHON_COMPONENT "python${Python3_VERSION_MAJOR}${Python3_VERSION_MINOR}")
-FIND_PACKAGE(Boost REQUIRED COMPONENTS ${BOOST_PYTHON_COMPONENT} )
+FIND_PACKAGE(Boost REQUIRED COMPONENTS ${BOOST_PYTHON_COMPONENT})
 
-add_executable(PyPoc main.cpp
+ADD_EXECUTABLE(PyPoc main.cpp
         PyPocLibrary.cpp)
 TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC "BOOST_ALL_DYN_LINK" "$<$<CONFIG:Debug>:BOOST_DEBUG_PYTHON>")
 IF (WIN32)
@@ -119,28 +171,40 @@ IF (WIN32)
     TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC _WIN32_WINNT=0x0A00)
     TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC WINVER=0x0A00)
     TARGET_COMPILE_DEFINITIONS(PyPoc PUBLIC "$<$<CONFIG:Debug>:Py_DEBUG>")
-ENDIF()
+ENDIF ()
 
 TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${Python3_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 
 IF (USE_OPEN_TELEMETRY)
-    target_compile_definitions(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
+    TARGET_COMPILE_DEFINITIONS(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
     TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${OPENTELEMETRY_CPP_INCLUDE_DIRS})
     TARGET_LINK_LIBRARIES(PyPoc PRIVATE opentelemetry-cpp::api
-                          opentelemetry-cpp::common
-                          opentelemetry-cpp::logs
-                          opentelemetry-cpp::metrics
-                          opentelemetry-cpp::resources
-                          opentelemetry-cpp::sdk
-                          opentelemetry-cpp::trace
-                          opentelemetry-cpp::otlp_file_exporter
-                          opentelemetry-cpp::otlp_file_metric_exporter
-                          opentelemetry-cpp::otlp_file_log_record_exporter)
+            opentelemetry-cpp::common
+            opentelemetry-cpp::logs
+            opentelemetry-cpp::metrics
+            opentelemetry-cpp::resources
+            opentelemetry-cpp::sdk
+            opentelemetry-cpp::trace
+            opentelemetry-cpp::otlp_common
+            opentelemetry-cpp::proto
+            opentelemetry-cpp::otlp_recordable
+            opentelemetry-cpp::otlp_file_exporter
+            opentelemetry-cpp::otlp_file_metric_exporter
+            opentelemetry-cpp::otlp_file_log_record_exporter)
 ENDIF ()
 
-target_link_libraries(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
+TARGET_LINK_LIBRARIES(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
 
-INSTALL(TARGETS PyPoc DESTINATION bin)
+SET_TARGET_PROPERTIES(
+        PyPoc
+        PROPERTIES
+        INSTALL_RPATH
+        "${CMAKE_INSTALL_RPATH};${CMAKE_INSTALL_PREFIX}/lib")
+
+INSTALL(
+        TARGETS PyPoc
+        RUNTIME_DEPENDENCIES
+        DESTINATION bin)
 
 # As per https://braintrekking.wordpress.com/2013/04/27/dll-hell-how-to-include-microsoft-redistributable-runtime-libraries-in-your-cmakecpack-project/
 INSTALL(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)

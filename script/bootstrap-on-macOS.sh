@@ -24,7 +24,7 @@
 set -e
 
 echo "------------------------------------------"
-echo "--- bootstrap-on-macOS.sh | 2025-12-21 ---"
+echo "--- bootstrap-on-macOS.sh | 2026-10-02 ---"
 echo "------------------------------------------"
 
 brew install \
@@ -34,7 +34,7 @@ brew install \
     ninja \
     abseil \
     nlohmann-json \
-    protobuf-c \
+    protobuf \
     re2 \
     grpc \
     autoconf \
