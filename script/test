@@ -79,8 +79,6 @@ echo 'Running cmake install command'
 cmake --install . --config "$build_type" --prefix "$installedDir"
 
 pushd "$installedDir"
-echo 'Listing installed dir directory contents'
-ls -alR
 
 platform="$(uname | tr '[:upper:]' '[:lower:]')"
 if [ "$platform" != "darwin" ]; then
