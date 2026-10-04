@@ -32,9 +32,7 @@ brew install \
     python3 \
     boost-python3 \
     ninja \
-    abseil \
     nlohmann-json \
-    protobuf \
     re2 \
     grpc \
     autoconf \

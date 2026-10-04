@@ -160,8 +160,11 @@
       "cacheVariables": {
         "INSTALL_GTEST": "OFF",
         "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
         "FETCH_PROTOBUF": "ON",
-        "FETCH_ZLIB": "ON"
+        "FETCH_ZLIB": "ON",
+        "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
+        "FETCH_ABSEIL": "ON"
       }
     },
     {
