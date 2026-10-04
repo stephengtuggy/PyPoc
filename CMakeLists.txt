@@ -88,33 +88,51 @@ OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of 
 OPTION(FETCH_PROTOBUF "Whether to download Protobuf using FetchContent_MakeAvailable" ON)
 OPTION(USE_LOCALLY_INSTALLED_ZLIB "Whether to use locally-installed copy of ZLIB" OFF)
 OPTION(FETCH_ZLIB "Whether to download ZLIB using FetchContent_MakeAvailable" ON)
+OPTION(USE_LOCALLY_INSTALLED_ABSEIL "Whether to use locally-installed copy of Abseil" OFF)
+OPTION(FETCH_ABSEIL "Whether to download Abseil using FetchContent_MakeAvailable" ON)
 
 INCLUDE(FetchContent)
 
-IF (USE_LOCALLY_INSTALLED_ZLIB)
-    FIND_PACKAGE(ZLIB REQUIRED)
-ELSEIF (FETCH_ZLIB)
-    FETCHCONTENT_DECLARE(
-            zlib
-            GIT_REPOSITORY      https://github.com/madler/zlib.git
-            GIT_TAG             da607da739fa6047df13e66a2af6b8bec7c2a498                # v1.3.2
-    )
-    MESSAGE(STATUS "Downloading zlib")
-    FETCHCONTENT_MAKEAVAILABLE(zlib)
-    MESSAGE(STATUS "Finished fetching zlib")
-ENDIF ()
+IF (USE_OPEN_TELEMETRY)
+    SET(ABSL_ENABLE_INSTALL ON)
+    IF (USE_LOCALLY_INSTALLED_ABSEIL)
+        FIND_PACKAGE(absl CONFIG)
+    ELSEIF (FETCH_ABSEIL)
+        FETCHCONTENT_DECLARE(
+                absl
+                GIT_REPOSITORY      https://github.com/abseil/abseil-cpp.git
+                GIT_TAG             76bb24329e8bf5f39704eb10d21b9a80befa7c81                # 20250512.1 / 20250512.2
+        )
+        MESSAGE(STATUS "Downloading absl")
+        FETCHCONTENT_MAKEAVAILABLE(absl)
+        MESSAGE(STATUS "Finished fetching absl")
+    ENDIF ()
 
-IF (USE_LOCALLY_INSTALLED_PROTOBUF)
-    FIND_PACKAGE(Protobuf REQUIRED)
-ELSEIF (FETCH_PROTOBUF)
-    FETCHCONTENT_DECLARE(
-            Protobuf
-            GIT_REPOSITORY      https://github.com/protocolbuffers/protobuf.git
-            GIT_TAG             2dca62f7296e5b49d729f7384f975cecb38382a0                # v4.23.1
-    )
-    MESSAGE(STATUS "Downloading Protobuf")
-    FETCHCONTENT_MAKEAVAILABLE(Protobuf)
-    MESSAGE(STATUS "Finished fetching Protobuf")
+    IF (USE_LOCALLY_INSTALLED_ZLIB)
+        FIND_PACKAGE(ZLIB REQUIRED)
+    ELSEIF (FETCH_ZLIB)
+        FETCHCONTENT_DECLARE(
+                zlib
+                GIT_REPOSITORY      https://github.com/madler/zlib.git
+                GIT_TAG             da607da739fa6047df13e66a2af6b8bec7c2a498                # v1.3.2
+        )
+        MESSAGE(STATUS "Downloading zlib")
+        FETCHCONTENT_MAKEAVAILABLE(zlib)
+        MESSAGE(STATUS "Finished fetching zlib")
+    ENDIF ()
+
+    IF (USE_LOCALLY_INSTALLED_PROTOBUF)
+        FIND_PACKAGE(Protobuf CONFIG REQUIRED)
+    ELSEIF (FETCH_PROTOBUF)
+        FETCHCONTENT_DECLARE(
+                Protobuf
+                GIT_REPOSITORY      https://github.com/protocolbuffers/protobuf.git
+                GIT_TAG             35cd01f9fe9afbeea38cc7b979a3b6bfcde82c03                # v35.1
+        )
+        MESSAGE(STATUS "Downloading Protobuf")
+        FETCHCONTENT_MAKEAVAILABLE(Protobuf)
+        MESSAGE(STATUS "Finished fetching Protobuf")
+    ENDIF ()
 ENDIF ()
 
 IF (FETCH_OPEN_TELEMETRY)
@@ -178,7 +196,8 @@ TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${Python3_INCLUDE_DIRS} ${Boost_
 IF (USE_OPEN_TELEMETRY)
     TARGET_COMPILE_DEFINITIONS(PyPoc PRIVATE USE_OPEN_TELEMETRY=1)
     TARGET_INCLUDE_DIRECTORIES(PyPoc SYSTEM PRIVATE ${OPENTELEMETRY_CPP_INCLUDE_DIRS})
-    TARGET_LINK_LIBRARIES(PyPoc PRIVATE opentelemetry-cpp::api
+    TARGET_LINK_LIBRARIES(PyPoc PRIVATE
+            opentelemetry-cpp::api
             opentelemetry-cpp::common
             opentelemetry-cpp::logs
             opentelemetry-cpp::metrics
