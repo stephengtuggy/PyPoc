@@ -191,8 +191,11 @@
         "CMAKE_FIND_FRAMEWORK": "LAST",
         "INSTALL_GTEST": "OFF",
         "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
         "FETCH_PROTOBUF": "ON",
-        "FETCH_ZLIB": "ON"
+        "FETCH_ZLIB": "ON",
+        "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
+        "FETCH_ABSEIL": "ON"
       }
     },
     {
@@ -251,7 +254,15 @@
           "type": "FILEPATH"
         },
         "VCPKG_TARGET_TRIPLET": "x64-win10",
-        "VCPKG_HOST_TRIPLET": "x64-win10"
+        "VCPKG_HOST_TRIPLET": "x64-win10",
+        "INSTALL_GTEST": "OFF",
+        "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
+        "FETCH_PROTOBUF": "ON",
+        "USE_LOCALLY_INSTALLED_ZLIB": "OFF",
+        "FETCH_ZLIB": "ON",
+        "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
+        "FETCH_ABSEIL": "ON"
       },
       "condition": {
         "type": "equals",
