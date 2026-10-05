@@ -71,7 +71,7 @@ presetDir="$baseDir/build/$preset_name"
 installedDir="$presetDir/installed"
 binaryDir="$installedDir/bin"
 
-./script/install --preset_name $preset_name --build_type $build_type
+./script/install --preset-name="$preset_name" --build-type="$build_type"
 
 pushd "$installedDir"
 
