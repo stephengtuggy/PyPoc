@@ -223,6 +223,7 @@ SET_TARGET_PROPERTIES(
 INSTALL(
         TARGETS PyPoc
         RUNTIME_DEPENDENCIES
+        DIRECTORIES $ENV{PATH}
         PRE_EXCLUDE_REGEXES "api-ms-" "ext-ms-"
         POST_EXCLUDE_REGEXES ".*system32/.*\\.dll"
         DESTINATION bin)
@@ -232,5 +233,4 @@ INSTALL(
         FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
         DESTINATION bin
         COMPONENT Libraries
-        DIRECTORIES $ENV{PATH}
 )
