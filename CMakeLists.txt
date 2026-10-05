@@ -223,8 +223,14 @@ SET_TARGET_PROPERTIES(
 INSTALL(
         TARGETS PyPoc
         RUNTIME_DEPENDENCIES
-        PRE_EXCLUDE_REGEXES "^api-ms-win-.+" "^ext-ms-onecore-appmodel-.+" "^ext-ms-win-.+" "^ext-ms-win32-.+"
+        PRE_EXCLUDE_REGEXES "api-ms-" "ext-ms-"
+        POST_EXCLUDE_REGEXES ".*system32/.*\\.dll"
         DESTINATION bin)
 
 # As per https://braintrekking.wordpress.com/2013/04/27/dll-hell-how-to-include-microsoft-redistributable-runtime-libraries-in-your-cmakecpack-project/
-INSTALL(FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION bin COMPONENT Libraries)
+INSTALL(
+        FILES ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS}
+        DESTINATION bin
+        COMPONENT Libraries
+        DIRECTORIES $ENV{PATH}
+)
