@@ -129,12 +129,16 @@ IF (USE_OPEN_TELEMETRY)
         MESSAGE(STATUS "Finished fetching zlib")
     ENDIF ()
 
+    SET(protobuf_INSTALL ON CACHE BOOL "" FORCE)
+    SET(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+    SET(protobuf_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
     SET(protobuf_MSVC_STATIC_RUNTIME OFF)
     SET(protobuf_ABSL_PROVIDER "package")
     SET(protobuf_WITH_ZLIB ON)
     SET(protobuf_ZLIB_PROVIDER "package")
     IF (USE_LOCALLY_INSTALLED_PROTOBUF)
         FIND_PACKAGE(Protobuf CONFIG REQUIRED)
+        SET(protobuf_PROVIDER "find_package")
     ELSEIF (FETCH_PROTOBUF)
         FETCHCONTENT_DECLARE(
                 Protobuf
@@ -144,6 +148,11 @@ IF (USE_OPEN_TELEMETRY)
         MESSAGE(STATUS "Downloading Protobuf")
         FETCHCONTENT_MAKEAVAILABLE(Protobuf)
         MESSAGE(STATUS "Finished fetching Protobuf")
+        SET(protobuf_PROVIDER "fetch_repository")
+    ENDIF ()
+
+    IF(TARGET libprotobuf)
+        SET_TARGET_PROPERTIES(libprotobuf PROPERTIES POSITION_INDEPENDENT_CODE ON CXX_CLANG_TIDY "" CXX_INCLUDE_WHAT_YOU_USE "")
     ENDIF ()
 ENDIF ()
 
