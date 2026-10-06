@@ -258,11 +258,11 @@
         "INSTALL_GTEST": "OFF",
         "USE_GTEST": "OFF",
         "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
-        "FETCH_PROTOBUF": "ON",
+        "FETCH_PROTOBUF": "OFF",
         "USE_LOCALLY_INSTALLED_ZLIB": "OFF",
-        "FETCH_ZLIB": "ON",
+        "FETCH_ZLIB": "OFF",
         "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
-        "FETCH_ABSEIL": "ON"
+        "FETCH_ABSEIL": "OFF"
       },
       "condition": {
         "type": "equals",
