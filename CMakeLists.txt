@@ -101,6 +101,7 @@ IF (USE_OPEN_TELEMETRY)
     SET(ABSL_ENABLE_INSTALL ON)
     SET(ABSL_MSVC_STATIC_RUNTIME ON)
     SET(ABSL_USE_EXTERNAL_GOOGLETEST ON)
+    SET(ABSL_PROPAGATE_CXX_STD ON)
     IF (USE_LOCALLY_INSTALLED_ABSEIL)
         FIND_PACKAGE(absl CONFIG)
     ELSEIF (FETCH_ABSEIL)
@@ -128,6 +129,9 @@ IF (USE_OPEN_TELEMETRY)
     ENDIF ()
 
     SET(protobuf_MSVC_STATIC_RUNTIME OFF)
+    SET(protobuf_ABSL_PROVIDER "package")
+    SET(protobuf_WITH_ZLIB ON)
+    SET(protobuf_ZLIB_PROVIDER "package")
     IF (USE_LOCALLY_INSTALLED_PROTOBUF)
         FIND_PACKAGE(Protobuf CONFIG REQUIRED)
     ELSEIF (FETCH_PROTOBUF)
@@ -216,7 +220,10 @@ IF (USE_OPEN_TELEMETRY)
             opentelemetry-cpp::otlp_recordable
             opentelemetry-cpp::otlp_file_exporter
             opentelemetry-cpp::otlp_file_metric_exporter
-            opentelemetry-cpp::otlp_file_log_record_exporter)
+            opentelemetry-cpp::otlp_file_log_record_exporter
+            protobuf::libprotobuf
+            absl::base
+    )
 ENDIF ()
 
 TARGET_LINK_LIBRARIES(PyPoc PRIVATE ${Python3_LIBRARIES} ${Boost_LIBRARIES})
