@@ -1,7 +1,6 @@
-#!/usr/bin/env bash
 # The MIT License (MIT)
 #
-# Copyright © 2022-2025 Stephen G. Tuggy
+# Copyright © 2026 Stephen G. Tuggy
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the “Software”), to deal
@@ -21,24 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-set -e
+param(
+    [String]$PresetName = "VS2022Win64-pie-enabled-RelWithDebInfo",
+    [String]$BuildType = "RelWithDebInfo" # You can also specify "Debug" or "Release"
+)
 
-echo "------------------------------------------"
-echo "--- bootstrap-on-macOS.sh | 2026-10-02 ---"
-echo "------------------------------------------"
+[String]$baseDir = (Get-Location -PSProvider "FileSystem").Path
+[String]$presetDir = "$baseDir\build\$PresetName"
+[String]$installedDir = "$presetDir\installed"
 
-brew install \
-    gcc \
-    python3 \
-    boost-python3 \
-    ninja \
-    nlohmann-json \
-    re2 \
-    grpc \
-    autoconf \
-    autoconf-archive \
-    automake \
-    libtool
+Push-Location $presetDir
+echo 'Listing preset dir directory contents'
+Get-ChildItem . -Recurse -Force -File -Filter 'PyPoc.exe'
 
-# Only install cmake if it isn't installed yet
-brew ls --versions cmake || brew install cmake
+echo 'Running cmake install command'
+cmake --install . --config $BuildType --prefix $installedDir
+
+Pop-Location

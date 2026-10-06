@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright © 2022-2025 Stephen G. Tuggy
+// Copyright © 2022-2026 Stephen G. Tuggy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -40,31 +40,31 @@
 
 namespace nostd = opentelemetry::nostd;
 
-namespace
-{
-    nostd::shared_ptr<opentelemetry::trace::Tracer> get_tracer()
-    {
-        const nostd::shared_ptr<opentelemetry::trace::TracerProvider> provider = opentelemetry::trace::Provider::GetTracerProvider();
+namespace {
+    nostd::shared_ptr<opentelemetry::trace::Tracer> get_tracer() {
+        const nostd::shared_ptr<opentelemetry::trace::TracerProvider> provider =
+                opentelemetry::trace::Provider::GetTracerProvider();
         return provider->GetTracer("py_poc_library");
     }
 
-    nostd::shared_ptr<opentelemetry::logs::Logger> get_logger()
-    {
-        const nostd::shared_ptr<opentelemetry::logs::LoggerProvider> provider = opentelemetry::logs::Provider::GetLoggerProvider();
+    nostd::shared_ptr<opentelemetry::logs::Logger> get_logger() {
+        const nostd::shared_ptr<opentelemetry::logs::LoggerProvider> provider =
+                opentelemetry::logs::Provider::GetLoggerProvider();
         return provider->GetLogger("py_poc_library_logger", "py_poc_library");
     }
-}  // namespace
+} // namespace
 
 #endif
 
 namespace py_poc {
     void PyPocLibrary::foo() {
 #if defined(USE_OPEN_TELEMETRY)
-        const nostd::shared_ptr<opentelemetry::trace::Tracer>   tracer      = get_tracer();
-        nostd::shared_ptr<opentelemetry::trace::Span>           span        = tracer->StartSpan("span 1");
-        opentelemetry::trace::Scope                             scoped_span = nostd::shared_ptr<opentelemetry::trace::Tracer>::element_type::WithActiveSpan(span);
-        const opentelemetry::trace::SpanContext                 ctx         = span->GetContext();
-        const nostd::shared_ptr<opentelemetry::logs::Logger>    logger      = get_logger();
+        const nostd::shared_ptr<opentelemetry::trace::Tracer> tracer = get_tracer();
+        nostd::shared_ptr<opentelemetry::trace::Span> span = tracer->StartSpan("span 1");
+        opentelemetry::trace::Scope scoped_span = nostd::shared_ptr<
+            opentelemetry::trace::Tracer>::element_type::WithActiveSpan(span);
+        const opentelemetry::trace::SpanContext ctx = span->GetContext();
+        const nostd::shared_ptr<opentelemetry::logs::Logger> logger = get_logger();
 
         logger->Debug("Test Debug Message", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
         constexpr opentelemetry::logs::Severity severity = opentelemetry::logs::Severity::kDebug;

@@ -30,16 +30,7 @@ param(
 [String]$installedDir = "$presetDir\installed"
 [String]$binaryDir = "$installedDir\bin"
 
-Push-Location $presetDir
-echo 'Listing preset dir directory contents'
-Get-ChildItem . -Recurse -Force -File -Filter 'PyPoc.exe'
-
-echo 'Running cmake install command'
-cmake --install . --config $BuildType --prefix $installedDir
-
-Push-Location $installedDir
-echo 'Listing installed dir directory contents'
-Get-ChildItem . -Recurse -Force -File
+.\script\install.ps1 -PresetName $PresetName -BuildType $BuildType
 
 $env:PYTHONUNBUFFERED = 1
 $env:PYTHONHOME = $null
@@ -47,6 +38,4 @@ $env:PYTHONPATH = $null
 Push-Location $binaryDir
 .\PyPoc.exe
 
-Pop-Location
-Pop-Location
 Pop-Location

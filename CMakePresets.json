@@ -156,6 +156,15 @@
         "type": "equals",
         "lhs": "${hostSystemName}",
         "rhs": "Darwin"
+      },
+      "cacheVariables": {
+        "INSTALL_GTEST": "OFF",
+        "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
+        "FETCH_PROTOBUF": "ON",
+        "FETCH_ZLIB": "ON",
+        "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
+        "FETCH_ABSEIL": "ON"
       }
     },
     {
@@ -181,7 +190,12 @@
         "Boost_DIR": "/opt/local/libexec/boost/1.87/lib/cmake/Boost-1.87.0",
         "CMAKE_FIND_FRAMEWORK": "LAST",
         "INSTALL_GTEST": "OFF",
-        "USE_GTEST": "OFF"
+        "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
+        "FETCH_PROTOBUF": "ON",
+        "FETCH_ZLIB": "ON",
+        "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
+        "FETCH_ABSEIL": "ON"
       }
     },
     {
@@ -241,7 +255,14 @@
         },
         "VCPKG_TARGET_TRIPLET": "x64-win10",
         "VCPKG_HOST_TRIPLET": "x64-win10",
-        "X_VCPKG_APPLOCAL_DEPS_INSTALL": true
+        "INSTALL_GTEST": "OFF",
+        "USE_GTEST": "OFF",
+        "USE_LOCALLY_INSTALLED_PROTOBUF": "OFF",
+        "FETCH_PROTOBUF": "ON",
+        "USE_LOCALLY_INSTALLED_ZLIB": "OFF",
+        "FETCH_ZLIB": "ON",
+        "USE_LOCALLY_INSTALLED_ABSEIL": "OFF",
+        "FETCH_ABSEIL": "ON"
       },
       "condition": {
         "type": "equals",
