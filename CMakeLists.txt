@@ -86,6 +86,7 @@ ADD_LINK_OPTIONS(
         "$<$<AND:$<CXX_COMPILER_ID:MSVC>,$<CONFIG:RelWithDebInfo>>:/DEBUG>"
 )
 
+INCLUDE(CMakeDependentOption)
 OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
 cmake_dependent_option(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF "USE_OPEN_TELEMETRY" OFF)
