@@ -88,12 +88,12 @@ ADD_LINK_OPTIONS(
 
 OPTION(FETCH_OPEN_TELEMETRY "Whether to download opentelemetry-cpp using FetchContent_MakeAvailable" OFF)
 OPTION(USE_OPEN_TELEMETRY "Whether to use opentelemetry-cpp, regardless of how it is installed" OFF)
-OPTION(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF)
-OPTION(FETCH_PROTOBUF "Whether to download Protobuf using FetchContent_MakeAvailable" ON)
-OPTION(USE_LOCALLY_INSTALLED_ZLIB "Whether to use locally-installed copy of ZLIB" OFF)
-OPTION(FETCH_ZLIB "Whether to download ZLIB using FetchContent_MakeAvailable" ON)
-OPTION(USE_LOCALLY_INSTALLED_ABSEIL "Whether to use locally-installed copy of Abseil" OFF)
-OPTION(FETCH_ABSEIL "Whether to download Abseil using FetchContent_MakeAvailable" ON)
+cmake_dependent_option(USE_LOCALLY_INSTALLED_PROTOBUF "Whether to use locally-installed copy of Protobuf" OFF "USE_OPEN_TELEMETRY" OFF)
+cmake_dependent_option(FETCH_PROTOBUF "Whether to download Protobuf using FetchContent_MakeAvailable" ON "USE_OPEN_TELEMETRY;NOT USE_LOCALLY_INSTALLED_PROTOBUF" OFF)
+cmake_dependent_option(USE_LOCALLY_INSTALLED_ZLIB "Whether to use locally-installed copy of ZLIB" OFF "USE_OPEN_TELEMETRY" OFF)
+cmake_dependent_option(FETCH_ZLIB "Whether to download ZLIB using FetchContent_MakeAvailable" ON "USE_OPEN_TELEMETRY;NOT USE_LOCALLY_INSTALLED_ZLIB" OFF)
+cmake_dependent_option(USE_LOCALLY_INSTALLED_ABSEIL "Whether to use locally-installed copy of Abseil" OFF "USE_OPEN_TELEMETRY" OFF)
+cmake_dependent_option(FETCH_ABSEIL "Whether to download Abseil using FetchContent_MakeAvailable" ON "USE_OPEN_TELEMETRY;NOT USE_LOCALLY_INSTALLED_ABSEIL" OFF)
 
 INCLUDE(FetchContent)
 
