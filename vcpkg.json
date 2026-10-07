@@ -5,14 +5,7 @@
   "builtin-baseline": "9e593bb18ea69cc5095e012465dcd675a822ed0d",
   "dependencies": [
     "boost-python",
-    "python3",
-    {
-      "name": "opentelemetry-cpp",
-      "version>=": "1.28.0",
-      "features": [
-        "otlp-file"
-      ]
-    }
+    "python3"
   ],
   "overrides": [
     {
