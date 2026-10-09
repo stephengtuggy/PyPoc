@@ -56,7 +56,7 @@ jobs:
           - 'linuxmintd/mint22.3-amd64'
           - 'linuxmintd/mint22.2-amd64'
           - 'linuxmintd/mint22-amd64'
-          - 'dhi.io/python:3.13-debian13-dev'
+          - 'dhi.io/python:3.13-debian13-sfw-dev'
           - 'debian:bookworm'
           - 'opensuse/leap:16.0'
           #- 'fedora:45'
