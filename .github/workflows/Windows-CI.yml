@@ -151,7 +151,7 @@ jobs:
 
       - name: Setup Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
-        id: vega-py-setup
+        id: poc-py-setup
         with:
           python-version: ${{ matrix.python-version }}
 

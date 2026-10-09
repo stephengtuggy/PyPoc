@@ -56,7 +56,7 @@ ENDIF (WIN32)
 
 PROJECT(PyPoc
         LANGUAGES CXX
-        VERSION 0.4.2)
+        VERSION 0.4.3)
 
 SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -99,13 +99,19 @@ cmake_dependent_option(FETCH_ABSEIL "Whether to download Abseil using FetchConte
 INCLUDE(FetchContent)
 
 IF (USE_OPEN_TELEMETRY)
-    SET(ABSL_ENABLE_INSTALL ON)
-    SET(ABSL_MSVC_STATIC_RUNTIME ON)
-    SET(ABSL_USE_EXTERNAL_GOOGLETEST ON)
-    SET(ABSL_PROPAGATE_CXX_STD ON)
     IF (USE_LOCALLY_INSTALLED_ABSEIL)
+        SET(ABSL_ENABLE_INSTALL ON)
+        SET(ABSL_MSVC_STATIC_RUNTIME ON)
+        SET(ABSL_USE_EXTERNAL_GOOGLETEST ON)
+        SET(ABSL_PROPAGATE_CXX_STD ON)
+
         FIND_PACKAGE(absl CONFIG REQUIRED)
     ELSEIF (FETCH_ABSEIL)
+        SET(ABSL_ENABLE_INSTALL ON)
+        SET(ABSL_MSVC_STATIC_RUNTIME ON)
+        SET(ABSL_USE_EXTERNAL_GOOGLETEST ON)
+        SET(ABSL_PROPAGATE_CXX_STD ON)
+
         FETCHCONTENT_DECLARE(
                 absl
                 GIT_REPOSITORY      https://github.com/abseil/abseil-cpp.git
@@ -133,17 +139,26 @@ IF (USE_OPEN_TELEMETRY)
         SET_TARGET_PROPERTIES(zlib PROPERTIES POSITION_INDEPENDENT_CODE ON MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     ENDIF ()
 
-    SET(protobuf_INSTALL ON CACHE BOOL "" FORCE)
-    SET(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-    SET(protobuf_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-    SET(protobuf_MSVC_STATIC_RUNTIME ON)
-    SET(protobuf_ABSL_PROVIDER "package")
-    SET(protobuf_WITH_ZLIB ON)
-    SET(protobuf_ZLIB_PROVIDER "package")
     IF (USE_LOCALLY_INSTALLED_PROTOBUF)
+        SET(protobuf_INSTALL ON CACHE BOOL "" FORCE)
+        SET(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+        SET(protobuf_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+        SET(protobuf_MSVC_STATIC_RUNTIME ON)
+        SET(protobuf_ABSL_PROVIDER "package")
+        SET(protobuf_WITH_ZLIB ON)
+        SET(protobuf_ZLIB_PROVIDER "package")
+
         FIND_PACKAGE(Protobuf CONFIG REQUIRED)
         SET(protobuf_PROVIDER "find_package")
     ELSEIF (FETCH_PROTOBUF)
+        SET(protobuf_INSTALL ON CACHE BOOL "" FORCE)
+        SET(protobuf_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+        SET(protobuf_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+        SET(protobuf_MSVC_STATIC_RUNTIME ON)
+        SET(protobuf_ABSL_PROVIDER "package")
+        SET(protobuf_WITH_ZLIB ON)
+        SET(protobuf_ZLIB_PROVIDER "package")
+
         FETCHCONTENT_DECLARE(
                 Protobuf
                 GIT_REPOSITORY      https://github.com/protocolbuffers/protobuf.git
@@ -235,8 +250,6 @@ IF (USE_OPEN_TELEMETRY)
             opentelemetry-cpp::otlp_file_exporter
             opentelemetry-cpp::otlp_file_metric_exporter
             opentelemetry-cpp::otlp_file_log_record_exporter
-            protobuf::libprotobuf
-            absl::base
     )
 ENDIF ()
 
