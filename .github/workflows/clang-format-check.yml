@@ -45,3 +45,4 @@ jobs:
         with:
           clang-format-version: '19'
           check-path: '.'
+          fallback-style: 'Google'
