@@ -26,42 +26,42 @@
 #include "PyPocLibrary.h"
 
 #ifdef USE_OPEN_TELEMETRY
-#include <functional>
-#include <iostream>
-#include <string>
-#include <utility>
+#   include <functional>
+#   include <iostream>
+#   include <string>
+#   include <utility>
 
-#include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
-#include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
-#include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
-#include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h"
-#include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
-#include "opentelemetry/logs/logger_provider.h"
-#include "opentelemetry/logs/provider.h"
-#include "opentelemetry/nostd/shared_ptr.h"
-#include "opentelemetry/sdk/logs/logger_provider.h"
-#include "opentelemetry/sdk/logs/logger_provider_factory.h"
-#include "opentelemetry/sdk/logs/provider.h"
-#include "opentelemetry/sdk/logs/simple_log_record_processor_factory.h"
-#include "opentelemetry/sdk/trace/provider.h"
-#include "opentelemetry/sdk/trace/simple_processor_factory.h"
-#include "opentelemetry/sdk/trace/tracer_provider.h"
-#include "opentelemetry/sdk/trace/tracer_provider_factory.h"
-#include "opentelemetry/trace/provider.h"
-#include "opentelemetry/trace/tracer_provider.h"
+#   include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
+#   include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
+#   include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
+#   include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h"
+#   include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
+#   include "opentelemetry/logs/logger_provider.h"
+#   include "opentelemetry/logs/provider.h"
+#   include "opentelemetry/nostd/shared_ptr.h"
+#   include "opentelemetry/sdk/logs/logger_provider.h"
+#   include "opentelemetry/sdk/logs/logger_provider_factory.h"
+#   include "opentelemetry/sdk/logs/provider.h"
+#   include "opentelemetry/sdk/logs/simple_log_record_processor_factory.h"
+#   include "opentelemetry/sdk/trace/provider.h"
+#   include "opentelemetry/sdk/trace/simple_processor_factory.h"
+#   include "opentelemetry/sdk/trace/tracer_provider.h"
+#   include "opentelemetry/sdk/trace/tracer_provider_factory.h"
+#   include "opentelemetry/trace/provider.h"
+#   include "opentelemetry/trace/tracer_provider.h"
 
 namespace nostd = opentelemetry::nostd;
 
-static opentelemetry::exporter::otlp::OtlpFileExporterOptions opts;
+static opentelemetry::exporter::otlp::OtlpFileExporterOptions          opts;
 static opentelemetry::exporter::otlp::OtlpFileLogRecordExporterOptions log_opts;
 
 static std::shared_ptr<opentelemetry::sdk::trace::TracerProvider> tracer_provider;
-static std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider> logger_provider;
+static std::shared_ptr<opentelemetry::sdk::logs::LoggerProvider>  logger_provider;
 
 static void InitTracer() {
     // Create OTLP exporter instance
-    auto exporter = opentelemetry::exporter::otlp::OtlpFileExporterFactory::Create(opts);
-    auto processor = opentelemetry::sdk::trace::SimpleSpanProcessorFactory::Create(std::move(exporter));
+    auto exporter   = opentelemetry::exporter::otlp::OtlpFileExporterFactory::Create(opts);
+    auto processor  = opentelemetry::sdk::trace::SimpleSpanProcessorFactory::Create(std::move(exporter));
     tracer_provider = opentelemetry::sdk::trace::TracerProviderFactory::Create(std::move(processor));
 
     // Set the global trace provider
@@ -77,8 +77,8 @@ static void CleanupTracer() {
 
 static void InitLogger() {
     // Create OTLP exporter instance
-    auto exporter = opentelemetry::exporter::otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
-    auto processor = opentelemetry::sdk::logs::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
+    auto exporter   = opentelemetry::exporter::otlp::OtlpFileLogRecordExporterFactory::Create(log_opts);
+    auto processor  = opentelemetry::sdk::logs::SimpleLogRecordProcessorFactory::Create(std::move(exporter));
     logger_provider = opentelemetry::sdk::logs::LoggerProviderFactory::Create(std::move(processor));
 
     std::shared_ptr<opentelemetry::logs::LoggerProvider> api_provider = logger_provider;
@@ -97,19 +97,19 @@ int main(int argc, char *argv[]) {
 #if defined(USE_OPEN_TELEMETRY)
     if (argc > 1) {
         opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
-        fs_backend.file_pattern = argv[1];
+        fs_backend.file_pattern  = argv[1];
         fs_backend.alias_pattern = "PyPoc_trace_latest.jsonl";
-        opts.backend_options = fs_backend;
+        opts.backend_options     = fs_backend;
         if (argc > 2) {
             opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions logs_fs_backend;
-            logs_fs_backend.file_pattern = argv[2];
+            logs_fs_backend.file_pattern  = argv[2];
             logs_fs_backend.alias_pattern = "PyPoc_logs_latest.jsonl";
-            log_opts.backend_options = logs_fs_backend;
+            log_opts.backend_options      = logs_fs_backend;
         } else {
             log_opts.backend_options = std::ref(std::cout);
         }
     } else {
-        opts.backend_options = std::ref(std::cout);
+        opts.backend_options     = std::ref(std::cout);
         log_opts.backend_options = std::ref(std::cout);
     }
     InitLogger();
@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
     Py_Initialize();
 
     try {
-        boost::python::object main_module = boost::python::import("__main__");
+        boost::python::object main_module    = boost::python::import("__main__");
         boost::python::object main_namespace = main_module.attr("__dict__");
         boost::python::object ignored = boost::python::exec("print(\"Hello world from Python!\")", main_namespace);
     } catch (const boost::python::error_already_set &) {
@@ -138,6 +138,6 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-//PyObject* MyPyFunc() {
+// PyObject* MyPyFunc() {
 //
-//}
+// }
