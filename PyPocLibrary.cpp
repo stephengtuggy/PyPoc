@@ -22,7 +22,7 @@
 
 #include "PyPocLibrary.h"
 
-#if defined(USE_OPEN_TELEMETRY)
+#ifdef USE_OPEN_TELEMETRY
 #    include <map>
 #    include <string>
 
@@ -58,7 +58,7 @@ nostd::shared_ptr<opentelemetry::logs::Logger> get_logger() {
 
 namespace py_poc {
 void PyPocLibrary::foo() {
-#if defined(USE_OPEN_TELEMETRY)
+#ifdef USE_OPEN_TELEMETRY
     const nostd::shared_ptr<opentelemetry::trace::Tracer> tracer = get_tracer();
     nostd::shared_ptr<opentelemetry::trace::Span>         span   = tracer->StartSpan("span 1");
     opentelemetry::trace::Scope                           scoped_span =

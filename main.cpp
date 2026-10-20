@@ -26,29 +26,29 @@
 #include "PyPocLibrary.h"
 
 #ifdef USE_OPEN_TELEMETRY
-#   include <functional>
-#   include <iostream>
-#   include <string>
-#   include <utility>
+#    include <functional>
+#    include <iostream>
+#    include <string>
+#    include <utility>
 
-#   include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
-#   include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
-#   include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
-#   include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h"
-#   include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
-#   include "opentelemetry/logs/logger_provider.h"
-#   include "opentelemetry/logs/provider.h"
-#   include "opentelemetry/nostd/shared_ptr.h"
-#   include "opentelemetry/sdk/logs/logger_provider.h"
-#   include "opentelemetry/sdk/logs/logger_provider_factory.h"
-#   include "opentelemetry/sdk/logs/provider.h"
-#   include "opentelemetry/sdk/logs/simple_log_record_processor_factory.h"
-#   include "opentelemetry/sdk/trace/provider.h"
-#   include "opentelemetry/sdk/trace/simple_processor_factory.h"
-#   include "opentelemetry/sdk/trace/tracer_provider.h"
-#   include "opentelemetry/sdk/trace/tracer_provider_factory.h"
-#   include "opentelemetry/trace/provider.h"
-#   include "opentelemetry/trace/tracer_provider.h"
+#    include "opentelemetry/exporters/otlp/otlp_file_client_options.h"
+#    include "opentelemetry/exporters/otlp/otlp_file_exporter_factory.h"
+#    include "opentelemetry/exporters/otlp/otlp_file_exporter_options.h"
+#    include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_factory.h"
+#    include "opentelemetry/exporters/otlp/otlp_file_log_record_exporter_options.h"
+#    include "opentelemetry/logs/logger_provider.h"
+#    include "opentelemetry/logs/provider.h"
+#    include "opentelemetry/nostd/shared_ptr.h"
+#    include "opentelemetry/sdk/logs/logger_provider.h"
+#    include "opentelemetry/sdk/logs/logger_provider_factory.h"
+#    include "opentelemetry/sdk/logs/provider.h"
+#    include "opentelemetry/sdk/logs/simple_log_record_processor_factory.h"
+#    include "opentelemetry/sdk/trace/provider.h"
+#    include "opentelemetry/sdk/trace/simple_processor_factory.h"
+#    include "opentelemetry/sdk/trace/tracer_provider.h"
+#    include "opentelemetry/sdk/trace/tracer_provider_factory.h"
+#    include "opentelemetry/trace/provider.h"
+#    include "opentelemetry/trace/tracer_provider.h"
 
 namespace nostd = opentelemetry::nostd;
 
@@ -94,7 +94,7 @@ static void CleanupLogger() {
 #endif
 
 int main(int argc, char *argv[]) {
-#if defined(USE_OPEN_TELEMETRY)
+#ifdef USE_OPEN_TELEMETRY
     if (argc > 1) {
         opentelemetry::exporter::otlp::OtlpFileClientFileSystemOptions fs_backend;
         fs_backend.file_pattern  = argv[1];
@@ -130,7 +130,7 @@ int main(int argc, char *argv[]) {
     auto library_instance = std::make_shared<py_poc::PyPocLibrary>();
     library_instance->foo();
 
-#if defined(USE_OPEN_TELEMETRY)
+#ifdef USE_OPEN_TELEMETRY
     CleanupTracer();
     CleanupLogger();
 #endif
