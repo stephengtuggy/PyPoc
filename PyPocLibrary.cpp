@@ -23,57 +23,57 @@
 #include "PyPocLibrary.h"
 
 #if defined(USE_OPEN_TELEMETRY)
-#include "opentelemetry/logs/logger.h"
-#include "opentelemetry/logs/logger_provider.h"
-#include "opentelemetry/logs/provider.h"
-#include "opentelemetry/nostd/shared_ptr.h"
-#include "opentelemetry/nostd/string_view.h"
-#include "opentelemetry/trace/provider.h"
-#include "opentelemetry/trace/scope.h"
-#include "opentelemetry/trace/span.h"
-#include "opentelemetry/trace/span_context.h"
-#include "opentelemetry/trace/tracer.h"
-#include "opentelemetry/trace/tracer_provider.h"
+#    include <map>
+#    include <string>
 
-#include <map>
-#include <string>
+#    include "opentelemetry/logs/logger.h"
+#    include "opentelemetry/logs/logger_provider.h"
+#    include "opentelemetry/logs/provider.h"
+#    include "opentelemetry/nostd/shared_ptr.h"
+#    include "opentelemetry/nostd/string_view.h"
+#    include "opentelemetry/trace/provider.h"
+#    include "opentelemetry/trace/scope.h"
+#    include "opentelemetry/trace/span.h"
+#    include "opentelemetry/trace/span_context.h"
+#    include "opentelemetry/trace/tracer.h"
+#    include "opentelemetry/trace/tracer_provider.h"
 
 namespace nostd = opentelemetry::nostd;
 
 namespace {
-    nostd::shared_ptr<opentelemetry::trace::Tracer> get_tracer() {
-        const nostd::shared_ptr<opentelemetry::trace::TracerProvider> provider =
-                opentelemetry::trace::Provider::GetTracerProvider();
-        return provider->GetTracer("py_poc_library");
-    }
+nostd::shared_ptr<opentelemetry::trace::Tracer> get_tracer() {
+    const nostd::shared_ptr<opentelemetry::trace::TracerProvider> provider =
+            opentelemetry::trace::Provider::GetTracerProvider();
+    return provider->GetTracer("py_poc_library");
+}
 
-    nostd::shared_ptr<opentelemetry::logs::Logger> get_logger() {
-        const nostd::shared_ptr<opentelemetry::logs::LoggerProvider> provider =
-                opentelemetry::logs::Provider::GetLoggerProvider();
-        return provider->GetLogger("py_poc_library_logger", "py_poc_library");
-    }
-} // namespace
+nostd::shared_ptr<opentelemetry::logs::Logger> get_logger() {
+    const nostd::shared_ptr<opentelemetry::logs::LoggerProvider> provider =
+            opentelemetry::logs::Provider::GetLoggerProvider();
+    return provider->GetLogger("py_poc_library_logger", "py_poc_library");
+}
+}  // namespace
 
 #endif
 
 namespace py_poc {
-    void PyPocLibrary::foo() {
+void PyPocLibrary::foo() {
 #if defined(USE_OPEN_TELEMETRY)
-        const nostd::shared_ptr<opentelemetry::trace::Tracer> tracer = get_tracer();
-        nostd::shared_ptr<opentelemetry::trace::Span> span = tracer->StartSpan("span 1");
-        opentelemetry::trace::Scope scoped_span = nostd::shared_ptr<
-            opentelemetry::trace::Tracer>::element_type::WithActiveSpan(span);
-        const opentelemetry::trace::SpanContext ctx = span->GetContext();
-        const nostd::shared_ptr<opentelemetry::logs::Logger> logger = get_logger();
+    const nostd::shared_ptr<opentelemetry::trace::Tracer> tracer = get_tracer();
+    nostd::shared_ptr<opentelemetry::trace::Span>         span   = tracer->StartSpan("span 1");
+    opentelemetry::trace::Scope                           scoped_span =
+            nostd::shared_ptr<opentelemetry::trace::Tracer>::element_type::WithActiveSpan(span);
+    const opentelemetry::trace::SpanContext              ctx    = span->GetContext();
+    const nostd::shared_ptr<opentelemetry::logs::Logger> logger = get_logger();
 
-        logger->Debug("Test Debug Message", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
-        constexpr opentelemetry::logs::Severity severity = opentelemetry::logs::Severity::kDebug;
-        logger->Log(severity, "Test Log Message");
+    logger->Debug("Test Debug Message", ctx.trace_id(), ctx.span_id(), ctx.trace_flags());
+    constexpr opentelemetry::logs::Severity severity = opentelemetry::logs::Severity::kDebug;
+    logger->Log(severity, "Test Log Message");
 
-        const opentelemetry::logs::EventId event_id{1, "TestEventID"};
-        std::map<std::string, std::string> labels{};
-        const auto labelkv = opentelemetry::common::KeyValueIterableView<decltype(labels)>{labels};
-        logger->Log(severity, event_id, "Test Log Message with attributes and event ID", labelkv);
+    const opentelemetry::logs::EventId event_id{1, "TestEventID"};
+    std::map<std::string, std::string> labels{};
+    const auto                         labelkv = opentelemetry::common::KeyValueIterableView<decltype(labels)>{labels};
+    logger->Log(severity, event_id, "Test Log Message with attributes and event ID", labelkv);
 #endif
-    }
-} // py_poc
+}
+}  // namespace py_poc
