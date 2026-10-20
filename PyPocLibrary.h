@@ -24,10 +24,10 @@
 #define PYPOC_PYPOCLIBRARY_H
 
 namespace py_poc {
-    class PyPocLibrary {
-    public:
-        void foo();
-    };
-} // py_poc
+class PyPocLibrary {
+public:
+    void foo();
+};
+}  // namespace py_poc
 
-#endif //PYPOC_PYPOCLIBRARY_H
+#endif  // PYPOC_PYPOCLIBRARY_H
