@@ -35,9 +35,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build_and_test:
     # The type of runner that the job will run on
@@ -161,7 +158,7 @@ jobs:
       - name: Install vcpkg
         uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
         with:
-          binaryCachePath: "${{ github.workspace }}\\vcpkgBCache"
+          binaryCachePath: "${{ github.workspace }}/vcpkgBCache"
           runVcpkgInstall: true
 
       - name: Save vcpkg cache
