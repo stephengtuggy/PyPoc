@@ -161,6 +161,7 @@ jobs:
         with:
           binaryCachePath: "${{ github.workspace }}/vcpkgBCache"
           runVcpkgInstall: true
+          runVcpkgFormatString: '[`install`, `--recurse`, `--clean-after-build`, `--x-install-root`, `$[env.VCPKG_INSTALLED_DIR]`, `--triplet`, `$[env.VCPKG_DEFAULT_TRIPLET]`]'
 
       - name: Save vcpkg cache
         id: cache-vcpkg-save
