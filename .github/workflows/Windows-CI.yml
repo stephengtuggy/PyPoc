@@ -175,10 +175,12 @@ jobs:
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
-      - name: Build the code
-        run: |
-          & "${{ github.workspace }}\\script\\build.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
-        shell: pwsh
+      - name: Run CMake (Configure and Build)
+        uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956  # v10.9
+        with:
+          configurePreset: "${{ matrix.preset-name }}"
+          buildPreset: "build-${{ matrix.preset-name }}"
+          buildPresetAdditionalArgs: "[`--config`, `${{ matrix.build-type }}`]"
 
       - name: Look for the Boost.Python libraries
         run: |
