@@ -35,9 +35,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build_and_test:
     # The type of runner that the job will run on
@@ -79,32 +76,32 @@ jobs:
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-debug-no-otel
             build-type: Debug
-            os: windows-2025-vs2026
+            os: windows-2025
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-release-no-otel
             build-type: Release
-            os: windows-2025-vs2026
+            os: windows-2025
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-no-otel
             build-type: RelWithDebInfo
-            os: windows-2025-vs2026
+            os: windows-2025
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-debug-fetch-use-otel
             build-type: Debug
-            os: windows-2025-vs2026
+            os: windows-2025
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-release-fetch-use-otel
             build-type: Release
-            os: windows-2025-vs2026
+            os: windows-2025
             triplet: x64-win10
             python-version: 3.12.9
           - preset-name: VS2026Win64-pie-enabled-RelWithDebInfo-fetch-use-otel
             build-type: RelWithDebInfo
-            os: windows-2025-vs2026
+            os: windows-2025
             triplet: x64-win10
             python-version: 3.12.9
 
@@ -120,6 +117,7 @@ jobs:
       VCPKG_FEATURE_FLAGS: "manifests,registries"
       VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
       VCPKG_DEFAULT_HOST_TRIPLET: ${{ matrix.triplet }}
+      VCPKG_DISABLE_METRICS: 'ON'
       PYTHONHOME: ""
       PYTHONPATH: ""
 
@@ -150,19 +148,20 @@ jobs:
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
       - name: Setup Python
-        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         id: poc-py-setup
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install CMake
-        uses: lukka/get-cmake@a89e43e22a96abafcd7a62db652a65ecd33052c9 # v4.4.4
+        uses: lukka/get-cmake@16e8153a8b4918849d92aad131befe67a3705daa # v4.5.0
 
       - name: Install vcpkg
         uses: lukka/run-vcpkg@b1a0dd252f06b9e25b3c022a9a03bd7a427fb6a2 # v11.6
         with:
-          binaryCachePath: "${{ github.workspace }}\\vcpkgBCache"
+          binaryCachePath: "${{ github.workspace }}/vcpkgBCache"
           runVcpkgInstall: true
+          runVcpkgFormatString: '[`install`, `--recurse`, `--clean-after-build`, `--x-install-root`, `$[env.VCPKG_INSTALLED_DIR]`, `--triplet`, `$[env.VCPKG_DEFAULT_TRIPLET]`]'
 
       - name: Save vcpkg cache
         id: cache-vcpkg-save
@@ -176,10 +175,12 @@ jobs:
           key: ${{ steps.cache-vcpkg-restore.outputs.cache-primary-key }}
         if: steps.cache-vcpkg-restore.outputs.cache-hit != 'true'
 
-      - name: Build the code
-        run: |
-          & "${{ github.workspace }}\\script\\build.ps1" -PresetName "${{ matrix.preset-name }}" -BuildType "${{ matrix.build-type }}"
-        shell: pwsh
+      - name: Run CMake (Configure and Build)
+        uses: lukka/run-cmake@5d55ea7949e25f69f0ecb516d8d572297e03a956  # v10.9
+        with:
+          configurePreset: "${{ matrix.preset-name }}"
+          buildPreset: "build-${{ matrix.preset-name }}"
+          buildPresetAdditionalArgs: "[`--config`, `${{ matrix.build-type }}`]"
 
       - name: Look for the Boost.Python libraries
         run: |

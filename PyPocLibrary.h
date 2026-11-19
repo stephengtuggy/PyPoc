@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright © 2022-2025 Stephen G. Tuggy
+// Copyright © 2022-2026 Stephen G. Tuggy
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the “Software”), to deal
@@ -24,10 +24,10 @@
 #define PYPOC_PYPOCLIBRARY_H
 
 namespace py_poc {
-    class PyPocLibrary {
-    public:
-        void foo();
-    };
-} // py_poc
+class PyPocLibrary {
+public:
+    void foo();
+};
+}  // namespace py_poc
 
-#endif //PYPOC_PYPOCLIBRARY_H
+#endif  // PYPOC_PYPOCLIBRARY_H
